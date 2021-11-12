@@ -15,7 +15,7 @@
 
     $message = '';
 
-    if (count($results) > 0 && password_verify($_POST['password'], $results['contraseña'])) {
+    if (count($results) > 0 && $_POST['password']==$results['contraseña']) {
       $_SESSION['user_id'] = $results['id'];
       $message = 'yes';
       header("Location: /php-login");
