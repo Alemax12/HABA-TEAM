@@ -42,13 +42,13 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFirstName" name="name" type="text" placeholder="Enter your first name" />
+                                                        <input class="form-control" id="inputFirstName" name="firstname" type="text" placeholder="Enter your first name" />
                                                         <label for="inputFirstName">First name</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="inputLastName" name="cedula" type="text" placeholder="Enter your last name" />
+                                                        <input class="form-control" id="inputLastName" name="lastname" type="text" placeholder="Enter your last name" />
                                                         <label for="inputLastName">Last name</label>
                                                     </div>
                                                 </div>
@@ -74,7 +74,7 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputAddress" name="Address" type="Address" placeholder="Add Address" />
+                                                        <input class="form-control" id="inputAddress" name="address" type="address" placeholder="Add Address" />
                                                         <label for="inputAddress">Address</label>
                                                     </div>
                                                 </div>
@@ -84,7 +84,7 @@
                                             <div class="col-md-6">
                                                 
                                                 <div class="input-group date form-floating mb-3 mb-md-0" >
-                                                    <input type="text" id="datepicker" class="form-control" placeholder="Date of birth">
+                                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="Date of birth">
                                                     <label for="datepicker">DOB</label>
                                                     <span class="input-group-append">
                                                         <span class="input-group-text bg-white">
@@ -127,12 +127,15 @@
         </div>
         <!--Script del datepicker-->
         <script type="text/javascript">
-            $ (function(){
-                $('#datepicker').datepicker();
-            });
+            $(function(){
+        $("#datepicker").datepicker();
+       
+    });
+
         </script>
         <!--script para importar librerias js-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
     </body>
 </html>
+h
