@@ -12,11 +12,15 @@ echo $_POST['dob'];
 //echo $form_date;
 //------------------------------------------------------------------------
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $sql = "INSERT INTO cliente (nom_cliente, fecha_nac, email, contraseña,id_rol) VALUES (:firstname,:dob, :email, :password,1)";
+    $sql = "INSERT INTO cliente (nom_cliente, fecha_nac, celular, peso, estatura, direccion, email, contraseña,id_rol) VALUES (:firstname,:dob,:phone,:weight,:stature, :address, :email, :password,1)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':firstname', $_POST['firstname']);
-    $stmt->bindParam(':email', $_POST['email']);
     $stmt->bindParam(':dob',$_POST['dob'] );
+    $stmt->bindParam(':phone',$_POST['phone'] );
+    $stmt->bindParam(':email', $_POST['email']);
+    $stmt->bindParam(':weight',$_POST['weight'] );
+    $stmt->bindParam(':stature',$_POST['stature'] );
+    $stmt->bindParam(':address',$_POST['address'] );
     //$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $stmt->bindParam(':password', $_POST['password']);
     
