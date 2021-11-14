@@ -6,15 +6,15 @@ echo $_POST['email'];
 echo $_POST['firstname'];
 echo $_POST['dob'];
 
-//cambia el formato de mes/dia/ano a ano/mes/dia como lo solicita mysql
-//$date = DateTime::createFromformat('m/d/Y',$form);
-//$form_date=$date->format("Y-m-d");
-//echo $form_date;
-//------------------------------------------------------------------------
+$nc = $_POST['firstname'].' '. $_POST['lastname'];
+echo $nc;
+
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $sql = "INSERT INTO cliente (nom_cliente, fecha_nac, celular, peso, estatura, direccion, email, contraseña,id_rol) VALUES (:firstname,:dob,:phone,:weight,:stature, :address, :email, :password,1)";
+    $sql = "INSERT INTO cliente (nom_cliente, fecha_nac, celular, peso, estatura, direccion, email, contraseña,id_rol) 
+    VALUES (:nombre,:dob,:phone,:weight,:stature, :address, :email, :password,1)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':firstname', $_POST['firstname']);
+    
+    $stmt->bindParam(':nombre', $nc);
     $stmt->bindParam(':dob',$_POST['dob'] );
     $stmt->bindParam(':phone',$_POST['phone'] );
     $stmt->bindParam(':email', $_POST['email']);
