@@ -1,3 +1,12 @@
+<?php
+
+  session_start();
+
+  if (isset($_SESSION['user_id'])) {
+    header('Location: ./index.html');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,7 +41,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form action="./LOGINTEST/login.php" method="POST">
+                                        <form action="./php_operations/login.php" method="POST">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email address</label>
@@ -40,6 +49,12 @@
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" />
                                                 <label for="inputPassword">Password</label>
+                                            </div>
+                                            <div>
+                                            <?php if(isset($_GET["ress"])){
+                                                echo '<label for="inputPassword" style="color:red;">Could not enter, please try again...</label>';
+                                            }
+                                            ?>
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />

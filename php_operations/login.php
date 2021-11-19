@@ -3,7 +3,7 @@
   session_start();
 
   if (isset($_SESSION['user_id'])) {
-    header('Location: /php-login');
+    header('Location: ../index.html');
   }
   require 'database.php';
 
@@ -13,16 +13,14 @@
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
-    $message = '';
-
     if (count($results) > 0 && $_POST['password']==$results['contraseña']) {
-      $_SESSION['user_id'] = $results['id'];
-      $message = 'yes';
-      header("Location: /php-login");
+      $_SESSION['user_id'] = $results['id_cliente'];
+      header("Location: ../");
     } else {
-      $message = 'Sorry, those credentials do not match';
+      header("Location: ../ViewLogin.php?ress=1");
     }
   }
   echo $_POST['password'];
 echo $results['contraseña'];
 ?>
+
