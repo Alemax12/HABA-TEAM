@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Healthy Citizen</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        
+
+
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="../index.html">Healthy Citizen</a>
+            <!--<a class="navbar-brand ps-3" href="miembros.html">miembros</a>-->
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!--Botones Login y SingUp-->
+            <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="px-xxl-0 d-inline-block bg-info p-3 mb-2 bg-transparent text-dark">
+                    <a href="../login.html" class="btn btn-dark">Log in</a>
+                    <a href="../register.html" class="btn btn-dark" >Sign up</a>
+                </div>
+            </ul>
+        </nav>
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Main</div>
+                            <a class="nav-link" href="../index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                                Home
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Information</div>
+
+                            <!--Sobre nosotros nav collapsed button-->
+                            <a class="nav-link" href="../aboutus.html">
+                                <div class="sb-nav-link-icon">
+                                <i class="fas fa-heart">    
+                                </i>
+                                </div>
+                                About us
+                                </a>
+                            <!--Pages btn 2 en la lista-->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
+                                Developement
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <!--Herramientas-->
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
+                                        Used Tools
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="https://trello.com/b/7dudAdSS/team-haba">Trello</a>
+                                            <a class="nav-link" href="https://github.com/Alemax12/HABBA-TEAM">GitHub</a>
+                                        </nav>
+                                    </div>
+
+                                    <!--Integrantes-->
+                                    <a class="nav-link" href="../members.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-user-friends">    
+                                        </i>
+                                        </div>
+                                        Members
+                                    </a>
+
+                                    <!--Clientes-->
+                                    <a class="nav-link" href="./cliente.php">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Client
+                                    </a>
+
+                                    <!--Empleados-->
+                                    <a class="nav-link" href="./empleado.php">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Employee
+                                    </a>
+
+                                    <!--Contrato-->
+                                    <a class="nav-link" href="./contrato.php">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Contract
+                                    </a>
+
+                                    <!--Roles-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Role
+                                    </a>
+
+                                    <!--País-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Country
+                                    </a>
+
+                                    <!--Ciudad-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        City
+                                    </a>
+
+                                    <!--Sede-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Headquarters
+                                    </a>
+
+                                    <!--Inventario-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Headquarters Inventory
+                                    </a>
+
+                                    <!--Insumos-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Supplies
+                                    </a>
+
+                                    <!--MAteria Prima-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Raw Material
+                                    </a>
+                                    
+                                    <!--Procedimiento-->
+                                    <a class="nav-link" href="./registros.html">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
+                                        </i>
+                                        </div>
+                                        Procedures
+                                    </a>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <!--SIDENAVBAR-->
+            <div id="layoutSidenav_content">
+                <!--MAIN-->
+                <main>
+                    <div class="container-fluid px-4">
+                        <div class="jumbotron">
+                            <h1 class="display-4">Admin Options</h1><!--No tocar-->
+                            <br>
+                              
+                            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups"><!--***GRUPO #1***-->
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/paciente.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Client</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./empleado.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/medico.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Employee</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./contrato.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/contrato.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Contract</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/roles.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Role</p>
+                                        </div>
+                                    </a>  
+                                </a>
+                            </div>
+
+                            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups"><!--***GRUPO #2***-->
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/pais.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Country</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/ciudad.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">City</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/sede.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Headquarters</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/inventario.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Headquarters Inventory</p>
+                                        </div>
+                                    </a>  
+                                </a>
+                            </div>
+
+                            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups"><!--***GRUPO #3***-->
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/insumo.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Supplies</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/procedimiento.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Raw Material</p>
+                                        </div>
+                                    </a>
+                                </a>
+                                <a class="btn">
+                                    <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                        <img class="card-img-top" src="../imgC/procedimiento.png" alt="Card image cap">
+                                        <div class="card-body">
+                                        <p class="card-text">Procedures</p>
+                                        </div>
+                                    </a>
+                                </a>
+                            </div>
+
+                        </div><!--No tocar-->
+                    </div>
+
+
+                </main>
+                <!--FOOTER-->
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
+    </body>
+</html>
