@@ -1,9 +1,9 @@
 <?php
 include_once('../database.php');
 $id = $_POST["id"];
-$nom = $_POST["nom"];
+$nom = $_POST["name"];
 
-$sql = "UPDATE ciudad SET nom_ciudad='$nom' WHERE id_ciudad=$id";
+$sql = "UPDATE rol SET nom_rol='$nom' WHERE id_rol=$id";
 echo $sql;
 
 $resultado = $conexion->query($sql)

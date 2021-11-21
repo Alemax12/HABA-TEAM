@@ -11,9 +11,6 @@ $est = $_POST["est"];
 $dir = $_POST["dir"];
 $contra = $_POST["contra"];
 
-/*,  fecha_nac='$date', celular='$cel',
-email='$email', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra'*/
-
 $sql = "UPDATE cliente SET nom_cliente='$name', fecha_nac='$date', celular='$cel',
 email='$email', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra' WHERE id_cliente=$id";
 echo $sql;

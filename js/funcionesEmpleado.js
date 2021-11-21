@@ -56,7 +56,7 @@ function operaciones() {
 
         Swal.fire({
             title: 'Delete Client',
-            text: "Are you sure you want to delete the client?",
+            text: "Are you sure you want to delete this client?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',

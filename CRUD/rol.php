@@ -1,9 +1,10 @@
 <?php
 
+
 require './database.php';
 
-$sql = "SELECT * FROM cliente"
-    . " ORDER BY id_cliente";
+$sql = "SELECT * FROM rol
+     ORDER BY id_rol";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -16,8 +17,6 @@ while ($fila = $resultado->fetch_assoc()) {
 
 $conexion->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +34,9 @@ $conexion->close();
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
+
     <body class="sb-nav-fixed">
-        
+
 
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -49,7 +49,7 @@ $conexion->close();
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="px-xxl-0 d-inline-block bg-info p-3 mb-2 bg-transparent text-dark">
                     <a href="../login.html" class="btn btn-dark">Log in</a>
-                    <a href="../register.html" class="btn btn-dark" >Sign up</a>
+                    <a href="../register.html" class="btn btn-dark">Sign up</a>
                 </div>
             </ul>
         </nav>
@@ -69,11 +69,11 @@ $conexion->close();
                             <!--Sobre nosotros nav collapsed button-->
                             <a class="nav-link" href="../aboutus.html">
                                 <div class="sb-nav-link-icon">
-                                <i class="fas fa-heart">    
-                                </i>
+                                    <i class="fas fa-heart">
+                                    </i>
                                 </div>
                                 About us
-                                </a>
+                            </a>
                             <!--Pages btn 2 en la lista-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
@@ -84,7 +84,7 @@ $conexion->close();
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
+                                        <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
                                         Used Tools
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -98,8 +98,8 @@ $conexion->close();
                                     <!--Integrantes-->
                                     <a class="nav-link" href="../members.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-user-friends">    
-                                        </i>
+                                            <i class="fas fa-user-friends">
+                                            </i>
                                         </div>
                                         Members
                                     </a>
@@ -107,8 +107,8 @@ $conexion->close();
                                     <!--Clientes-->
                                     <a class="nav-link" href="./cliente.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Client
                                     </a>
@@ -116,8 +116,8 @@ $conexion->close();
                                     <!--Empleados-->
                                     <a class="nav-link" href="./empleado.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Employee
                                     </a>
@@ -125,8 +125,8 @@ $conexion->close();
                                     <!--Contrato-->
                                     <a class="nav-link" href="./contrato.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Contract
                                     </a>
@@ -143,8 +143,8 @@ $conexion->close();
                                     <!--País-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Country
                                     </a>
@@ -152,8 +152,8 @@ $conexion->close();
                                     <!--Ciudad-->
                                     <a class="nav-link" href="./ciudad.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         City
                                     </a>
@@ -179,8 +179,8 @@ $conexion->close();
                                     <!--Insumos-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Supplies
                                     </a>
@@ -188,17 +188,17 @@ $conexion->close();
                                     <!--MAteria Prima-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Raw Material
                                     </a>
-                                    
+
                                     <!--Procedimiento-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Procedures
                                     </a>
@@ -209,18 +209,19 @@ $conexion->close();
                     </div>
                 </nav>
             </div>
-<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             <div id="layoutSidenav_content">
                
                 <!--Carousel-->
-                
+                    
                 <style>
-                    .carousel-item{
+                    .carousel-item {
                         height: 10rem;
-                        background:rgb(206, 203, 203);
+                        background: rgb(206, 203, 203);
                         position: relative;
-                        }
-                    .contenedor{
+                    }
+
+                    .contenedor {
                         position: absolute;
                         bottom: 0;
                         left: 0;
@@ -228,121 +229,94 @@ $conexion->close();
                         padding-bottom: 10px;
                         padding-left: 50px;
                     }
-                    .btnOpt2{
+
+                    .btnOpt2 {
                         padding-left: 50px;
                     }
                 </style>
 
-               <div class="--Carousel--">
+                <div class="--Carousel--">
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-8"><h1>Clients</h1></div>
+                                <div class="col-md-8"><h1>Roles</h1></div>
                                 <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                             </div>
                         </div>  
-                    
-               
-                        <br>
-                        <div class="card">
-                            <div class="card-header text-white bg-dark">
-                                Information
-                            </div>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-secondary" id="nuevo">New</button>
-                                <div id="formulario">
-                                    <form class="row g-3" role="form" id="form1">
+                    </div>
+                </div>
 
-                                    <div class="form-group col-3 div_id">
-                                        <label>Client ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Name:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client's Date of Birth:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Cell Phone:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Email:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Weigth:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Height:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Address:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Client Password:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
-                                    </div>
+                <!--|TABLA|-->
+                <br>
+                <div class="card">
+                    <div class="card-header text-white bg-dark">
+                        Information
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+                        <div id="formulario">
+                            <form class="row g-3" role="form" id="form1">
 
-                                    </form>
-                                    <div>
-                                        <br>
-                                        <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
-                                        <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
-                                    </div>
+                                <div class="form-group col-5 div_id">
+                                    <label>Role ID:</label>
+                                    <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                </div>
+                                <div class="form-group col-5">
+                                    <label>Rol Name:</label>
+                                    <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
                                 </div>
 
-                                <br><br>
-
-                                <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Date of Birth</th>
-                                            <th>Cell Phone</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                        <tr>
-                                            <?php foreach ($listado as $fila) { ?>
-                                                <td><?php echo $fila['id_cliente'] ?> </td>
-                                                <td><?php echo utf8_decode($fila['nom_cliente']) ?> </td>
-                                                <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td>
-                                                <td><?php echo utf8_decode($fila['celular']) ?> </td>
-                                                <td><?php echo utf8_decode($fila['email']) ?> </td> 
-                                                <td><?php echo utf8_decode($fila['direccion']) ?> </td>
-
-                                                <td>
-                                                    <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_cliente'] ?>">
-                                                        <i class="fas fa-pen" aria-hidden="true"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_cliente'] ?>">
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    </button>
-                                                </td>
-                                        </tr>
-                                            <?php } ?>
-                                    </tbody>
-                                </table>
-
+                            </form>
+                            <div>
+                                <br>
+                                <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
+                                <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
                             </div>
                         </div>
-                    </div><!--INICIO-->
+                        <br><br>
+                        <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Rol ID</th>
+                                    <th>Rol Name</th>
 
-                    
-                </div><!--FIN-->
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <?php foreach ($listado as $fila) { ?>
+                                        <td><?php echo $fila['id_rol'] ?> </td>
+                                        <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_rol'] ?>">
+                                                <i class="fas fa-pen" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_rol'] ?>">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
 
@@ -363,12 +337,10 @@ $conexion->close();
             $("#tabla").DataTable();
         });
         </script>
-        <script type="text/javascript" src="../js/funcionesCliente.js"></script>
+        <script type="text/javascript" src="../js/funcionesRol.js"></script>
         <script type="text/javascript">
             $(document).ready(operaciones)
         </script>
-
-
 
     </body>
 </html>

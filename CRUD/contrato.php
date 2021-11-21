@@ -172,7 +172,7 @@ $conexion->close();
                                     </a>
 
                                     <!--Roles-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./rol.php">
                                         <div class="sb-nav-link-icon">
                                             <i class="fas fa-bars">
                                             </i>
@@ -298,7 +298,7 @@ $conexion->close();
 
                                         <div class="form-group col-3 div_id">
                                             <label>Contract ID:</label>
-                                            <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter number" value="">
+                                            <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
                                         </div>
 
                                         <div class="form-group col-3">

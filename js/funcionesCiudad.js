@@ -5,7 +5,7 @@ function operaciones() {
 
     $("#nuevo").click(function () {
         $("#formulario").show();
-        $("#inputID").prop("disabled", false);
+        $("#inputID").prop("disabled", true);
         $(this).hide();
         $("#save").text("Save");
         $(".div_id").hide();
@@ -105,6 +105,8 @@ function operaciones() {
 
             .done(function (data) {
                 $("#save").text("Update");
+                $("#inputID").prop("disabled", true);
+                $("#inputPai").prop("disabled", true);
                 $("#inputID").val(data.id_ciudad);
                 $("#inputPai").val(data.id_pais);
                 $("#inputNom").val(data.nom_ciudad);

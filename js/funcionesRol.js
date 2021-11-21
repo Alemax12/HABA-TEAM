@@ -23,9 +23,9 @@ function operaciones() {
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
-            ruta = "../CRUD/cliente/GuardarCliente.php";
+            ruta = "../CRUD/rol/GuardarRol.php";
         } else {
-            ruta = "../CRUD/cliente/EditarCliente.php";
+            ruta = "../CRUD/rol/EditarRol.php";
         }
         console.log(datos);
         $.ajax({
@@ -56,8 +56,8 @@ function operaciones() {
     $(".delete").click(function () {
 
         Swal.fire({
-            title: 'Delete Client',
-            text: "Are you sure you want to delete this client?",
+            title: 'Delete Role',
+            text: "Are you sure you want to delete this role?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -68,7 +68,7 @@ function operaciones() {
             if (result.isConfirmed) {
                 const id = $(this).data("id");
                 $.ajax({
-                    url: "../CRUD/cliente/EliminarCliente.php",
+                    url: "../CRUD/rol/EliminarRol.php",
                     method: "POST",
                     data: { id: id }, 
                     dataType: "html"
@@ -96,7 +96,7 @@ function operaciones() {
 
         const id = $(this).data("id");
         $.ajax({
-            url: "../CRUD/cliente/ConsultarCliente.php",
+            url: "../CRUD/rol/ConsultarRol.php",
             method: "POST",
             data: { id: id }, 
             dataType: "json"
@@ -105,15 +105,8 @@ function operaciones() {
             .done(function (data) {
                 $("#save").text("Update");
                 $("#inputID").prop("disabled", true);
-                $("#inputID").val(data.id_cliente);
-                $("#inputName").val(data.nom_cliente);
-                $("#inputFecNac").val(data.fecha_nac);
-                $("#inputCel").val(data.celular);
-                $("#inputEmail").val(data.email);
-                $("#inputPeso").val(data.peso);
-                $("#inputEst").val(data.estatura);
-                $("#inputDir").val(data.direccion);
-                $("#inputContra").val(data.contraseña);
+                $("#inputID").val(data.id_rol);
+                $("#inputName").val(data.nom_rol);
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();

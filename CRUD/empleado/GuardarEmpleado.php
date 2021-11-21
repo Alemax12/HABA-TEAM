@@ -12,7 +12,6 @@ $dir = $_POST["dir"];
 $contra = $_POST['contra'];
 
 $sql = "INSERT INTO empleado values ('$id','' '$name', '$date', '$email', '$cel', '$peso', '$est', '$dir', '$contra');";
-//      INSERT INTO cliente values (NULL, 'sdfghsd', '2001-02-21', '165153', 'sdghsd', '15', '156', 'sdfhdsf', 'sdfghdsf', '1');
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
