@@ -3,8 +3,8 @@
 
 require './database.php';
 
-$sql = "SELECT * FROM empleado
-     ORDER BY id_empleado";
+$sql = "SELECT * FROM pais
+     ORDER BY id_pais";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -239,7 +239,7 @@ $conexion->close();
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-8"><h1>Employees</h1></div>
+                                <div class="col-md-8"><h1>Country</h1></div>
                                 <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                             </div>
                         </div>  
@@ -258,40 +258,12 @@ $conexion->close();
                             <form class="row g-3" role="form" id="form1">
 
                                 <div class="form-group col-3 div_id">
-                                    <label>Client ID:</label>
-                                    <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                    <label>Country ID:</label>
+                                    <input autocomplete="off" type="text" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
                                 </div>
-                                <div class="form-group col-3">
-                                    <label>Client Name:</label>
+                                <div class="form-group col-5">
+                                    <label>Country:</label>
                                     <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label>Client's Date of Birth:</label>
-                                    <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label>Client Email:</label>
-                                    <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label>Client Cell Phone:</label>
-                                    <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
-                                </div> 
-                                <div class="form-group col-3">
-                                    <label>Client Weigth:</label>
-                                    <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label>Client Height:</label>
-                                    <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label>Client Address:</label>
-                                    <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label>Client Password:</label>
-                                    <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
                                 </div>
 
                             </form>
@@ -305,12 +277,8 @@ $conexion->close();
                         <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Date of Birth</th>
-                                    <th>Email</th>     
-                                    <th>Cell Phone</th>
-                                    <th>Address</th>
+                                    <th>Country ID</th>
+                                    <th>Country</th>
 
                                     <th></th>
                                 </tr>
@@ -318,18 +286,14 @@ $conexion->close();
                             <tbody>
                                 <tr>
                                     <?php foreach ($listado as $fila) { ?>
-                                        <td><?php echo $fila['id_empleado'] ?> </td>
-                                        <td><?php echo utf8_decode($fila['nom_empleado']) ?> </td>
-                                        <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td> 
-                                        <td><?php echo utf8_decode($fila['email']) ?> </td>
-                                        <td><?php echo utf8_decode($fila['celular']) ?> </td>
-                                        <td><?php echo utf8_decode($fila['direccion']) ?> </td>
+                                        <td><?php echo $fila['id_pais'] ?> </td>
+                                        <td><?php echo utf8_decode($fila['nom_pais']) ?> </td>
 
                                         <td>
-                                            <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_empleado'] ?>">
+                                            <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_pais'] ?>">
                                                 <i class="fas fa-pen" aria-hidden="true"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_empleado'] ?>">
+                                            <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_pais'] ?>">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
                                         </td>
@@ -373,7 +337,7 @@ $conexion->close();
             $("#tabla").DataTable();
         });
         </script>
-        <script type="text/javascript" src="../js/funcionesEmpleado.js"></script>
+        <script type="text/javascript" src="../js/funcionesPais.js"></script>
         <script type="text/javascript">
             $(document).ready(operaciones)
         </script>
