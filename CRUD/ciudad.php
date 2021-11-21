@@ -1,5 +1,6 @@
 <?php
-
+ header('Content-Type: text/html; charset=ISO-8859-1');
+ 
 require './database.php';
 
 $sql = "SELECT * FROM ciudad AS c  
@@ -78,7 +79,7 @@ $conexion->close();
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Home
                         </a>
-                        <div class="sb-sidenav-menu-heading">Information</div>
+                        <div class="sb-sidenav-menu-heading">Informatión</div>
 
                         <!--Sobre nosotros nav collapsed button-->
                         <a class="nav-link" href="../aboutus.html">
@@ -317,8 +318,8 @@ $conexion->close();
                                     <tr>
                                         <?php foreach ($listado as $fila) { ?>
                                             <td><?php echo $fila['id_ciudad'] ?> </td>
-                                            <td><?php echo utf8_encode($fila['nom_pais']) ?> </td>
-                                            <td><?php echo utf8_encode($fila['nom_ciudad']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_pais']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_ciudad']) ?> </td>
 
                                             <td>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_ciudad'] ?>">
