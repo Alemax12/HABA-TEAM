@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=ISO-8859-1');
 
 require './database.php';
 
@@ -373,12 +374,12 @@ $conexion->close();
                                     <tr>
                                         <?php foreach ($listado as $fila) { ?>
                                             <td><?php echo $fila['id_contrato'] ?> </td>
-                                            <td><?php echo utf8_encode($fila['nom_empleado']) ?> </td>
-                                            <td><?php echo utf8_encode($fila['salario']) ?> </td>
-                                            <td><?php echo utf8_encode($fila['fecha_inicio']) ?> </td>
-                                            <td><?php echo utf8_encode($fila['fecha_fin']) ?> </td>
-                                            <td><?php echo utf8_encode($fila['nom_sede']) ?> </td>
-                                            <td><?php echo utf8_encode($fila['nom_rol']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_empleado']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['salario']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['fecha_inicio']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['fecha_fin']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_sede']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
 
                                             <td>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_contrato'] ?>">

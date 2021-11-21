@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=ISO-8859-1');
 
 require './database.php';
 
@@ -319,11 +320,11 @@ $conexion->close();
                                         <tr>
                                             <?php foreach ($listado as $fila) { ?>
                                                 <td><?php echo $fila['id_cliente'] ?> </td>
-                                                <td><?php echo utf8_encode($fila['nom_cliente']) ?> </td>
-                                                <td><?php echo utf8_encode($fila['fecha_nac']) ?> </td>
-                                                <td><?php echo utf8_encode($fila['celular']) ?> </td>
-                                                <td><?php echo utf8_encode($fila['email']) ?> </td> 
-                                                <td><?php echo utf8_encode($fila['direccion']) ?> </td>
+                                                <td><?php echo utf8_decode($fila['nom_cliente']) ?> </td>
+                                                <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td>
+                                                <td><?php echo utf8_decode($fila['celular']) ?> </td>
+                                                <td><?php echo utf8_decode($fila['email']) ?> </td> 
+                                                <td><?php echo utf8_decode($fila['direccion']) ?> </td>
 
                                                 <td>
                                                     <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_cliente'] ?>">

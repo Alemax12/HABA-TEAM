@@ -7,7 +7,7 @@ $nom = $_POST["nom"];
 /*,  fecha_nac='$date', celular='$cel',
 email='$email', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra'*/
 
-$sql = "UPDATE ciudad SET id_pais='$pai', nom_ciudad='$nom' WHERE id_cliente=$id";
+$sql = "UPDATE ciudad SET id_pais='$pai', nom_ciudad='$nom' WHERE id_ciudad=$id";
 echo $sql;
 
 $resultado = $conexion->query($sql)
