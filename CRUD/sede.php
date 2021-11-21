@@ -1,10 +1,11 @@
 <?php
-
+header('Content-Type: text/html; charset=ISO-8859-1');
 
 require './database.php';
 
-$sql = "SELECT * FROM rol
-     ORDER BY id_rol";
+$sql = "SELECT * FROM sede AS s  
+        INNER JOIN ciudad AS c ON (s.id_ciudad = c.id_ciudad)
+        ORDER BY id_sede";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -13,6 +14,17 @@ $resultado = $conexion->query($sql)
 $listado = array();
 while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
+}
+
+//ciudades
+$sql = "SELECT * FROM ciudad
+     ORDER BY nom_ciudad";
+$result_ciudad = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$ciudad = array();
+while ($fila = $result_ciudad->fetch_assoc()) {
+    $ciudad[] = $fila;
 }
 
 $conexion->close();
@@ -239,7 +251,7 @@ $conexion->close();
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-8"><h1>Roles</h1></div>
+                                <div class="col-md-8"><h1>Headquarters</h1></div>
                                 <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                             </div>
                         </div>  
@@ -258,12 +270,21 @@ $conexion->close();
                             <form class="row g-3" role="form" id="form1">
 
                                 <div class="form-group col-5 div_id">
-                                    <label>Role ID:</label>
-                                    <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                    <label>Headquarters ID:</label>
+                                    <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
                                 </div>
                                 <div class="form-group col-5">
-                                    <label>Rol Name:</label>
-                                    <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
+                                    <label>Headquarters Name:</label>
+                                    <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Headquarters Name" value="">
+                                </div>
+                                <div class="form-group col-3">
+                                    <label>City:</label>
+                                    <select class="form-control" name="cit" id="inputCit">
+                                        <option value="0">Select:</option>
+                                        <?php foreach ($ciudad as $fila) { ?>
+                                            <option value="<?php echo $fila['id_ciudad']?>"> <?php echo utf8_decode ($fila['nom_ciudad']) ?> </option>;
+                                        <?php } ?>
+                                    </select>
                                 </div>
 
                             </form>
@@ -277,23 +298,24 @@ $conexion->close();
                         <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Rol ID</th>
-                                    <th>Rol Name</th>
-
+                                    <th>Headquarters ID</th>
+                                    <th>Headquarters</th>
+                                    <th>City</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <?php foreach ($listado as $fila) { ?>
-                                        <td><?php echo $fila['id_rol'] ?> </td>
-                                        <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
+                                        <td><?php echo $fila['id_sede'] ?> </td>
+                                        <td><?php echo utf8_decode($fila['nom_sede']) ?> </td>
+                                        <td><?php echo utf8_decode($fila['nom_ciudad']) ?> </td>
 
                                         <td>
-                                            <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_rol'] ?>">
+                                            <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_sede'] ?>">
                                                 <i class="fas fa-pen" aria-hidden="true"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_rol'] ?>">
+                                            <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_sede'] ?>">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
                                         </td>
@@ -337,7 +359,7 @@ $conexion->close();
             $("#tabla").DataTable();
         });
         </script>
-        <script type="text/javascript" src="../js/funcionesRol.js"></script>
+        <script type="text/javascript" src="../js/funcionesSede.js"></script>
         <script type="text/javascript">
             $(document).ready(operaciones)
         </script>

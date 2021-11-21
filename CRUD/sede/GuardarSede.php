@@ -2,9 +2,9 @@
 include_once('../database.php');
 $id = $_POST["id"];
 $nom = $_POST["name"];
+$cit = $_POST["cit"];
 
-
-$sql = "INSERT INTO rol values ('$id', '$nom');";
+$sql = "INSERT INTO sede values (NULL,'$nom', '$cit');";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

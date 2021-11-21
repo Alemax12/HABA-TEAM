@@ -23,9 +23,9 @@ function operaciones() {
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
-            ruta = "../CRUD/rol/GuardarRol.php";
+            ruta = "../CRUD/sede/GuardarSede.php";
         } else {
-            ruta = "../CRUD/rol/EditarRol.php";
+            ruta = "../CRUD/sede/EditarSede.php";
         }
         console.log(datos);
         $.ajax({
@@ -56,8 +56,8 @@ function operaciones() {
     $(".delete").click(function () {
 
         Swal.fire({
-            title: 'Delete Role',
-            text: "Are you sure you want to delete this role?",
+            title: 'Delete Headquarters',
+            text: "Are you sure you want to delete this headquarters?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -68,7 +68,7 @@ function operaciones() {
             if (result.isConfirmed) {
                 const id = $(this).data("id");
                 $.ajax({
-                    url: "../CRUD/rol/EliminarRol.php",
+                    url: "../CRUD/sede/EliminarSede.php",
                     method: "POST",
                     data: { id: id }, 
                     dataType: "html"
@@ -96,7 +96,7 @@ function operaciones() {
 
         const id = $(this).data("id");
         $.ajax({
-            url: "../CRUD/rol/ConsultarRol.php",
+            url: "../CRUD/sede/ConsultarSede.php",
             method: "POST",
             data: { id: id }, 
             dataType: "json"
@@ -105,8 +105,8 @@ function operaciones() {
             .done(function (data) {
                 $("#save").text("Update");
                 $("#inputID").prop("disabled", true);
-                $("#inputID").val(data.id_rol);
-                $("#inputName").val(data.nom_rol);
+                $("#inputID").val(data.id_sede);
+                $("#inputName").val(data.nom_sede);
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();

@@ -2,7 +2,7 @@
 include_once('../database.php');
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM rol WHERE id_rol=$id";
+$sql = "SELECT * FROM sede WHERE id_sede=$id";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
