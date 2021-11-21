@@ -273,12 +273,12 @@ $conexion->close();
                                 <form class="row g-3" role="form" id="form1">
 
                                     <div class="form-group col-3 div_id">
-                                        <label>Contract ID:</label>
+                                        <label>City ID:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter number" value="">
                                     </div>
 
                                     <div class="form-group col-3">
-                                        <label>Employees:</label>
+                                        <label>Country:</label>
                                         <select class="form-control" name="pai" id="inputPai">
                                             <option value="0">Select:</option>
                                             <?php foreach ($pais as $fila) { ?>
@@ -288,8 +288,8 @@ $conexion->close();
                                     </div>
 
                                     <div class="form-group col-3">
-                                        <label>Contract Salary:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="nom" id="inputNom" placeholder="Enter salary" value="">
+                                        <label>City:</label>
+                                        <input autocomplete="off" type="text" class="form-control" name="nom" id="inputNom" placeholder="Enter City" value="">
                                     </div>
 
                                 </form>
@@ -308,7 +308,7 @@ $conexion->close();
                                     <tr>
                                         <th>City ID</th>
                                         <th>Country</th>
-                                        <th>City Name</th>
+                                        <th>City</th>
                                         <th></th>
                                     </tr>
                                 </thead>

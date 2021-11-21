@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=ISO-8859-1');
 
 require './database.php';
 
@@ -151,7 +150,7 @@ $conexion->close();
                                     </a>
 
                                     <!--Ciudad-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./ciudad.php">
                                         <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">    
                                         </i>

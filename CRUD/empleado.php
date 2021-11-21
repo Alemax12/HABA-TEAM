@@ -1,12 +1,10 @@
-<?php 
+<?php
 
-header('Content-Type: text/html; charset=ISO-8859-1');
 
 require './database.php';
 
-
-$sql = "SELECT id_empleado, nom_empleado, fecha_nac, email, celular, peso, estatura, direccion, contraseña FROM empleado"
-    . " ORDER BY id_empleado";
+$sql = "SELECT id_empleado, nom_empleado, fecha_nac, email, celular, peso, estatura, direccion, contraseña FROM empleado
+     ORDER BY id_empleado";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -18,29 +16,27 @@ while ($fila = $resultado->fetch_assoc()) {
 }
 
 $conexion->close();
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Healthy Citizen</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link href="../css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Healthy Citizen</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+
     <body class="sb-nav-fixed">
-        
+
 
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -53,7 +49,7 @@ $conexion->close();
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="px-xxl-0 d-inline-block bg-info p-3 mb-2 bg-transparent text-dark">
                     <a href="../login.html" class="btn btn-dark">Log in</a>
-                    <a href="../register.html" class="btn btn-dark" >Sign up</a>
+                    <a href="../register.html" class="btn btn-dark">Sign up</a>
                 </div>
             </ul>
         </nav>
@@ -73,11 +69,11 @@ $conexion->close();
                             <!--Sobre nosotros nav collapsed button-->
                             <a class="nav-link" href="../aboutus.html">
                                 <div class="sb-nav-link-icon">
-                                <i class="fas fa-heart">    
-                                </i>
+                                    <i class="fas fa-heart">
+                                    </i>
                                 </div>
                                 About us
-                                </a>
+                            </a>
                             <!--Pages btn 2 en la lista-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
@@ -88,7 +84,7 @@ $conexion->close();
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
+                                        <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
                                         Used Tools
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -102,8 +98,8 @@ $conexion->close();
                                     <!--Integrantes-->
                                     <a class="nav-link" href="../members.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-user-friends">    
-                                        </i>
+                                            <i class="fas fa-user-friends">
+                                            </i>
                                         </div>
                                         Members
                                     </a>
@@ -111,8 +107,8 @@ $conexion->close();
                                     <!--Clientes-->
                                     <a class="nav-link" href="./cliente.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Client
                                     </a>
@@ -120,8 +116,8 @@ $conexion->close();
                                     <!--Empleados-->
                                     <a class="nav-link" href="./empleado.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Employee
                                     </a>
@@ -129,8 +125,8 @@ $conexion->close();
                                     <!--Contrato-->
                                     <a class="nav-link" href="./contrato.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Contract
                                     </a>
@@ -138,8 +134,8 @@ $conexion->close();
                                     <!--Roles-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Role
                                     </a>
@@ -147,17 +143,17 @@ $conexion->close();
                                     <!--País-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Country
                                     </a>
 
                                     <!--Ciudad-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./ciudad.php">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         City
                                     </a>
@@ -183,8 +179,8 @@ $conexion->close();
                                     <!--Insumos-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Supplies
                                     </a>
@@ -192,17 +188,17 @@ $conexion->close();
                                     <!--MAteria Prima-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Raw Material
                                     </a>
-                                    
+
                                     <!--Procedimiento-->
                                     <a class="nav-link" href="./registros.html">
                                         <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
-                                        </i>
+                                            <i class="fas fa-bars">
+                                            </i>
                                         </div>
                                         Procedures
                                     </a>
@@ -213,38 +209,40 @@ $conexion->close();
                     </div>
                 </nav>
             </div>
-<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             <div id="layoutSidenav_content">
                
-                    <!--Carousel-->
+                <!--Carousel-->
                     
-                    <style>
-                        .carousel-item{
-                            height: 10rem;
-                            background:rgb(206, 203, 203);
-                            position: relative;
-                            }
-                        .contenedor{
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            right: 0;
-                            padding-bottom: 10px;
-                            padding-left: 50px;
-                        }
-                        .btnOpt2{
-                            padding-left: 50px;
-                        }
-                    </style>
+                <style>
+                    .carousel-item {
+                        height: 10rem;
+                        background: rgb(206, 203, 203);
+                        position: relative;
+                    }
+
+                    .contenedor {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        padding-bottom: 10px;
+                        padding-left: 50px;
+                    }
+
+                    .btnOpt2 {
+                        padding-left: 50px;
+                    }
+                </style>
 
                 <div class="--Carousel--">
-                        <div class="carousel-item active">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8"><h1>Employees</h1></div>
-                                    <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
-                                </div>
-                            </div>  
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-8"><h1>Employees</h1></div>
+                                <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
+                            </div>
+                        </div>  
                     </div>
                 </div>
 
@@ -357,9 +355,6 @@ $conexion->close();
                 </footer>
             </div>
         </div>
-
-        
-
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>

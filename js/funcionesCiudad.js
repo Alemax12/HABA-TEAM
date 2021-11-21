@@ -5,6 +5,7 @@ function operaciones() {
 
     $("#nuevo").click(function () {
         $("#formulario").show();
+        $("#inputID").prop("disabled", false);
         $(this).hide();
         $("#save").text("Save");
         $(".div_id").hide();
@@ -18,6 +19,7 @@ function operaciones() {
 
     $("#save").click(function (e) {
         e.preventDefault();
+        $("#inputID").prop("disabled", false);
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
