@@ -46,7 +46,6 @@ $conexion->close();
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -79,7 +78,7 @@ $conexion->close();
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Home
                         </a>
-                        <div class="sb-sidenav-menu-heading">Informatión</div>
+                        <div class="sb-sidenav-menu-heading">Information</div>
 
                         <!--Sobre nosotros nav collapsed button-->
                         <a class="nav-link" href="../aboutus.html">
@@ -323,7 +322,7 @@ $conexion->close();
 
                                             <td>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_ciudad'] ?>">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    <i class="fas fa-pen" aria-hidden="true"></i>
                                                 </button>
                                                 <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_ciudad'] ?>">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>

@@ -5,7 +5,7 @@ $pai = $_POST["pai"];
 $nom = $_POST["nom"];
 
 
-$sql = "INSERT INTO ciudad values (NULL, '$pai', '$nom');";
+$sql = "INSERT INTO ciudad values ('$id', '$pai', '$nom');";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

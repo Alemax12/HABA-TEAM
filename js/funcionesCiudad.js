@@ -5,7 +5,6 @@ function operaciones() {
 
     $("#nuevo").click(function () {
         $("#formulario").show();
-        $("#inputID").prop("disabled", false);
         $(this).hide();
         $("#save").text("Save");
         $(".div_id").hide();
@@ -19,7 +18,6 @@ function operaciones() {
 
     $("#save").click(function (e) {
         e.preventDefault();
-        $("#inputID").prop("disabled", false);
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
@@ -105,7 +103,6 @@ function operaciones() {
 
             .done(function (data) {
                 $("#save").text("Update");
-                $("#inputID").prop("disabled", true);
                 $("#inputID").val(data.id_ciudad);
                 $("#inputPai").val(data.id_pais);
                 $("#inputNom").val(data.nom_ciudad);
