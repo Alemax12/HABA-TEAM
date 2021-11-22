@@ -2,7 +2,11 @@
 include_once('../database.php');
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM contrato WHERE id_contrato=$id";
+$sql = "SELECT * FROM contrato AS c  
+        INNER JOIN empleado AS e ON (c.id_empleado = e.id_empleado)
+        INNER JOIN sede AS s ON (c.id_sede = s.id_sede)
+        INNER JOIN rol AS r ON (c.id_rol = r.id_rol)
+        ORDER BY id_contrato";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

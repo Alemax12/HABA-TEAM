@@ -2,7 +2,9 @@
 include_once('../database.php');
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM ciudad WHERE id_ciudad=$id";
+$sql = "SELECT * FROM ciudad AS c  
+        INNER JOIN pais AS p ON (c.id_pais = p.id_pais)
+        ORDER BY id_ciudad";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

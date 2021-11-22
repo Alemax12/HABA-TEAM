@@ -111,6 +111,8 @@ function operaciones() {
                 $("#inputSal").val(data.salario);
                 $("#inputFecIni").val(data.fecha_inicio);
                 $("#inputFecFin").val(data.fecha_fin);
+                $("#inputSede").val(data.id_sede);
+                $("#inputRol").val(data.id_rol);                
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();
