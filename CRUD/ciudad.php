@@ -136,17 +136,17 @@ $conexion->close();
                                     Employee
                                 </a>
 
-                                <!--Contrato-->
-                                <a class="nav-link" href="./contrato.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Contract
-                                </a>
+                                    <!--Contrato-->
+                                    <a class="nav-link" href="./contrato.php">
+                                        <div class="sb-nav-link-icon">
+                                            <i class="fas fa-bars">
+                                            </i>
+                                        </div>
+                                        Contract
+                                    </a>
 
-                                <!--Roles-->
-                                <a class="nav-link" href="./rol.php">
+                                    <!--Roles-->
+                                    <a class="nav-link" href="./rol.php">
                                         <div class="sb-nav-link-icon">
                                             <i class="fas fa-bars">
                                             </i>
@@ -154,68 +154,68 @@ $conexion->close();
                                         Role
                                     </a>
 
-                                <!--País-->
-                                <a class="nav-link" href="./registros.html">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
+                                    <!--País-->
+                                    <a class="nav-link" href="./pais.php">
+                                        <div class="sb-nav-link-icon">
+                                            <i class="fas fa-bars">
+                                            </i>
+                                        </div>
+                                        Country
+                                    </a>
+
+                                    <!--Ciudad-->
+                                    <a class="nav-link" href="./ciudad.php">
+                                        <div class="sb-nav-link-icon">
+                                            <i class="fas fa-bars">
+                                            </i>
+                                        </div>
+                                        City
+                                    </a>
+
+                                    <!--Sede-->
+                                    <a class="nav-link" href="./sede.php">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
                                         </i>
-                                    </div>
-                                    Country
-                                </a>
+                                        </div>
+                                        Headquarters
+                                    </a>
 
-                                <!--Ciudad-->
-                                <a class="nav-link" href="./ciudad.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
+                                    <!--Inventario-->
+                                    <a class="nav-link" href="./inventario.php">
+                                        <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">    
                                         </i>
-                                    </div>
-                                    City
-                                </a>
+                                        </div>
+                                        Headquarters Inventory
+                                    </a>
 
-                                <!--Sede-->
-                                <a class="nav-link" href="./registros.html">
-                                    <div class="sb-nav-link-icon">
-                                    <i class="fas fa-bars">    
-                                    </i>
-                                    </div>
-                                    Headquarters
-                                </a>
+                                    <!--Insumos-->
+                                    <a class="nav-link" href="./insumos.php">
+                                        <div class="sb-nav-link-icon">
+                                            <i class="fas fa-bars">
+                                            </i>
+                                        </div>
+                                        Supplies
+                                    </a>
 
-                                <!--Inventario-->
-                                <a class="nav-link" href="./registros.html">
-                                    <div class="sb-nav-link-icon">
-                                    <i class="fas fa-bars">    
-                                    </i>
-                                    </div>
-                                    Headquarters Inventory
-                                </a>
+                                    <!--Materia Prima-->
+                                    <a class="nav-link" href="./materia.php">
+                                        <div class="sb-nav-link-icon">
+                                            <i class="fas fa-bars">
+                                            </i>
+                                        </div>
+                                        Raw Material
+                                    </a>
 
-                                <!--Insumos-->
-                                <a class="nav-link" href="./registros.html">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Supplies
-                                </a>
-
-                                <!--MAteria Prima-->
-                                <a class="nav-link" href="./registros.html">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Raw Material
-                                </a>
-
-                                <!--Procedimiento-->
-                                <a class="nav-link" href="./registros.html">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Procedures
-                                </a>
+                                    <!--Procedimiento-->
+                                    <a class="nav-link" href="./procedimiento.php">
+                                        <div class="sb-nav-link-icon">
+                                            <i class="fas fa-bars">
+                                            </i>
+                                        </div>
+                                        Procedures
+                                    </a>
 
                             </nav>
                         </div>

@@ -181,7 +181,7 @@ $conexion->close();
                                     </a>
 
                                     <!--País-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./pais.php">
                                         <div class="sb-nav-link-icon">
                                             <i class="fas fa-bars">
                                             </i>
@@ -199,7 +199,7 @@ $conexion->close();
                                     </a>
 
                                     <!--Sede-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./sede.php">
                                         <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">    
                                         </i>
@@ -208,7 +208,7 @@ $conexion->close();
                                     </a>
 
                                     <!--Inventario-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./inventario.php">
                                         <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">    
                                         </i>
@@ -217,7 +217,7 @@ $conexion->close();
                                     </a>
 
                                     <!--Insumos-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./insumos.php">
                                         <div class="sb-nav-link-icon">
                                             <i class="fas fa-bars">
                                             </i>
@@ -225,8 +225,8 @@ $conexion->close();
                                         Supplies
                                     </a>
 
-                                    <!--MAteria Prima-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <!--Materia Prima-->
+                                    <a class="nav-link" href="./materia.php">
                                         <div class="sb-nav-link-icon">
                                             <i class="fas fa-bars">
                                             </i>
@@ -235,7 +235,7 @@ $conexion->close();
                                     </a>
 
                                     <!--Procedimiento-->
-                                    <a class="nav-link" href="./registros.html">
+                                    <a class="nav-link" href="./procedimiento.php">
                                         <div class="sb-nav-link-icon">
                                             <i class="fas fa-bars">
                                             </i>
