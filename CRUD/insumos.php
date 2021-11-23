@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+
+  if (isset($_SESSION['user_rol']) && $_SESSION['user_rol']!=2) {
+    header('Location: ../404.html');
+  }
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 
 require './database.php';
