@@ -60,26 +60,26 @@ if (isset($_SESSION['user_id'])) {
                                                 echo '<label for="inputPassword" style="color:red;">Could not enter, please try again...</label>';
                                             }
                                             ?>
-                                        </div>
-                                        <!--radiobtn ciente y empleado-->
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <!--genera un grupo donde solo puede estar chequeado 1-->
-                                            <label class="btn btn-outline-success">
-                                                <input type="radio" name="options" value="Cliente" id="cliente" autocomplete="off" checked> Cliente
-                                            </label>
-                                            <label class="btn btn-outline-success">
-                                                <input type="radio" name="options" value="Empleado" id="empleado" autocomplete="off"> Empleado
-                                            </label>
-                                        </div>
-                                        <!--fin radiobtn cliente y empleado-->
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="btn btn-lg" href="password.html">Forgot Password?</a>
-                                            <input type="submit" class="btn btn-outline-success" value="Login">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-center py-3">
-                                    <div class="small"><a class="btn btn-lg" href="register.html">Need an account? Sign up!</a></div>
+                                            </div>
+                                            <!--radiobtn ciente y empleado-->
+                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons"><!--genera un grupo donde solo puede-->
+                                                        <label class="btn btn-outline-success">
+                                                            <input type="radio" name="options" value="cliente" id="option1" autocomplete="off" checked> Cliente
+                                                        </label>
+                                                        <label class="btn btn-outline-success">
+                                                            <input type="radio" name="options" value="empleado" id="option2" autocomplete="off"> Empleado
+                                                        </label>
+                                                        </div>
+                                            <!--fin radiobtn cliente y empleado-->        
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="btn btn-lg" href="password.html">Forgot Password?</a>
+                                                <input type="submit" class="btn btn-outline-success" value="Login">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a class="btn btn-lg" href="register.html">Need an account? Sign up!</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
