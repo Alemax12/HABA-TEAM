@@ -60,8 +60,7 @@ if (isset($_SESSION['user_id'])) {
                                                 echo '<label for="inputPassword" style="color:red;">Could not enter, please try again...</label>';
                                             }
                                             ?>
-                                            </div>
-                                            </div>
+                                        </div>
                                         <!--radiobtn ciente y empleado-->
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <!--genera un grupo donde solo puede estar chequeado 1-->
@@ -81,28 +80,28 @@ if (isset($_SESSION['user_id'])) {
                                 </div>
                                 <div class="card-footer text-center py-3">
                                     <div class="small"><a class="btn btn-lg" href="register.html">Need an account? Sign up!</a></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
         </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>

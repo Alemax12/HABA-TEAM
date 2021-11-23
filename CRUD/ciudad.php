@@ -1,6 +1,8 @@
 <?php
- header('Content-Type: text/html; charset=ISO-8859-1');
- 
+
+
+header('Content-Type: text/html; charset=ISO-8859-1');
+
 require './database.php';
 
 $sql = "SELECT * FROM ciudad AS c  
@@ -136,86 +138,86 @@ $conexion->close();
                                     Employee
                                 </a>
 
-                                    <!--Contrato-->
-                                    <a class="nav-link" href="./contrato.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Contract
-                                    </a>
-
-                                    <!--Roles-->
-                                    <a class="nav-link" href="./rol.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Role
-                                    </a>
-
-                                    <!--País-->
-                                    <a class="nav-link" href="./pais.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Country
-                                    </a>
-
-                                    <!--Ciudad-->
-                                    <a class="nav-link" href="./ciudad.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        City
-                                    </a>
-
-                                    <!--Sede-->
-                                    <a class="nav-link" href="./sede.php">
-                                        <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
+                                <!--Contrato-->
+                                <a class="nav-link" href="./contrato.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
                                         </i>
-                                        </div>
-                                        Headquarters
-                                    </a>
+                                    </div>
+                                    Contract
+                                </a>
 
-                                    <!--Inventario-->
-                                    <a class="nav-link" href="./inventario.php">
-                                        <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">    
+                                <!--Roles-->
+                                <a class="nav-link" href="./rol.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
                                         </i>
-                                        </div>
-                                        Headquarters Inventory
-                                    </a>
+                                    </div>
+                                    Role
+                                </a>
 
-                                    <!--Insumos-->
-                                    <a class="nav-link" href="./insumos.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Supplies
-                                    </a>
+                                <!--País-->
+                                <a class="nav-link" href="./pais.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Country
+                                </a>
 
-                                    <!--Materia Prima-->
-                                    <a class="nav-link" href="./materia.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Raw Material
-                                    </a>
+                                <!--Ciudad-->
+                                <a class="nav-link" href="./ciudad.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    City
+                                </a>
 
-                                    <!--Procedimiento-->
-                                    <a class="nav-link" href="./procedimiento.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Procedures
-                                    </a>
+                                <!--Sede-->
+                                <a class="nav-link" href="./sede.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Headquarters
+                                </a>
+
+                                <!--Inventario-->
+                                <a class="nav-link" href="./inventario.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Headquarters Inventory
+                                </a>
+
+                                <!--Insumos-->
+                                <a class="nav-link" href="./insumos.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Supplies
+                                </a>
+
+                                <!--Materia Prima-->
+                                <a class="nav-link" href="./materia.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Raw Material
+                                </a>
+
+                                <!--Procedimiento-->
+                                <a class="nav-link" href="./procedimiento.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Procedures
+                                </a>
 
                             </nav>
                         </div>
@@ -253,7 +255,8 @@ $conexion->close();
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-md-8"><h1>City</h1>
+                            <div class="col-md-8">
+                                <h1>City</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
