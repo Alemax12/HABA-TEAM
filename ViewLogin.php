@@ -57,12 +57,12 @@
                                             ?>
                                             </div>
                                             <!--radiobtn ciente y empleado-->
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons"><!--genera un grupo donde solo puede estar chequeado 1-->
+                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons"><!--genera un grupo donde solo puede-->
                                                         <label class="btn btn-outline-success">
-                                                            <input type="radio" name="cliente" value="cliente" id="cliente" autocomplete="off"> Cliente
+                                                            <input type="radio" name="options" value="cliente" id="option1" autocomplete="off" checked> Cliente
                                                         </label>
                                                         <label class="btn btn-outline-success">
-                                                            <input type="radio" name="empleado" value="empleado" id="empleado" autocomplete="off"> Empleado
+                                                            <input type="radio" name="options" value="empleado" id="option2" autocomplete="off"> Empleado
                                                         </label>
                                                         </div>
                                             <!--fin radiobtn cliente y empleado-->        
