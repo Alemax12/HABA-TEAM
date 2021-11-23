@@ -59,10 +59,10 @@
                                             <!--radiobtn ciente y empleado-->
                                                     <div class="btn-group btn-group-toggle" data-toggle="buttons"><!--genera un grupo donde solo puede estar chequeado 1-->
                                                         <label class="btn btn-outline-success" value="cliente" >
-                                                            <input type="radio" name="options" id="option1" autocomplete="off"> Cliente
+                                                            <input type="radio" name="cliente" id="cliente" autocomplete="off"> Cliente
                                                         </label>
                                                         <label class="btn btn-outline-success" value="empleado">
-                                                            <input type="radio" name="options" id="option2" autocomplete="off"> Empleado
+                                                            <input type="radio" name="empleado" id="empleado" autocomplete="off"> Empleado
                                                         </label>
                                                         </div>
                                             <!--fin radiobtn cliente y empleado-->        
