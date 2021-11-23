@@ -56,9 +56,18 @@
                                             }
                                             ?>
                                             </div>
-                                            <div class="form-check mb-3">
+                                            <div class="form-check mb-3 mb-4">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+                                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-outline-success" value="cliente" >
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> Cliente
+  </label>
+  <label class="btn btn-outline-success" value="empleado">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Empleado
+  </label>
+  </div>
+
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="btn btn-lg" href="password.html">Forgot Password?</a>
