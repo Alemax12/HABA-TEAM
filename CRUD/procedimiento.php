@@ -6,16 +6,12 @@ if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] != 2) {
     header('Location: ../404.html');
 }
 
-
 require './database.php';
 
-$sql = "SELECT * FROM empleado AS e  
-        INNER JOIN rol AS r ON (e.id_rol = r.id_rol)
-        INNER JOIN sede AS s ON (e.id_sede = s.id_sede)
-        ORDER BY id_empleado";
-
-
-
+$sql = "SELECT * FROM procedimiento AS p 
+        INNER JOIN empleado AS e ON (p.id_empleado = e.id_empleado)
+        INNER JOIN cliente AS c ON (p.id_cliente = c.id_cliente)
+        ORDER BY id_procedimiento";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -26,30 +22,33 @@ while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
 }
 
-//roles
-$sql = "SELECT * FROM rol
-     ORDER BY id_rol";
-$result_rol = $conexion->query($sql)
+//empleado
+$sql = "SELECT * FROM empleado
+     ORDER BY id_empleado";
+$result_empleado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
-$rol = array();
-while ($fila = $result_rol->fetch_assoc()) {
-    $rol[] = $fila;
+$empleado = array();
+while ($fila = $result_empleado->fetch_assoc()) {
+    $empleado[] = $fila;
 }
 
-//sedes
-$sql = "SELECT * FROM sede
-     ORDER BY nom_sede";
-$result_sede = $conexion->query($sql)
+//cliente
+$sql = "SELECT * FROM cliente
+     ORDER BY id_cliente";
+$result_cliente = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
-$sede = array();
-while ($fila = $result_sede->fetch_assoc()) {
-    $sede[] = $fila;
+$cliente = array();
+while ($fila = $result_cliente->fetch_assoc()) {
+    $cliente[] = $fila;
 }
 
 $conexion->close();
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -263,174 +262,156 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Employees</h1>
+                                <h1>Procedures</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!--|TABLA|-->
-            <br>
-            <div class="card">
-                <div class="card-header text-white bg-dark">
-                    Information
-                </div>
-                <div class="card-body">
-                    <button type="button" class="btn btn-secondary" id="nuevo">New</button>
-                    <div id="formulario">
-                        <form class="row g-3" role="form" id="form1">
 
-                            <div class="form-group col-3 div_id">
-                                <label>Client ID:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Name:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client's Date of Birth:</label>
-                                <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Email:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Cell Phone:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Weigth:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Height:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Address:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Client Password:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
-                            </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header text-white bg-dark">
+                            Information
+                        </div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+                            <div id="formulario">
+                                <form class="row g-3" role="form" id="form1">
 
-                            <div class="form-group col-3">
-                                <label>Roles:</label>
-                                <select class="form-control" name="rol" id="inputRol">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($rol as $fila) { ?>
-                                        <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
-                                    <?php } ?>
-                                </select>
+                                    <div class="form-group col-3 div_id">
+                                        <label>Procedure ID:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>nombre de empleado:</label>
+                                        <select class="form-control" name="emp" id="inputEmp">
+                                            <option value="0">Select:</option>
+                                            <?php foreach ($empleado as $fila) { ?>
+                                                <option value="<?php echo $fila['id_empleado'] ?>"> <?php echo $fila['nom_empleado'] ?> </option>;
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>Client ID:</label>
+                                        <select class="form-control" name="cli" id="inputCli">
+                                            <option value="0">Select:</option>
+                                            <?php foreach ($cliente as $fila) { ?>
+                                                <option value="<?php echo $fila['id_cliente'] ?>"> <?php echo $fila['nom_cliente'] ?> </option>;
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>Raw Material:</label>
+                                        <select class="form-control" name="tip" id="inputTip">
+                                            <option value="0">Select:</option>
+                                            <option value="Surgery">Surgery</option>
+                                            <option value="Medical Appointment">Medical Appointment</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>Description:</label>
+                                        <input autocomplete="off" type="text" class="form-control" name="des" id="inputDes" placeholder="Enter the description" value="">
+                                    </div>
+
+                                </form>
+                                <div>
+                                    <br>
+                                    <button type="button" id="save" class="btn btn-secondary" data-tag="">Update</button>
+                                    <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
+                                </div>
                             </div>
 
-                            <div class="form-group col-3">
-                                <label>Headquarters:</label>
-                                <select class="form-control" name="sede" id="inputSede">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($sede as $fila) { ?>
-                                        <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
-                                    <?php } ?>
-                                </select>
-                            </div>
+                            <br><br>
 
-                        </form>
-                        <div>
-                            <br>
-                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
-                            <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
+                            <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Procedure ID</th>
+                                        <th>nombre del empleado</th>
+                                        <th>nombre del cliente</th>
+                                        <th>Tipo</th>
+                                        <th>Descripción</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <?php foreach ($listado as $fila) { ?>
+                                            <td><?php echo $fila['id_procedimiento'] ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_empleado']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_cliente']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['tipo']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
+
+                                            <td>
+                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_procedimiento'] ?>">
+                                                    <i class="fas fa-pen" aria-hidden="true"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_procedimiento'] ?>">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
-                    <br><br>
-                    <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Date of Birth</th>
-                                <th>Email</th>
-                                <th>Cell Phone</th>
-                                <th>Address</th>
-                                <th>Role</th>
-                                <th>Headquarters</th>
 
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <?php foreach ($listado as $fila) { ?>
-                                    <td><?php echo $fila['id_empleado'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_empleado']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['email']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['celular']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['direccion']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_sede']) ?> </td>
-
-                                    <td>
-                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_empleado'] ?>">
-                                            <i class="fas fa-pen" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_empleado'] ?>">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                    <footer class="py-4 bg-light mt-auto">
+                        <div class="container-fluid px-4">
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
+                                <div>
+                                    <a href="#">Privacy Policy</a>
+                                    &middot;
+                                    <a href="#">Terms &amp; Conditions</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </footer>
+
                 </div>
-            </footer>
-        </div>
-    </div>
+                <!--INICIO-->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="../js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="../assets/demo/chart-area-demo.js"></script>
-    <script src="../assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="../js/datatables-simple-demo.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $(document).ready(function() {
-            $("#tabla").DataTable();
-        });
-    </script>
-    <script type="text/javascript" src="../js/funcionesEmpleado.js"></script>
-    <script type="text/javascript">
-        $(document).ready(operaciones)
-    </script>
+            </div>
+            <!--FIN-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="../js/scripts.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+            <script src="../assets/demo/chart-area-demo.js"></script>
+            <script src="../assets/demo/chart-bar-demo.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="../js/datatables-simple-demo.js"></script>
 
-    <script type="text/javascript" src="../js/opps.js"></script>
-    <script type="text/javascript">
-        $(document).ready(Logged1)
-    </script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                $(document).ready(function() {
+                    $("#tabla").DataTable();
+                });
+            </script>
+            
+            <script type="text/javascript" src="../js/funcionesProcedimiento.js"></script>
+            <script type="text/javascript">
+                $(document).ready(operaciones)
+            </script>
+
+            <script type="text/javascript" src="../js/opps.js"></script>
+            <script type="text/javascript">
+                $(document).ready(Logged1)
+            </script>
 
 </body>
 

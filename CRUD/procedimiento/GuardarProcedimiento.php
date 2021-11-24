@@ -1,19 +1,16 @@
 <?php
 include_once('../database.php');
 $id = $_POST["id"];
+$emp=$_POST["emp"];
+$cli = $_POST["cli"];
+$tip = $_POST["tip"];
+$des = $_POST["des"];
 
-$sql = "SELECT * FROM ciudad WHERE id_ciudad=$id";
+
+$sql = "INSERT INTO procedimiento values (NULL,  '$emp', '$cli', '$tip', '$des');";  
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
 
-$listado = array();
-while ($fila = $resultado->fetch_assoc()) {
-    $listado[] = $fila;
-}
-
-
-
-echo json_encode($listado[0]);
 $conexion->close();

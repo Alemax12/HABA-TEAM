@@ -2,7 +2,8 @@
 include_once('../database.php');
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM ciudad WHERE id_ciudad=$id";
+$sql = "SELECT * FROM procedimiento WHERE id_procedimiento=$id";
+
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
