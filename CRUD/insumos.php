@@ -6,8 +6,6 @@ session_start();
     header('Location: ../404.html');
   }
 
-header('Content-Type: text/html; charset=ISO-8859-1');
-
 require './database.php';
 
 $sql = "SELECT * FROM insumo AS i  
@@ -27,23 +25,23 @@ while ($fila = $resultado->fetch_assoc()) {
 //procedimiento
 $sql = "SELECT * FROM procedimiento
      ORDER BY id_procedimiento";
-$result_procedimiento = $conexion->query($sql)
+$result_pos = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
-$procedimiento = array();
-while ($fila1 = $result_procedimiento->fetch_assoc()) {
-    $procedimiento[] = $fila1;
+$pos = array();
+while ($fila1 = $result_pos->fetch_assoc()) {
+    $pos[] = $fila1;
 }
 
 //materia prima
 $sql = "SELECT * FROM materiaprima
      ORDER BY id_materiaprima";
-$result_materiaprima= $conexion->query($sql)
+$result_mat= $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
-$materiaprima = array();
-while ($fila2 = $result_materiaprima->fetch_assoc()) {
-    $materiaprima[] = $fila2;
+$mat = array();
+while ($fila2 = $result_mat->fetch_assoc()) {
+    $mat[] = $fila2;
 }
 
 $conexion->close();
@@ -237,17 +235,16 @@ $conexion->close();
             </div>
             <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             <div id="layoutSidenav_content">
-
+               
                 <!--Carousel-->
-
+                
                 <style>
-                    .carousel-item {
+                    .carousel-item{
                         height: 10rem;
-                        background: rgb(206, 203, 203);
+                        background:rgb(206, 203, 203);
                         position: relative;
-                    }
-
-                    .contenedor {
+                        }
+                    .contenedor{
                         position: absolute;
                         bottom: 0;
                         left: 0;
@@ -255,23 +252,21 @@ $conexion->close();
                         padding-bottom: 10px;
                         padding-left: 50px;
                     }
-
-                    .btnOpt2 {
+                    .btnOpt2{
                         padding-left: 50px;
                     }
                 </style>
 
-                <div class="--Carousel--">
+               <div class="--Carousel--">
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-8"><h1>Supplies</h1>
-                                </div>
+                                <div class="col-md-8"><h1>Supplies</h1></div>
                                 <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                             </div>
-                        </div>
-
-
+                        </div>  
+                    
+               
                         <br>
                         <div class="card">
                             <div class="card-header text-white bg-dark">
@@ -282,40 +277,40 @@ $conexion->close();
                                 <div id="formulario">
                                     <form class="row g-3" role="form" id="form1">
 
-                                        <div class="form-group col-3 div_id">
-                                            <label>Supplies ID:</label>
-                                            <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
-                                        </div>
+                                    <div class="form-group col-3 div_id">
+                                        <label>Supplies ID:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
+                                    </div>
 
-                                        <div class="form-group col-3">
-                                            <label>Procedures:</label>
-                                            <select class="form-control" name="proceso" id="inputProceso">
-                                                <option value="0">Select:</option>
-                                                <?php foreach ($procedimiento as $fila1) { ?>
-                                                    <option value="<?php echo $fila1['id_procedimiento'] ?>"> <?php echo $fila1['tipo'] ?> </option>;
-                                                <?php } ?>
-                                            </select>
-                                        </div>
+                                    <div class="form-group col-3">
+                                        <label>Procedures:</label>
+                                        <select class="form-control" name="pos" id="inputPos">
+                                            <option value="0">Select:</option>
+                                            <?php foreach ($pos as $fila) { ?>
+                                                <option value="<?php echo $fila['id_procedimiento']?>"> <?php echo utf8_decode ($fila['tipo']) ?> </option>;
+                                            <?php } ?>
+                                        </select>
+                                    </div>
 
-                                        <div class="form-group col-3">
-                                            <label>Raw Material:</label>
-                                            <select class="form-control" name="materia" id="inputMateria">
-                                                <option value="0">Select:</option>
-                                                <?php foreach ($materiaprima as $fila2) { ?>
-                                                    <option value="<?php echo $fila2['id_materiaprima'] ?>"> <?php echo $fila2['descripcion'] ?> </option>;
-                                                <?php } ?>
-                                            </select>
-                                        </div>
+                                    <div class="form-group col-3">
+                                        <label>Raw Material:</label>
+                                        <select class="form-control" name="mat" id="inputMat">
+                                            <option value="0">Select:</option>
+                                            <?php foreach ($mat as $fila) { ?>
+                                                <option value="<?php echo $fila['id_materiaprima']?>"> <?php echo utf8_decode ($fila['descripcion']) ?> </option>;
+                                            <?php } ?>
+                                        </select>
+                                    </div>
 
-                                        <div class="form-group col-3">
-                                            <label>Quantity of Inputs:</label>
-                                            <input autocomplete="off" type="number" class="form-control" name="cantidad" id="inputCantidad" placeholder="Enter the quantity of inputs" value="">
-                                        </div>
+                                    <div class="form-group col-3">
+                                        <label>Quantity of Inputs:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="can" id="inputCan" placeholder="Enter quantity of inputs" value="">
+                                    </div>
 
                                     </form>
                                     <div>
                                         <br>
-                                        <button type="button" id="save" class="btn btn-secondary" data-tag="">Update</button>
+                                        <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
                                         <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
                                     </div>
                                 </div>
@@ -325,7 +320,7 @@ $conexion->close();
                                 <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>Supplies ID</th>
+                                            <th>ID</th>
                                             <th>Procedures</th>
                                             <th>Raw Material</th>
                                             <th>Quantity of Inputs</th>
@@ -333,14 +328,15 @@ $conexion->close();
                                             <th></th>
                                         </tr>
                                     </thead>
-
+                                    
                                     <tbody>
                                         <tr>
                                             <?php foreach ($listado as $fila) { ?>
                                                 <td><?php echo $fila['id_insumo'] ?> </td>
-                                                <td><?php echo utf8_decode($fila['id_procedimiento']) ?> </td>
+                                                <td><?php echo utf8_decode($fila['tipo']) ?> </td>
                                                 <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
                                                 <td><?php echo utf8_decode($fila['cantidad_insumos']) ?> </td>
+
                                                 <td>
                                                     <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_insumo'] ?>">
                                                         <i class="fas fa-pen" aria-hidden="true"></i>
@@ -356,26 +352,13 @@ $conexion->close();
 
                             </div>
                         </div>
+                    </div><!--INICIO-->
 
-                        <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                    
+                </div><!--FIN-->
+            </div>
+        </div>
 
-                    </div>
-                    <!--INICIO-->
-
-
-                </div>
-                <!--FIN-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -389,14 +372,16 @@ $conexion->close();
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            $(document).ready(function() {
-                $("#tabla").DataTable();
-            });
+        $(document).ready(function() {
+            $("#tabla").DataTable();
+        });
         </script>
         <script type="text/javascript" src="../js/funcionesInsumos.js"></script>
         <script type="text/javascript">
             $(document).ready(operaciones)
         </script>
-    </body>
 
+
+
+    </body>
 </html>

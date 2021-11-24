@@ -1,13 +1,13 @@
 <?php
 include_once('../database.php');
 $id = $_POST["id"];
-$proce=$_POST["proceso"];
-$materia=$_POST["materia"];
-$cantidad=$_POST["cantidad"];
+$pos=$_POST["pos"];
+$mat=$_POST["mat"];
+$can=$_POST["can"];
 
 
 
-$sql = "UPDATE insumo SET id_procedimiento='$proce', id_materiaprima='$materia', cantidad_insumos='$cantidad'
+$sql = "UPDATE insumo SET id_procedimiento='$pos', id_materiaprima='$mat', cantidad_insumos='$can'
         WHERE id_insumo=$id";
 echo $sql;
 

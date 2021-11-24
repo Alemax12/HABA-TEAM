@@ -1,12 +1,12 @@
 <?php
 include_once('../database.php');
 $id = $_POST["id"];
-$proce=$_POST["proceso"];
-$materia=$_POST["materia"];
-$cantidad=$_POST["cantidad"];
+$pos=$_POST["pos"];
+$mat=$_POST["mat"];
+$can=$_POST["can"];
 
 
-$sql = "INSERT INTO insumo values (NULL, '$proce', '$materia', '$cantidad');";  
+$sql = "INSERT INTO insumo values (NULL, '$pos', '$mat', '$can');";  
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

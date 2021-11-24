@@ -105,11 +105,11 @@ function operaciones() {
 
             .done(function (data) {
                 $("#save").text("Update");
-                $("#inputID").prop("disabled", true);
                 $("#inputID").val(data.id_insumo);
-                $("#inputProceso").val(data.id_procedimiento);
-                $("#inputMateria").val(data.id_materiaprima);
-                $("#inputCantidad").val(data.cantidad_insumos);              
+                $("#inputID").prop("disabled", true);
+                $("#inputPos").val(data.id_procedimiento);
+                $("#inputMat").val(data.id_materiaprima);
+                $("#inputCan").val(data.cantidad_insumos);              
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();
