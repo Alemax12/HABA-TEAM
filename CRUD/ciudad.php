@@ -2,9 +2,9 @@
 
 session_start();
 
-  if (isset($_SESSION['user_rol']) && $_SESSION['user_rol']!=2) {
+if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] != 2) {
     header('Location: ../404.html');
-  }
+}
 
 header('Content-Type: text/html; charset=ISO-8859-1');
 
@@ -39,7 +39,6 @@ $conexion->close();
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,11 +66,24 @@ $conexion->close();
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!--Botones Login y SingUp-->
-        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0" id="UnloggedIcon">
             <div class="px-xxl-0 d-inline-block bg-info p-3 mb-2 bg-transparent text-dark">
-                <a href="../login.html" class="btn btn-dark">Log in</a>
+                <a href="../ViewLogin.php" class="btn btn-dark">Log in</a>
                 <a href="../register.html" class="btn btn-dark">Sign up</a>
             </div>
+        </ul>
+        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0" id="LoggedIcon">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" id="LogoutButton">Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
@@ -350,7 +362,12 @@ $conexion->close();
         $(document).ready(operaciones)
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+    <script type="text/javascript" src="../js/opps.js"></script>
+    <script type="text/javascript">
+        $(document).ready(Logged1)
+    </script>
 
 </body>
 
