@@ -8,8 +8,13 @@ session_start();
 
 require './database.php';
 
-$sql = "SELECT * FROM empleado
-     ORDER BY id_empleado";
+$sql = "SELECT * FROM empleado AS e  
+        INNER JOIN rol AS r ON (e.id_rol = r.id_rol)
+        INNER JOIN sede AS s ON (e.id_sede = s.id_sede)
+        ORDER BY id_empleado";
+
+
+
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -18,6 +23,28 @@ $resultado = $conexion->query($sql)
 $listado = array();
 while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
+}
+
+//roles
+$sql = "SELECT * FROM rol
+     ORDER BY id_rol";
+$result_rol = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$rol = array();
+while ($fila = $result_rol->fetch_assoc()) {
+    $rol[] = $fila;
+}
+
+//sedes
+$sql = "SELECT * FROM sede
+     ORDER BY nom_sede";
+$result_sede = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$sede = array();
+while ($fila = $result_sede->fetch_assoc()) {
+    $sede[] = $fila;
 }
 
 $conexion->close();
@@ -299,6 +326,26 @@ $conexion->close();
                                     <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
                                 </div>
 
+                                <div class="form-group col-3">
+                                    <label>Roles:</label>
+                                    <select class="form-control" name="rol" id="inputRol">
+                                        <option value="0">Select:</option>
+                                        <?php foreach ($rol as $fila) { ?>
+                                            <option value="<?php echo $fila['id_rol']?>"> <?php echo utf8_decode ($fila['nom_rol']) ?> </option>;
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group col-3">
+                                    <label>City:</label>
+                                    <select class="form-control" name="sede" id="inputSede">
+                                        <option value="0">Select:</option>
+                                        <?php foreach ($sede as $fila) { ?>
+                                            <option value="<?php echo $fila['id_sede']?>"> <?php echo utf8_decode ($fila['nom_sede']) ?> </option>;
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
                             </form>
                             <div>
                                 <br>
@@ -316,6 +363,8 @@ $conexion->close();
                                     <th>Email</th>     
                                     <th>Cell Phone</th>
                                     <th>Address</th>
+                                    <th>Role</th>
+                                    <th>Headquarters</th>
 
                                     <th></th>
                                 </tr>
@@ -329,6 +378,8 @@ $conexion->close();
                                         <td><?php echo utf8_decode($fila['email']) ?> </td>
                                         <td><?php echo utf8_decode($fila['celular']) ?> </td>
                                         <td><?php echo utf8_decode($fila['direccion']) ?> </td>
+                                        <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
+                                        <td><?php echo utf8_decode($fila['nom_sede']) ?> </td>
 
                                         <td>
                                             <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_empleado'] ?>">

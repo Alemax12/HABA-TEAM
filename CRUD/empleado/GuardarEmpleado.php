@@ -10,8 +10,10 @@ $peso = $_POST["peso"];
 $est = $_POST["est"];
 $dir = $_POST["dir"];
 $contra = $_POST['contra'];
+$rol = $_POST["rol"];
+$sede = $_POST['sede'];
 
-$sql = "INSERT INTO empleado values ('$id','' '$name', '$date', '$email', '$cel', '$peso', '$est', '$dir', '$contra');";
+$sql = "INSERT INTO empleado values ('$id','' '$name', '$date', '$email', '$cel', '$peso', '$est', '$dir', '$contra', '$rol', '$sede');";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

@@ -113,6 +113,8 @@ function operaciones() {
                 $("#inputEst").val(data.estatura);
                 $("#inputDir").val(data.direccion);
                 $("#inputContra").val(data.contraseña);
+                $("#inputRol").val(data.id_rol);
+                $("#inputSede").val(data.id_sede);
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();
