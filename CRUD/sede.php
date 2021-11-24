@@ -141,15 +141,6 @@ $conexion->close();
                                         Employee
                                     </a>
 
-                                    <!--Contrato-->
-                                    <a class="nav-link" href="./contrato.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Contract
-                                    </a>
-
                                     <!--Roles-->
                                     <a class="nav-link" href="./rol.php">
                                         <div class="sb-nav-link-icon">

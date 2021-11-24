@@ -102,7 +102,6 @@ function operaciones() {
         
             .done(function (data) {
                 $("#save").text("Update");
-                $("#inputID").prop("disabled", true);
                 $("#inputID").val(data.id_pais);
                 $("#inputName").val(data.nom_pais);
                 $("#formulario").show();

@@ -6,6 +6,7 @@ session_start();
     header('Location: ../404.html');
   }
 
+  
 require './database.php';
 
 $sql = "SELECT * FROM empleado AS e  
@@ -45,6 +46,7 @@ $result_sede = $conexion->query($sql)
 $sede = array();
 while ($fila = $result_sede->fetch_assoc()) {
     $sede[] = $fila;
+
 }
 
 $conexion->close();
@@ -152,15 +154,6 @@ $conexion->close();
                                             </i>
                                         </div>
                                         Employee
-                                    </a>
-
-                                    <!--Contrato-->
-                                    <a class="nav-link" href="./contrato.php">
-                                        <div class="sb-nav-link-icon">
-                                            <i class="fas fa-bars">
-                                            </i>
-                                        </div>
-                                        Contract
                                     </a>
 
                                     <!--Roles-->
@@ -337,7 +330,7 @@ $conexion->close();
                                 </div>
                                 
                                 <div class="form-group col-3">
-                                    <label>City:</label>
+                                    <label>Headquarters:</label>
                                     <select class="form-control" name="sede" id="inputSede">
                                         <option value="0">Select:</option>
                                         <?php foreach ($sede as $fila) { ?>

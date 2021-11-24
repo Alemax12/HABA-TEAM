@@ -10,9 +10,12 @@ $peso = $_POST["peso"];
 $est = $_POST["est"];
 $dir = $_POST["dir"];
 $contra = $_POST["contra"];
+$rol = $_POST["rol"];
+$sede = $_POST["sede"];
 
 $sql = "UPDATE empleado SET nom_empleado='$name', fecha_nac='$date', email='$email',
-celular='$cel', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra' WHERE id_empleado=$id";
+celular='$cel', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra', id_rol='$rol', 
+id_sede='$sede' WHERE id_empleado=$id";
 echo $sql;
 
 $resultado = $conexion->query($sql)
