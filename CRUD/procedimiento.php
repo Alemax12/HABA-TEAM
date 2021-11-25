@@ -1,8 +1,11 @@
 <?php
 
 session_start();
-
-if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] != 2) {
+if (isset($_SESSION['user_rol'])) {
+    if ($_SESSION['user_rol'] != 2 || $_SESSION['user_rol'] != 10) {
+        header('Location: ../404.html');
+    }
+}else{
     header('Location: ../404.html');
 }
 
