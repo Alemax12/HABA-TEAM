@@ -11,9 +11,9 @@ function Logged() {
             if (data.respuesta == "no") {
                 $("#LoggedIcon").hide();
                 $("#TablesLeft").hide();
-                //$("#UnloggedIcon").show();
             } else {
-                //$("#LoggedIcon").show();
+                $("#MyUserRol").text(data.rol_t);
+                $("#MyUserName").text(data.name);
                 $("#UnloggedIcon").hide();
                 if (data.rol == "1") {
                     $("#TablesLeft").hide();
@@ -44,17 +44,21 @@ function Logged1() {
         dataType: "json"
     })
 
-        .done(function (data) {
-            console.log(data);
-            if (data.respuesta == "no") {
-                $("#LoggedIcon").hide();
-                //$("#UnloggedIcon").show();
-            } else {
-                //$("#LoggedIcon").show();
-                $("#UnloggedIcon").hide();
+    .done(function (data) {
+        console.log(data);
+        if (data.respuesta == "no") {
+            $("#LoggedIcon").hide();
+            $("#TablesLeft").hide();
+        } else {
+            $("#MyUserRol").text(data.rol_t);
+            $("#MyUserName").text(data.name);
+            $("#UnloggedIcon").hide();
+            if (data.rol == "1") {
+                $("#TablesLeft").hide();
             }
+        }
 
-        })
+    })
 
         .fail(function (jqXHR, textStatus) {
 
