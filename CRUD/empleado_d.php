@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['user_rol'])) {
     if ($_SESSION['user_rol'] != 2) {
-        header('Location: ../404.html');
+        header('Location: ..    /404.html');
     }
 }else{
     header('Location: ../404.html');
@@ -266,7 +266,7 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Employees</h1>
+                                <h1 id="Diferenciador">Employees DS</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -317,7 +317,7 @@ $conexion->close();
                                 <label>Empleado Address:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
                             </div>
-                            <div class="form-group col-3">
+                            <div class="form-group col-3" id="oculto">
                                 <label>Empleado Password:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
                             </div>

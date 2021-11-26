@@ -112,7 +112,11 @@ function operaciones() {
                 $("#inputPeso").val(data.peso);
                 $("#inputEst").val(data.estatura);
                 $("#inputDir").val(data.direccion);
-                $("#inputContra").val(data.contraseña);
+                if($("#inputDir").text=="Employees"){
+                    $("#inputContra").val(data.contraseña);
+                }else{
+                    $("#oculto").hide();
+                }
                 $("#inputRol").val(data.id_rol);
                 $("#inputSede").val(data.id_sede);
                 $("#formulario").show();
@@ -128,7 +132,6 @@ function operaciones() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-
             });
     });
 }
