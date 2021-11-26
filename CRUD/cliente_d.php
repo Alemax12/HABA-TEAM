@@ -9,16 +9,10 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-
 require './database.php';
 
-$sql = "SELECT * FROM empleado AS e  
-        INNER JOIN rol AS r ON (e.id_rol = r.id_rol)
-        INNER JOIN sede AS s ON (e.id_sede = s.id_sede)
-        ORDER BY id_empleado";
-
-
-
+$sql = "SELECT * FROM cliente"
+    . " ORDER BY id_cliente";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -29,30 +23,10 @@ while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
 }
 
-//roles
-$sql = "SELECT * FROM rol
-     ORDER BY id_rol";
-$result_rol = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$rol = array();
-while ($fila = $result_rol->fetch_assoc()) {
-    $rol[] = $fila;
-}
-
-//sedes
-$sql = "SELECT * FROM sede
-     ORDER BY nom_sede";
-$result_sede = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$sede = array();
-while ($fila = $result_sede->fetch_assoc()) {
-    $sede[] = $fila;
-}
-
 $conexion->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,8 +47,6 @@ $conexion->close();
 </head>
 
 <body class="sb-nav-fixed">
-
-
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -266,145 +238,115 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Employees</h1>
+                                <h1 id="Diferenciador">Clients AC</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!--|TABLA|-->
-            <br>
-            <div class="card">
-                <div class="card-header text-white bg-dark">
-                    Information
-                </div>
-                <div class="card-body">
-                    <button type="button" class="btn btn-secondary" id="nuevo">New</button>
-                    <div id="formulario">
-                        <form class="row g-3" role="form" id="form1">
 
-                            <div class="form-group col-3 div_id">
-                                <label>Employee ID:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Name:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee's Date of Birth:</label>
-                                <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Email:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Cell Phone:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Weigth:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Height:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Address:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Employee Password:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
-                            </div>
-
-                            <div class="form-group col-3">
-                                <label>Roles:</label>
-                                <select class="form-control" name="rol" id="inputRol">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($rol as $fila) { ?>
-                                        <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
-                                    <?php } ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-3">
-                                <label>Headquarters:</label>
-                                <select class="form-control" name="sede" id="inputSede">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($sede as $fila) { ?>
-                                        <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
-                                    <?php } ?>
-                                </select>
-                            </div>
-
-                        </form>
-                        <div>
-                            <br>
-                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
-                            <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
+                    <br>
+                    <div class="card">
+                        <div class="card-header text-white bg-dark">
+                            Information
                         </div>
-                    </div>
-                    <br><br>
-                    <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Date of Birth</th>
-                                <th>Email</th>
-                                <th>Cell Phone</th>
-                                <th>Address</th>
-                                <th>Role</th>
-                                <th>Headquarters</th>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+                            <div id="formulario">
+                                <form class="row g-3" role="form" id="form1">
 
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <?php foreach ($listado as $fila) { ?>
-                                    <td><?php echo $fila['id_empleado'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_empleado']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['email']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['celular']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['direccion']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_sede']) ?> </td>
+                                    <div class="form-group col-3 div_id">
+                                        <label>Client ID:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client Name:</label>
+                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client's Date of Birth:</label>
+                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client Cell Phone:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client Email:</label>
+                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client Weigth:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client Height:</label>
+                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Client Address:</label>
+                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
+                                    </div>
+                                    <div class="form-group col-3" id="oculto">
+                                        <label>Client Password:</label>
+                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
+                                    </div>
 
-                                    <td>
-                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_empleado'] ?>">
-                                            <i class="fas fa-pen" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_empleado'] ?>">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
+                                </form>
+                                <div>
+                                    <br>
+                                    <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
+                                    <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
 
-                </div>
-            </div>
+                            <br><br>
 
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                            <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Date of Birth</th>
+                                        <th>Cell Phone</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <?php foreach ($listado as $fila) { ?>
+                                            <td><?php echo $fila['id_cliente'] ?> </td>
+                                            <td><?php echo utf8_decode($fila['nom_cliente']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['celular']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['email']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['direccion']) ?> </td>
+
+                                            <td>
+                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_cliente'] ?>">
+                                                    <i class="fas fa-pen" aria-hidden="true"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_cliente'] ?>">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>
-            </footer>
+                <!--INICIO-->
+
+
+            </div>
+            <!--FIN-->
         </div>
     </div>
 
@@ -425,7 +367,7 @@ $conexion->close();
             $("#tabla").DataTable();
         });
     </script>
-    <script type="text/javascript" src="../js/funcionesEmpleado.js"></script>
+    <script type="text/javascript" src="../js/funcionesCliente.js"></script>
     <script type="text/javascript">
         $(document).ready(operaciones)
     </script>
@@ -434,6 +376,7 @@ $conexion->close();
     <script type="text/javascript">
         $(document).ready(Logged1)
     </script>
+
 
 </body>
 

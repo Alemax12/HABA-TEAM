@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+if (isset($_SESSION['user_rol'])) {
+    if ($_SESSION['user_rol'] != 2) {
+        header('Location: ../404.html');
+    }
+}else{
+    header('Location: ../404.html');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

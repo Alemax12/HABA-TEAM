@@ -286,39 +286,39 @@ $conexion->close();
                         <form class="row g-3" role="form" id="form1">
 
                             <div class="form-group col-3 div_id">
-                                <label>Empleado ID:</label>
+                                <label>Employee ID:</label>
                                 <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado Name:</label>
+                                <label>Employee Name:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado's Date of Birth:</label>
+                                <label>Employee's Date of Birth:</label>
                                 <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado Email:</label>
+                                <label>Employee Email:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado Cell Phone:</label>
+                                <label>Employee Cell Phone:</label>
                                 <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado Weigth:</label>
+                                <label>Employee Weigth:</label>
                                 <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado Height:</label>
+                                <label>Employee Height:</label>
                                 <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
                             </div>
                             <div class="form-group col-3">
-                                <label>Empleado Address:</label>
+                                <label>Employee Address:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
                             </div>
                             <div class="form-group col-3" id="oculto">
-                                <label>Empleado Password:</label>
+                                <label>Employee Password:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
                             </div>
 
