@@ -10,10 +10,14 @@ function Logged() {
             console.log(data);
             if (data.respuesta == "no") {
                 $("#LoggedIcon").hide();
+                $("#TablesLeft").hide();
                 //$("#UnloggedIcon").show();
             } else {
                 //$("#LoggedIcon").show();
                 $("#UnloggedIcon").hide();
+                if (data.rol == "1") {
+                    $("#TablesLeft").hide();
+                }
             }
 
         })

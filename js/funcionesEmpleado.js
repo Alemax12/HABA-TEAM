@@ -112,7 +112,7 @@ function operaciones() {
                 $("#inputPeso").val(data.peso);
                 $("#inputEst").val(data.estatura);
                 $("#inputDir").val(data.direccion);
-                if($("#inputDir").text=="Employees"){
+                if($("#Diferenciador").text()=="Employees"){
                     $("#inputContra").val(data.contraseña);
                 }else{
                     $("#oculto").hide();

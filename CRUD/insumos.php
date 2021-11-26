@@ -5,12 +5,12 @@ if (isset($_SESSION['user_rol'])) {
     if ($_SESSION['user_rol'] != 2) {
         header('Location: ../404.html');
     }
-}else{
+} else {
     header('Location: ../404.html');
 }
 
 require './database.php';
-
+$var = "selected";
 $sql = "SELECT * FROM insumo AS i  
         INNER JOIN procedimiento AS p ON (i.id_procedimiento = p.id_procedimiento)
         INNER JOIN materiaprima AS m ON (i.id_materiaprima = m.id_materiaprima)
@@ -132,101 +132,160 @@ $conexion->close();
                         <!--Herramientas-->
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
-                                    Used Tools
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
 
                                 <!--Clientes-->
-                                <a class="nav-link" href="./cliente.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Client
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
+<a class="nav-link" href="./cliente.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Client
+</a>
+';
+                                } ?>
+
+                                <!--Clientes-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
+                                    echo '
+<a class="nav-link" href="./cliente_d.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Client AC
+</a>';
+                                } ?>
 
                                 <!--Empleados-->
-                                <a class="nav-link" href="./empleado.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Employee
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
+<a class="nav-link" href="./empleado.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Employee
+</a>
+';
+                                } ?>
+
+                                <!--Empleados-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./empleado_d.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Employee DS
+</a>';
+                                } ?>
 
                                 <!--Roles-->
-                                <a class="nav-link" href="./rol.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Role
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
+<a class="nav-link" href="./rol.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Role
+</a>
+';
+                                } ?>
 
                                 <!--País-->
-                                <a class="nav-link" href="./pais.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Country
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
+<a class="nav-link" href="./pais.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Country
+</a>
+';
+                                } ?>
 
                                 <!--Ciudad-->
-                                <a class="nav-link" href="./ciudad.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    City
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
+<a class="nav-link" href="./ciudad.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    City
+</a>
+';
+                                } ?>
 
                                 <!--Sede-->
-                                <a class="nav-link" href="./sede.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Headquarters
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                    echo '
+<a class="nav-link" href="./sede.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Headquarters
+</a>
+';
+                                } ?>
 
                                 <!--Inventario-->
-                                <a class="nav-link" href="./inventario.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Headquarters Inventory
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                                    echo '
+<a class="nav-link" href="./inventario.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Products to buy
+</a>
+';
+                                } ?>
 
                                 <!--Insumos-->
-                                <a class="nav-link" href="./insumos.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Supplies
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                                    echo '
+<a class="nav-link" href="./insumos.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Supplies
+</a>
+';
+                                } ?>
 
                                 <!--Materia Prima-->
-                                <a class="nav-link" href="./materia.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Raw Material
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                                    echo '
+<a class="nav-link" href="./materia.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Raw Material
+</a>
+';
+                                } ?>
 
                                 <!--Procedimiento-->
-                                <a class="nav-link" href="./procedimiento.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Procedures
-                                </a>
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                                    echo '
+<a class="nav-link" href="./procedimiento.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Procedures
+</a>
+';
+                                } ?>
 
                             </nav>
                         </div>
@@ -292,7 +351,7 @@ $conexion->close();
                                         <select class="form-control" name="pos" id="inputPos">
                                             <option value="0">Select:</option>
                                             <?php foreach ($pos as $fila) { ?>
-                                                <option value="<?php echo $fila['id_procedimiento'] ?>"> <?php echo utf8_decode($fila['tipo']) ?> </option>;
+                                                <option value="<?php echo $fila['id_procedimiento'] ?>"> <?php echo utf8_decode($fila['id_procedimiento']) ?> </option>;
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -325,8 +384,8 @@ $conexion->close();
                             <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Procedures</th>
+                                        <th>ID Procedure</th>
+                                        <th>Description Procedure</th>
                                         <th>Raw Material</th>
                                         <th>Quantity of Inputs</th>
 
@@ -337,7 +396,7 @@ $conexion->close();
                                 <tbody>
                                     <tr>
                                         <?php foreach ($listado as $fila) { ?>
-                                            <td><?php echo $fila['id_insumo'] ?> </td>
+                                            <td><?php echo utf8_decode($fila['id_procedimiento']) ?> </td>
                                             <td><?php echo utf8_decode($fila['tipo']) ?> </td>
                                             <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
                                             <td><?php echo utf8_decode($fila['cantidad_insumos']) ?> </td>

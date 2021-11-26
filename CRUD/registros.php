@@ -2,10 +2,10 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 2) {
+    if ($_SESSION['user_rol'] ==1) {
         header('Location: ../404.html');
     }
-}else{
+} else {
     header('Location: ../404.html');
 }
 
@@ -23,8 +23,7 @@ if (isset($_SESSION['user_rol'])) {
     <title>Healthy Citizen</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -37,8 +36,7 @@ if (isset($_SESSION['user_rol'])) {
         <a class="navbar-brand ps-3" href="../index.html">Healthy Citizen</a>
         <!--<a class="navbar-brand ps-3" href="miembros.html">miembros</a>-->
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!--Botones Login y SingUp-->
         <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0" id="UnloggedIcon">
             <div class="px-xxl-0 d-inline-block bg-info p-3 mb-2 bg-transparent text-dark">
@@ -48,8 +46,7 @@ if (isset($_SESSION['user_rol'])) {
         </ul>
         <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0" id="LoggedIcon">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
@@ -85,25 +82,18 @@ if (isset($_SESSION['user_rol'])) {
                             About us
                         </a>
                         <!--Pages btn 2 en la lista-->
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
                             Developement
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!--Herramientas-->
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
-                                    Used Tools
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
 
                                 <!--Clientes-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
                                 <a class="nav-link" href="./cliente.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -111,8 +101,24 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Client
                                 </a>
+                                ';
+                                } ?>
+
+                                <!--Clientes-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
+                                    echo '
+                                <a class="nav-link" href="./cliente_d.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Client AC
+                                </a>';
+                                } ?>
 
                                 <!--Empleados-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
                                 <a class="nav-link" href="./empleado.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -120,8 +126,24 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Employee
                                 </a>
+                                ';
+                                } ?>
+
+                                <!--Empleados-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+                                <a class="nav-link" href="./empleado_d.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Employee DS
+                                </a>';
+                                } ?>
 
                                 <!--Roles-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
                                 <a class="nav-link" href="./rol.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -129,8 +151,12 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Role
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--País-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
                                 <a class="nav-link" href="./pais.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -138,8 +164,12 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Country
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--Ciudad-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                    echo '
                                 <a class="nav-link" href="./ciudad.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -147,8 +177,12 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     City
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--Sede-->
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                    echo '
                                 <a class="nav-link" href="./sede.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -156,17 +190,25 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Headquarters
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--Inventario-->
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                                    echo '
                                 <a class="nav-link" href="./inventario.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
                                         </i>
                                     </div>
-                                    Headquarters Inventory
+                                    Products to buy
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--Insumos-->
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                                    echo '
                                 <a class="nav-link" href="./insumos.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -174,8 +216,12 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Supplies
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--Materia Prima-->
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                                    echo '
                                 <a class="nav-link" href="./materia.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -183,8 +229,12 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Raw Material
                                 </a>
+                                ';
+                                } ?>
 
                                 <!--Procedimiento-->
+                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                                    echo '
                                 <a class="nav-link" href="./procedimiento.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
@@ -192,6 +242,8 @@ if (isset($_SESSION['user_rol'])) {
                                     </div>
                                     Procedures
                                 </a>
+                                ';
+                                } ?>
 
                             </nav>
                         </div>
@@ -212,105 +264,159 @@ if (isset($_SESSION['user_rol'])) {
 
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <!--***GRUPO #1***-->
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                echo '
                             <a class="btn">
-                                <a href="./cliente.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/paciente.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Client</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
+                                echo
+                                '
                             <a class="btn">
-                                <a href="./empleado.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./cliente_d.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                    <img class="card-img-top" src="../imgC/paciente.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-text">Client AC</p>
+                                    </div>
+                                </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                echo '
+                            <a class="btn">
+                                <a href="./empleado.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/medico.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Employee</p>
                                     </div>
                                 </a>
                             </a>
+                            ';
+                            } ?>
 
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                echo
+                                '
                             <a class="btn">
-                                <a href="./rol.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./empleado_d.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                    <img class="card-img-top" src="../imgC/medico.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-text">Employee DS</p>
+                                    </div>
+                                </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                echo '
+                            <a class="btn">
+                                <a href="./rol.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/roles.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Role</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
                         </div>
 
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <!--***GRUPO #2***-->
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                echo '
                             <a class="btn">
-                                <a href="./pais.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./pais.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/pais.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Country</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                echo '
                             <a class="btn">
-                                <a href="./ciudad.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./ciudad.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/ciudad.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">City</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                echo '
                             <a class="btn">
-                                <a href="./sede.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./sede.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/sede.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Headquarters</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                                echo '
                             <a class="btn">
-                                <a href="./inventario.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./inventario.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/inventario.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Headquarters Inventory</p>
+                                        <p class="card-text">Products to buy</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
                         </div>
 
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <!--***GRUPO #3***-->
+
+                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                                echo '
                             <a class="btn">
-                                <a href="./insumo.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./insumos.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/insumo.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Supplies</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                                echo '
                             <a class="btn">
-                                <a href="./materia.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./materia.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/procedimiento.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Raw Material</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
+
+                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                                echo '
                             <a class="btn">
-                                <a href="./procedimiento.php" class="btn btn-outline-secondary" role="button"
-                                    style="width: 10rem;">
+                                <a href="./procedimiento.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/procedimiento.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Procedures</p>
                                     </div>
                                 </a>
-                            </a>
+                            </a>';
+                            } ?>
                         </div>
 
                     </div>
@@ -334,8 +440,7 @@ if (isset($_SESSION['user_rol'])) {
             </footer>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
