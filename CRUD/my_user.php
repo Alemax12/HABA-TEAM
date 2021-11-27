@@ -8,7 +8,9 @@ if (isset($_SESSION['user_rol'])) {
 } else {
     header('Location: ../404.html');
 }
+
 $id = $_SESSION['user_id'];
+
 require './database.php';
 if ($_SESSION['user_rol'] == 1) {
     $sql = "SELECT * FROM cliente WHERE id_cliente=$id";
@@ -366,44 +368,44 @@ $conexion->close();
 
                                     <div class="form-group col-3 div_id">
                                         <label>Employee ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID_E" placeholder="Enter Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Name:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName_E" placeholder="Enter Name" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee's Date of Birth:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
+                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac_E" placeholder="Enter Date of Birth" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Email:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail_E" placeholder="Enter Email" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Cell Phone:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel_E" placeholder="Enter the Cell Phone Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Weigth:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso_E" placeholder="Enter Weight" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Height:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst_E" placeholder="Enter Height" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Address:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir_E" placeholder="Enter Address" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Password:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra_E" placeholder="Enter Password" value="">
                                     </div>
 
                                     <div class="form-group col-3">
                                         <label>Roles:</label>
-                                        <select class="form-control" name="rol" id="inputRol">
+                                        <select class="form-control" name="rol" id="inputRol_E">
                                             <option value="0">Select:</option>
                                             <?php foreach ($rol as $fila) { ?>
                                                 <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
@@ -413,7 +415,7 @@ $conexion->close();
 
                                     <div class="form-group col-3">
                                         <label>Headquarters:</label>
-                                        <select class="form-control" name="sede" id="inputSede">
+                                        <select class="form-control" name="sede" id="inputSede_E">
                                             <option value="0">Select:</option>
                                             <?php foreach ($sede as $fila) { ?>
                                                 <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
