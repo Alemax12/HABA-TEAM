@@ -405,11 +405,7 @@ $conexion->close();
 
                                     <div class="form-group col-3">
                                         <label>Roles:</label>
-<<<<<<< HEAD
-                                        <select class="form-control" name="rol" id="inputRol" disabled>
-=======
                                         <select class="form-control" name="rol" id="inputRol_E">
->>>>>>> 4aec591834c4053415cb95aacef5868a1769879e
                                             <option value="0">Select:</option>
                                             <?php foreach ($rol as $fila) { ?>
                                                 <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
@@ -419,11 +415,7 @@ $conexion->close();
 
                                     <div class="form-group col-3">
                                         <label>Headquarters:</label>
-<<<<<<< HEAD
-                                        <select class="form-control" name="sede" id="inputSede" disabled>
-=======
                                         <select class="form-control" name="sede" id="inputSede_E">
->>>>>>> 4aec591834c4053415cb95aacef5868a1769879e
                                             <option value="0">Select:</option>
                                             <?php foreach ($sede as $fila) { ?>
                                                 <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
