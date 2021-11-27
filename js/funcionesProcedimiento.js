@@ -2,15 +2,12 @@
 function operaciones() {
 
     $("#formulario").hide();
-    $("#formins").hide();
-
 
     $("#nuevo").click(function () {
         $("#formulario").show();
         $("#inputID").prop("disabled", false);
         $(this).hide();
         $("#editar").hide();
-        $("#inputEP").hide();
         $("#save").text("Save");
         $(".div_id").hide();
         

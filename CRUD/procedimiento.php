@@ -9,8 +9,6 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-$id1 = $_POST["id1"];
-
 require './database.php';
 
 {   
