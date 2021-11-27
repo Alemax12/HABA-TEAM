@@ -51,46 +51,6 @@ require './database.php';
         $cliente[] = $fila;
     }
 }
-
-
-{
-    $sql = "SELECT * FROM insumo AS i  
-            INNER JOIN procedimiento AS p ON (i.id_procedimiento = p.id_procedimiento)
-            INNER JOIN materiaprima AS m ON (i.id_materiaprima = m.id_materiaprima)
-            WHERE i.id_procedimiento='$id1' ORDER BY i.id_procedimiento";
-
-    $resultado = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-
-    $listado1 = array();
-    while ($fila1 = $resultado->fetch_assoc()) {
-        $listado1[] = $fila1;
-    }
-
-    //procedimiento
-    $sql = "SELECT * FROM procedimiento
-        ORDER BY id_procedimiento";
-    $result_pos = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-    $pos = array();
-    while ($fila1 = $result_pos->fetch_assoc()) {
-        $pos[] = $fila1;
-    }
-
-    //materia prima
-    $sql = "SELECT * FROM materiaprima
-        ORDER BY id_materiaprima";
-    $result_mat = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-    $mat = array();
-    while ($fila1 = $result_mat->fetch_assoc()) {
-        $mat[] = $fila1;
-    }
-}
-
 $conexion->close();
 ?>
 

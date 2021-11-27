@@ -2,7 +2,7 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 2) {
+    if ($_SESSION['user_rol'] != 8) {
         header('Location: ../404.html');
     }
 } else {
