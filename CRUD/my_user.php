@@ -2,7 +2,7 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 9999999) {//99999 para que nadie entre, ya que no se ha terminado
+    if ($_SESSION['user_rol'] != 2) {//99999 para que nadie entre, ya que no se ha terminado
         header('Location: ../404.html');
     }
 } else {
@@ -318,45 +318,45 @@ $conexion->close();
                             Information
                         </div>
                         <div class="card-body">
-                            <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+                            <button type="button" class="btn btn-secondary" id="EditMyUser">Edit</button>
                             <div id="div-cliente">
                                 <form class="row g-3" role="form" id="form-cliente">
 
                                     <div class="form-group col-3 div_id">
                                         <label>Client ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" disabled placeholder="Enter Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Name:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" disabled placeholder="Enter Name" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client's Date of Birth:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
+                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" disabled placeholder="Enter Date of Birth" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Cell Phone:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" disabled placeholder="Enter the Cell Phone Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Email:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" disabled placeholder="Enter Email" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Weigth:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" disabled placeholder="Enter Weight" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Height:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" disabled placeholder="Enter Height" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Address:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" disabled placeholder="Enter Address" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Client Password:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" disabled placeholder="Enter Password" value="">
                                     </div>
 
                                 </form>
@@ -366,44 +366,44 @@ $conexion->close();
 
                                     <div class="form-group col-3 div_id">
                                         <label>Employee ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" disabled placeholder="Enter Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Name:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" disabled placeholder="Enter Name" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee's Date of Birth:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
+                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" disabled placeholder="Enter Date of Birth" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Email:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" disabled placeholder="Enter Email" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Cell Phone:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" disabled placeholder="Enter the Cell Phone Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Weigth:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" disabled placeholder="Enter Weight" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Height:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" disabled placeholder="Enter Height" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Address:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" disabled placeholder="Enter Address" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Password:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" disabled placeholder="Enter Password" value="">
                                     </div>
 
                                     <div class="form-group col-3">
                                         <label>Roles:</label>
-                                        <select class="form-control" name="rol" id="inputRol">
+                                        <select class="form-control" name="rol" id="inputRol" disabled>
                                             <option value="0">Select:</option>
                                             <?php foreach ($rol as $fila) { ?>
                                                 <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
@@ -413,7 +413,7 @@ $conexion->close();
 
                                     <div class="form-group col-3">
                                         <label>Headquarters:</label>
-                                        <select class="form-control" name="sede" id="inputSede">
+                                        <select class="form-control" name="sede" id="inputSede" disabled>
                                             <option value="0">Select:</option>
                                             <?php foreach ($sede as $fila) { ?>
                                                 <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
