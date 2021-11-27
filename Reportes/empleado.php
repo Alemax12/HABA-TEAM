@@ -2,9 +2,10 @@
 
 include("../conexion.php");
 
-$sql = "SELECT s.id_sede,s.nom_sede, c.nom_ciudad 
-        FROM sede AS s INNER JOIN ciudad 
-        AS c ON s.id_ciudad=c.id_ciudad;";
+$sql = "SELECT e.id_empleado,e.nom_empleado, e.email,e.direccion,r.nom_rol, s.nom_sede 
+        FROM empleado AS e 
+        INNER JOIN rol AS r ON e.id_rol=r.id_rol
+        INNER JOIN sede AS s ON e.id_sede=s.id_sede;";
 
 $resultado = $conexion->query($sql)
 	or die(mysqli_errno($this->conexion) . " : "
@@ -31,23 +32,29 @@ $conexion->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
      crossorigin="anonymous">
-    <title>REPORTE DE SEDES</title>
+    <title>REPORTE DE EMPLEADOS</title>
 </head>
     <body>
         <table class="table table-bordered" id=tabla>
             <thead>
                 <tr>
-                    <th>id_sede</th>
-                    <th>Nombre</th>
-                    <th>id_ciudad</th>
+                    <th>ID EMPLEADO</th>
+                    <th>NOMBRE</th>
+                    <th>EMAIL</th>
+                    <th>DIRECCION</th>
+                    <th>ROL</th>
+                    <th>SEDE</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($listado as $fila) { ?>
                     <tr>
-                        <td><?php echo utf8_encode ($fila['id_sede']) ?> </td>
+                        <td><?php echo utf8_encode($fila['id_empleado']) ?> </td>
+                        <td><?php echo utf8_encode($fila['nom_empleado']) ?> </td>
+                        <td><?php echo utf8_encode($fila['email']) ?> </td>
+                        <td><?php echo utf8_encode($fila['direccion']) ?> </td>
+                        <td><?php echo utf8_encode($fila['nom_rol']) ?> </td>
                         <td><?php echo utf8_encode($fila['nom_sede']) ?> </td>
-                        <td><?php echo utf8_encode($fila['nom_ciudad']) ?> </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -69,11 +76,13 @@ $conexion->close();
 
     $dompdf->loadHtml($html);
 
-    $dompdf->setPaper('letter');
-    //$dompdf->setPaper('A4','landscape');
+    //$dompdf->setPaper('letter');
+    $dompdf->setPaper('A4','landscape');
 
     $dompdf->render();
 
-    $dompdf->stream("Reporte_Sede_.pdf", array("Attachment" => false));
+    $dompdf->stream("Reporte_Empleados.pdf", array("Attachment" => false));
 
 ?>
+
+

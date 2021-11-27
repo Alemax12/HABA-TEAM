@@ -2,9 +2,9 @@
 
 include("../conexion.php");
 
-$sql = "SELECT s.id_sede,s.nom_sede, c.nom_ciudad 
-        FROM sede AS s INNER JOIN ciudad 
-        AS c ON s.id_ciudad=c.id_ciudad;";
+
+$sql = "SELECT * FROM rol;";
+
 
 $resultado = $conexion->query($sql)
 	or die(mysqli_errno($this->conexion) . " : "
@@ -31,23 +31,23 @@ $conexion->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
      crossorigin="anonymous">
-    <title>REPORTE DE SEDES</title>
+    <title>REPORTE DE ROLES</title>
 </head>
     <body>
         <table class="table table-bordered" id=tabla>
             <thead>
                 <tr>
-                    <th>id_sede</th>
-                    <th>Nombre</th>
-                    <th>id_ciudad</th>
+                    <th>ID ROL</th>
+                    <th>ROL</th>
+                
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($listado as $fila) { ?>
                     <tr>
-                        <td><?php echo utf8_encode ($fila['id_sede']) ?> </td>
-                        <td><?php echo utf8_encode($fila['nom_sede']) ?> </td>
-                        <td><?php echo utf8_encode($fila['nom_ciudad']) ?> </td>
+                        <td><?php echo utf8_encode($fila['id_rol']) ?> </td>
+                        <td><?php echo utf8_encode($fila['nom_rol']) ?> </td>
+
                     </tr>
                 <?php } ?>
             </tbody>
@@ -74,6 +74,6 @@ $conexion->close();
 
     $dompdf->render();
 
-    $dompdf->stream("Reporte_Sede_.pdf", array("Attachment" => false));
+    $dompdf->stream("Reporte_Roles.pdf", array("Attachment" => false));
 
 ?>

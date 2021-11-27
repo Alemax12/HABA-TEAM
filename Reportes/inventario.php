@@ -2,9 +2,12 @@
 
 include("../conexion.php");
 
-$sql = "SELECT s.id_sede,s.nom_sede, c.nom_ciudad 
-        FROM sede AS s INNER JOIN ciudad 
-        AS c ON s.id_ciudad=c.id_ciudad;";
+
+$sql = "SELECT i.id_inventario,s.nom_sede, m.descripcion, i.cantidad
+FROM inventario_sede AS i 
+INNER JOIN sede AS s ON s.id_sede=i.id_sede
+INNER JOIN materiaprima AS m ON m.id_materiaprima=i.id_materiaprima;";
+
 
 $resultado = $conexion->query($sql)
 	or die(mysqli_errno($this->conexion) . " : "
@@ -31,23 +34,26 @@ $conexion->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
      crossorigin="anonymous">
-    <title>REPORTE DE SEDES</title>
+    <title>REPORTE DE INVENTARIO</title>
 </head>
     <body>
         <table class="table table-bordered" id=tabla>
             <thead>
                 <tr>
-                    <th>id_sede</th>
-                    <th>Nombre</th>
-                    <th>id_ciudad</th>
+                    <th>ID INVENTARIO</th>
+                    <th>SEDE</th>
+                    <th>INSUMO</th>
+                    <th>CANTIDAD</th>
+                
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($listado as $fila) { ?>
                     <tr>
-                        <td><?php echo utf8_encode ($fila['id_sede']) ?> </td>
+                        <td><?php echo utf8_encode($fila['id_inventario']) ?> </td>
                         <td><?php echo utf8_encode($fila['nom_sede']) ?> </td>
-                        <td><?php echo utf8_encode($fila['nom_ciudad']) ?> </td>
+                        <td><?php echo utf8_encode($fila['descripcion']) ?> </td>
+                        <td><?php echo utf8_encode($fila['cantidad']) ?> </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -74,6 +80,6 @@ $conexion->close();
 
     $dompdf->render();
 
-    $dompdf->stream("Reporte_Sede_.pdf", array("Attachment" => false));
+    $dompdf->stream("Reporte_Iventario.pdf", array("Attachment" => false));
 
 ?>

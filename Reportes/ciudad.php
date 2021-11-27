@@ -2,8 +2,9 @@
 
 include("../conexion.php");
 
-$sql = "SELECT c.id_cliente,c.nom_cliente, c.email,c.direccion,r.nom_rol 
-        FROM cliente AS c INNER JOIN rol AS r ON c.id_rol=r.id_rol;";
+$sql = "SELECT c.id_ciudad,p.nom_pais, c.nom_ciudad
+        FROM ciudad AS c 
+        INNER JOIN pais AS p ON c.id_pais=p.id_pais;";
 
 $resultado = $conexion->query($sql)
 	or die(mysqli_errno($this->conexion) . " : "
@@ -30,27 +31,23 @@ $conexion->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
      crossorigin="anonymous">
-    <title>Document</title>
+    <title>REPORTE DE CIUDADES</title>
 </head>
     <body>
         <table class="table table-bordered" id=tabla>
             <thead>
                 <tr>
-                    <th>ID CLIENTE</th>
-                    <th>NOMBRE</th>
-                    <th>EMAIL</th>
-                    <th>DIRECCION</th>
-                    <th>ROL</th>
+                    <th>ID CIUDA<D/th>
+                    <th>PAIS</th>
+                    <th>CIUDAD</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($listado as $fila) { ?>
                     <tr>
-                        <td><?php echo utf8_encode($fila['id_cliente']) ?> </td>
-                        <td><?php echo utf8_encode($fila['nom_cliente']) ?> </td>
-                        <td><?php echo utf8_encode($fila['email']) ?> </td>
-                        <td><?php echo utf8_encode($fila['direccion']) ?> </td>
-                        <td><?php echo utf8_encode($fila['nom_rol']) ?> </td>
+                        <td><?php echo utf8_encode($fila['id_ciudad']) ?> </td>
+                        <td><?php echo utf8_encode($fila['id_pais']) ?> </td>
+                        <td><?php echo utf8_encode($fila['nom_ciudad']) ?> </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -77,8 +74,6 @@ $conexion->close();
 
     $dompdf->render();
 
-    $dompdf->stream("Reporte_Usuarios.pdf", array("Attachment" => false));
+    $dompdf->stream("Reporte_Ciudades.pdf", array("Attachment" => false));
 
 ?>
-
-

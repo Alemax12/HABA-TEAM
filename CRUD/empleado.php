@@ -342,6 +342,8 @@ $conexion->close();
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+                    <a href="../Reportes/empleado.php" class="btn btn-secondary">
+                            Customer Report</a>
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
