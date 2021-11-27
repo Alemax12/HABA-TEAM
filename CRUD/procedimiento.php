@@ -419,9 +419,6 @@ $conexion->close();
                                             <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
 
                                             <td>
-                                            <button class="btn btn-primary btn-sm editar" data-id="<?php echo $fila['id_procedimiento'] ?>">
-                                                    <i class="fas fa-plus" aria-hidden="true"></i>
-                                                </button>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_procedimiento'] ?>">
                                                     <i class="fas fa-pen" aria-hidden="true"></i>
                                                 </button>
