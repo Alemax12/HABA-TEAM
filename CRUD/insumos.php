@@ -334,9 +334,6 @@ $conexion->close();
 
                     <br>
                     <div class="card">
-                        <div class="card-header text-white bg-dark">
-                            Information
-                        </div>
                         <div class="card-body">
                             <button type="button" class="btn btn-secondary" id="nuevo">New</button>
                             <div id="formulario">
@@ -385,7 +382,7 @@ $conexion->close();
                             <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>ID Procedure</th>
+                                        <th>Supplies ID</th>
                                         <th>Description Procedure</th>
                                         <th>Raw Material</th>
                                         <th>Quantity of Inputs</th>
@@ -397,7 +394,7 @@ $conexion->close();
                                 <tbody>
                                     <tr>
                                         <?php foreach ($listado as $fila) { ?>
-                                            <td><?php echo utf8_decode($fila['id_procedimiento']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['id_insumo']) ?> </td>
                                             <td><?php echo utf8_decode($fila['tipo']) ?> </td>
                                             <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
                                             <td><?php echo utf8_decode($fila['cantidad_insumos']) ?> </td>
@@ -414,7 +411,6 @@ $conexion->close();
                                 <?php } ?>
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>

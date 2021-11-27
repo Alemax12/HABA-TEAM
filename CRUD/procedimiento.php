@@ -9,42 +9,86 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
+$id1 = $_POST["id1"];
+
 require './database.php';
 
-$sql = "SELECT * FROM procedimiento AS p 
-        INNER JOIN empleado AS e ON (p.id_empleado = e.id_empleado)
-        INNER JOIN cliente AS c ON (p.id_cliente = c.id_cliente)
+{   
+
+    $sql = "SELECT * FROM procedimiento AS p 
+            INNER JOIN empleado AS e ON (p.id_empleado = e.id_empleado)
+            INNER JOIN cliente AS c ON (p.id_cliente = c.id_cliente)
+            ORDER BY id_procedimiento";
+
+    $resultado = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+
+    $listado = array();
+    while ($fila = $resultado->fetch_assoc()) {
+        $listado[] = $fila;
+    }
+
+    //empleado
+    $sql = "SELECT * FROM empleado
+        ORDER BY id_empleado";
+    $result_empleado = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+    $empleado = array();
+    while ($fila = $result_empleado->fetch_assoc()) {
+        $empleado[] = $fila;
+    }
+
+    //cliente
+    $sql = "SELECT * FROM cliente
+        ORDER BY id_cliente";
+    $result_cliente = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+    $cliente = array();
+    while ($fila = $result_cliente->fetch_assoc()) {
+        $cliente[] = $fila;
+    }
+}
+
+
+{
+    $sql = "SELECT * FROM insumo AS i  
+            INNER JOIN procedimiento AS p ON (i.id_procedimiento = p.id_procedimiento)
+            INNER JOIN materiaprima AS m ON (i.id_materiaprima = m.id_materiaprima)
+            WHERE i.id_procedimiento='$id1' ORDER BY i.id_procedimiento";
+
+    $resultado = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+
+    $listado1 = array();
+    while ($fila1 = $resultado->fetch_assoc()) {
+        $listado1[] = $fila1;
+    }
+
+    //procedimiento
+    $sql = "SELECT * FROM procedimiento
         ORDER BY id_procedimiento";
+    $result_pos = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+    $pos = array();
+    while ($fila1 = $result_pos->fetch_assoc()) {
+        $pos[] = $fila1;
+    }
 
-$resultado = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-
-$listado = array();
-while ($fila = $resultado->fetch_assoc()) {
-    $listado[] = $fila;
-}
-
-//empleado
-$sql = "SELECT * FROM empleado
-     ORDER BY id_empleado";
-$result_empleado = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$empleado = array();
-while ($fila = $result_empleado->fetch_assoc()) {
-    $empleado[] = $fila;
-}
-
-//cliente
-$sql = "SELECT * FROM cliente
-     ORDER BY id_cliente";
-$result_cliente = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$cliente = array();
-while ($fila = $result_cliente->fetch_assoc()) {
-    $cliente[] = $fila;
+    //materia prima
+    $sql = "SELECT * FROM materiaprima
+        ORDER BY id_materiaprima";
+    $result_mat = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+    $mat = array();
+    while ($fila1 = $result_mat->fetch_assoc()) {
+        $mat[] = $fila1;
+    }
 }
 
 $conexion->close();
@@ -339,6 +383,7 @@ $conexion->close();
                         </div>
                         <div class="card-body">
                             <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+
                             <div id="formulario">
                                 <form class="row g-3" role="form" id="form1">
 
@@ -414,6 +459,9 @@ $conexion->close();
                                             <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
 
                                             <td>
+                                            <button class="btn btn-primary btn-sm editar" data-id="<?php echo $fila['id_procedimiento'] ?>">
+                                                    <i class="fas fa-plus" aria-hidden="true"></i>
+                                                </button>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_procedimiento'] ?>">
                                                     <i class="fas fa-pen" aria-hidden="true"></i>
                                                 </button>
@@ -427,6 +475,117 @@ $conexion->close();
                             </table>
 
                         </div>
+
+                        
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                        <div class="card-body" id="formins">
+
+                            <hr width="100%" color="black"/>
+
+                            <br><br>
+
+                            <div class="--Carousel--">
+                                <div class="carousel-item active">
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-8">
+                                                <h1>Supplies</h1>
+                                            </div>
+                                            <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
+                                        </div>
+                                    </div>
+
+
+                                    <br>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <button type="button" class="btn btn-secondary" id="nuevo1">New</button>
+                                            <div id="formulario1">
+                                                <form class="row g-3" role="form" id="form2">
+
+                                                    <div class="form-group col-3 div_id">
+                                                        <label>Supplies ID:</label>
+                                                        <input autocomplete="off" type="number" class="form-control" name="id1" id="inputID1" placeholder="Enter ID" value="">
+                                                    </div>
+
+                                                    <div class="form-group col-3">
+                                                        <label>Procedures:</label>
+                                                        <select class="form-control" name="pos" id="inputPos">
+                                                            <option value="0">Select:</option>
+                                                            <?php foreach ($pos as $fila1) { ?>
+                                                                <option value="<?php echo $fila1['id_procedimiento'] ?>"> <?php echo utf8_decode($fila1['id_procedimiento']) ?> </option>;
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-3">
+                                                        <label>Raw Material:</label>
+                                                        <select class="form-control" name="mat" id="inputMat">
+                                                            <option value="0">Select:</option>
+                                                            <?php foreach ($mat as $fila1) { ?>
+                                                                <option value="<?php echo $fila1['id_materiaprima'] ?>"> <?php echo utf8_decode($fila1['descripcion']) ?> </option>;
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-3">
+                                                        <label>Quantity of Inputs:</label>
+                                                        <input autocomplete="off" type="number" class="form-control" name="can" id="inputCan" placeholder="Enter quantity of inputs" value="">
+                                                    </div>
+
+                                                </form>
+                                                <div>
+                                                    <br>
+                                                    <button type="button" id="save1" class="btn btn-secondary" data-tag="">Save</button>
+                                                    <button type="button" id="cancel1" class="btn btn-secondary">Cancel</button>
+                                                </div>
+                                            </div>
+
+                                            <br><br>
+
+                                            <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Supplies ID</th>
+                                                        <th>Procedure ID</th>
+                                                        <th>Description Procedure</th>
+                                                        <th>Raw Material</th>
+                                                        <th>Quantity of Inputs</th>
+
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <?php foreach ($listado1 as $fila1) { ?>
+                                                            <td><?php echo utf8_decode($fila1['id_insumo']) ?> </td>
+                                                            <td><?php echo utf8_decode($fila1['id_procedimiento']) ?> </td>
+                                                            <td><?php echo utf8_decode($fila1['tipo']) ?> </td>
+                                                            <td><?php echo utf8_decode($fila1['descripcion']) ?> </td>
+                                                            <td><?php echo utf8_decode($fila1['cantidad_insumos']) ?> </td>
+
+                                                            <td>
+                                                                <button class="btn btn-success btn-sm edit1" data-od="<?php echo $fila1['id_insumo'] ?>">
+                                                                    <i class="fas fa-pen" aria-hidden="true"></i>
+                                                                </button>
+                                                                <button class="btn btn-danger btn-sm delete1" data-od="<?php echo $fila1['id_insumo'] ?>">
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </td>
+                                                    </tr>
+                                                <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <footer class="py-4 bg-light mt-auto">
