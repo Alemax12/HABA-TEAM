@@ -2,9 +2,6 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 2) {//99999 para que nadie entre, ya que no se ha terminado
-        header('Location: ../404.html');
-    }
 } else {
     header('Location: ../404.html');
 }
@@ -26,6 +23,27 @@ $resultado = $conexion->query($sql)
 $listado = array();
 while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
+}
+//roles
+$sql = "SELECT * FROM rol
+     ORDER BY id_rol";
+$result_rol = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$rol = array();
+while ($fila = $result_rol->fetch_assoc()) {
+    $rol[] = $fila;
+}
+
+//sedes
+$sql = "SELECT * FROM sede
+     ORDER BY nom_sede";
+$result_sede = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$sede = array();
+while ($fila = $result_sede->fetch_assoc()) {
+    $sede[] = $fila;
 }
 
 $conexion->close();
@@ -115,6 +133,35 @@ $conexion->close();
                         <!--Herramientas-->
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
+                                    Used Tools
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="https://trello.com/b/7dudAdSS/team-haba">Trello</a>
+                                        <a class="nav-link" href="https://github.com/Alemax12/HABBA-TEAM">GitHub</a>
+                                    </nav>
+                                </div>
+
+                                <!--Integrantes-->
+                                <a class="nav-link" href="../members.html">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-user-friends">
+                                        </i>
+                                    </div>
+                                    Members
+                                </a>
+
+                                <!--Registros-->
+                                <a class="nav-link" id="TablesLeft" href="./CRUD/registros.php">
+                                    <div class="sb-nav-link-icon">
+                                    <i class="fas fa-bars">    
+                                    </i>
+                                    </div>
+                                    Tables
+                                </a>
 
                                 <!--Clientes-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
@@ -321,6 +368,9 @@ $conexion->close();
                         </div>
                         <div class="card-body">
                             <button type="button" class="btn btn-secondary" id="EditMyUser">Edit</button>
+                        </div>
+
+                        <div class="card-body">
                             <div id="div-cliente">
                                 <form class="row g-3" role="form" id="form-cliente">
 
@@ -362,50 +412,55 @@ $conexion->close();
                                     </div>
 
                                 </form>
+                                <div>
+                                    <br>
+                                    <button type="button" id="save-cliente" class="btn btn-secondary" data-tag="">Save</button>
+                                    <button type="button" id="cancel-cliente" class="btn btn-secondary">Cancel</button>
+                                </div>
                             </div>
                             <div id="div-emp">
                                 <form class="row g-3" role="form" id="form-emp">
 
                                     <div class="form-group col-3 div_id">
                                         <label>Employee ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID_E" placeholder="Enter Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID_E" disabled placeholder="Enter Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Name:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName_E" placeholder="Enter Name" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName_E" disabled placeholder="Enter Name" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee's Date of Birth:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac_E" placeholder="Enter Date of Birth" value="">
+                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac_E" disabled placeholder="Enter Date of Birth" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Email:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail_E" placeholder="Enter Email" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail_E" disabled placeholder="Enter Email" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Cell Phone:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel_E" placeholder="Enter the Cell Phone Number" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel_E" disabled placeholder="Enter the Cell Phone Number" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Weigth:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso_E" placeholder="Enter Weight" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso_E" disabled placeholder="Enter Weight" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Height:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst_E" placeholder="Enter Height" value="">
+                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst_E" disabled placeholder="Enter Height" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Address:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir_E" placeholder="Enter Address" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir_E" disabled placeholder="Enter Address" value="">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Employee Password:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra_E" placeholder="Enter Password" value="">
+                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra_E" disabled placeholder="Enter Password" value="">
                                     </div>
 
                                     <div class="form-group col-3">
                                         <label>Roles:</label>
-                                        <select class="form-control" name="rol" id="inputRol_E">
+                                        <select class="form-control" name="rol" id="inputRol_E" disabled>
                                             <option value="0">Select:</option>
                                             <?php foreach ($rol as $fila) { ?>
                                                 <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
@@ -415,7 +470,7 @@ $conexion->close();
 
                                     <div class="form-group col-3">
                                         <label>Headquarters:</label>
-                                        <select class="form-control" name="sede" id="inputSede_E">
+                                        <select class="form-control" name="sede" id="inputSede_E" disabled>
                                             <option value="0">Select:</option>
                                             <?php foreach ($sede as $fila) { ?>
                                                 <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
@@ -426,11 +481,10 @@ $conexion->close();
                                 </form>
                                 <div>
                                     <br>
-                                    <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
-                                    <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
+                                    <button type="button" id="save-emp" class="btn btn-secondary" data-tag="">Save</button>
+                                    <button type="button" id="cancel-emp" class="btn btn-secondary">Cancel</button>
                                 </div>
                             </div>
-
                             <br><br>
 
                         </div>
