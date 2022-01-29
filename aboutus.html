@@ -10,8 +10,7 @@
     <title>Healthy Citizen</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -30,11 +29,14 @@
         </ul>
         <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0" id="LoggedIcon">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item" id="MyUserName"></p></li>
-                    <li><p class="dropdown-item" id="MyUserRol"></p></li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserName"></p>
+                    </li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserRol"></p>
+                    </li>
                     <li><a class="dropdown-item" href="./CRUD/my_user.php" id="UpdateMyUser">My User</a></li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -65,25 +67,20 @@
                             About us
                         </a>
                         <!--Pages btn 2 en la lista-->
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
                             Developement
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!--Herramientas-->
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                     <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
                                     Used Tools
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="https://trello.com/b/7dudAdSS/team-haba">Trello</a>
                                         <a class="nav-link" href="https://github.com/Alemax12/HABBA-TEAM">GitHub</a>
@@ -112,68 +109,51 @@
                         </div>
                         <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             </nav>
-        </div>
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <div class="jumbotron">
-                        <h1 class="display-4">About Us</h1>
-                        <p class="lead">We are a company that contributes to the comprehensive development of
-                            associated with the cooperative as well as other users and clients, providing services in
-                            three sectors:
-                            protection
-                            financial
-                            Health
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <div class="jumbotron">
+                            <h1 class="display-4">Sobre Nosotros</h1>
+                            <p class="lead">Somos una organizacion que busca contribuir activamente con el mejoramiento continuo en la calidad de vida de estos seres maravillosos, por esta razon nuestro centro de adopcion busca apoyo de manera incesante en las empresas
+                                publicas, privadas y hogares que deseen contibuir a esta grandiosa labor.</p>
+                            <hr class="my-4">
+                            <h1 class="display-4">Mission</h1>
+                            <p class="lead">En PELUDITOS DE AMOR ofrecemos protección a los felinos y caninos, a través del sistema de identificación. Promovemos la tenencia responsable de las mascotas y contibuimos a la defensa responsable de las mascotas y contibuimos
+                                a la defensa de la vida animal y su dignificación, fomentando la aceptacion y respeto; la adopción y la tenencia responsable de animales en situación de vulneravilidad.</p>
+                            <hr class="my-4">
+                            <h1 class="display-4">Vision</h1>
+                            <p class="lead">En 2024 PELUDITOS DE AMOR será reconocida como lider en protección y adopción en Colombia. A través de su labor y su amplia difusión en internet.</p>
 
-                            With them we facilitate the well-being and progress of more than four million people whom we
-                            serve through
-                            the commitment to the health of our patients.</p>
-                        <hr class="my-4">
-                        <h1 class="display-4">Mission</h1>
-                        <p class="lead">Protect the health of our members, prioritizing the promotion of self-care and
-                            adequate
-                            management of the risks of the disease, in order to provide excellence in service in a
-                            sustainable way,
-                            through a committed and qualified human team.</p>
-                        <hr class="my-4">
-                        <h1 class="display-4">Vision</h1>
-                        <p class="lead">Reach to be the EPS with the highest recognition in Colombia, for ensuring
-                            comprehensive health
-                            care for its affiliates, under a people-centered model, which is reflected in a high level
-                            of satisfaction
-                            in the service.</p>
-
-                    </div>
-                </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
                         </div>
                     </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a> &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="js/scripts.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+            <script src="assets/demo/chart-area-demo.js"></script>
+            <script src="assets/demo/chart-bar-demo.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="js/datatables-simple-demo.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    <script type="text/javascript" src="./js/opps.js"></script>
-    <script type="text/javascript">
-        $(document).ready(Logged)
-    </script>
+            <script type="text/javascript" src="./js/opps.js"></script>
+            <script type="text/javascript">
+                $(document).ready(Logged)
+            </script>
 </body>
 
 </html>
