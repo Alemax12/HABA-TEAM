@@ -272,24 +272,20 @@ Interactions
                                 <input autocomplete="off" type="text" class="form-control" name="peso" id="inputWeight" placeholder="Enter address" value="">
                             </div>
                             <div class="form-group col-5">
-                                <div class="form-group col-3">
-                                    <label>Status:</label>
-                                    <select class="form-control" name="estado" id="inputStatus">
-                                        <option value="Avaiable">Avaiable</option>
-                                        <option value="Adopted">Adopted</option>
-                                    </select>
-                                </div>
+                                <label>Status:</label>
+                                <select class="form-control" name="estado" id="inputStatus">
+                                    <option value="Avaiable">Avaiable</option>
+                                    <option value="Adopted">Adopted</option>
+                                </select>
                             </div>
                             <div class="form-group col-5">
-                                <div class="form-group col-3">
-                                    <label>Specie:</label>
-                                    <select class="form-control" name="especie" id="inputSpecie">
-                                        <option value="Dog">Dog</option>
-                                        <option value="Cat">Cat</option>
-                                        <option value="Bird">Bird</option>
-                                        <option value="Reptile">Reptile</option>
-                                    </select>
-                                </div>
+                                <label>Specie:</label>
+                                <select class="form-control" name="especie" id="inputSpecie">
+                                    <option value="Dog">Dog</option>
+                                    <option value="Cat">Cat</option>
+                                    <option value="Bird">Bird</option>
+                                    <option value="Reptile">Reptile</option>
+                                </select>
                             </div>
                             <div class="form-group col-5">
                                 <label>Race:</label>
@@ -351,7 +347,7 @@ Interactions
                             <a href="#">Privacy Policy</a>
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
-                        </div>
+                        </div></div>
                     </div>
                 </div>
             </footer>

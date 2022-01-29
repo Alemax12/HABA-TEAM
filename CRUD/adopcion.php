@@ -270,146 +270,142 @@ Interactions
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
                     </div>
+                </div>
+            </div>
 
 
-                    <br>
-                    <div class="card">
-                        <div class="card-header text-white bg-dark">
-                            Information
-                        </div>
-                        <div class="card-body">
-                            <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+            <br>
+            <div class="card">
+                <div class="card-header text-white bg-dark">
+                    Information
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-secondary" id="nuevo">New</button>
 
-                            <div id="formulario">
-                                <form class="row g-3" role="form" id="form1">
+                    <div id="formulario">
+                        <form class="row g-3" role="form" id="form1">
 
-                                    <div class="form-group col-3 div_id">
-                                        <label>Adoption ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>User:</label>
-                                        <select class="form-control" name="emp" id="inputEmp">
-                                            <option value="0">Select:</option>
-                                            <?php foreach ($usuario as $fila) { ?>
-                                                <option value="<?php echo $fila['id_usuario'] ?>"> <?php echo $fila['nombre'] ?> </option>;
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>Pet:</label>
-                                        <select class="form-control" name="cli" id="inputCli">
-                                            <option value="0">Select:</option>
-                                            <?php foreach ($mascota as $fila) { ?>
-                                                <option value="<?php echo $fila['id_mascota'] ?>"> <?php echo $fila['name'] ?> </option>;
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>Adoption Date:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
-                                    </div>
-
-                                </form>
-                                <div>
-                                    <br>
-                                    <button type="button" id="save" class="btn btn-secondary" data-tag="">Update</button>
-                                    <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
-                                </div>
+                            <div class="form-group col-3 div_id">
+                                <label>Adoption ID:</label>
+                                <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
                             </div>
 
-                            <br><br>
+                            <div class="form-group col-3">
+                                <label>User:</label>
+                                <select class="form-control" name="emp" id="inputEmp">
+                                    <option value="0">Select:</option>
+                                    <?php foreach ($usuario as $fila) { ?>
+                                        <option value="<?php echo $fila['id_usuario'] ?>"> <?php echo $fila['nombre'] ?> </option>;
+                                    <?php } ?>
+                                </select>
+                            </div>
 
-                            <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Adoption ID</th>
-                                        <th>nombre del empleado</th>
-                                        <th>nombre del cliente</th>
-                                        <th>Adoption Date</th>
+                            <div class="form-group col-3">
+                                <label>Pet:</label>
+                                <select class="form-control" name="cli" id="inputCli">
+                                    <option value="0">Select:</option>
+                                    <?php foreach ($mascota as $fila) { ?>
+                                        <option value="<?php echo $fila['id_mascota'] ?>"> <?php echo $fila['name'] ?> </option>;
+                                    <?php } ?>
+                                </select>
+                            </div>
 
-                                        <th></th>
-                                    </tr>
-                                </thead>
+                            <div class="form-group col-3">
+                                <label>Adoption Date:</label>
+                                <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
+                            </div>
 
-                                <tbody>
-                                    <tr>
-                                        <?php foreach ($listado as $fila) { ?>
-                                            <td><?php echo $fila['id_adopcion'] ?> </td>
-                                            <td><?php echo utf8_decode($fila['nombre']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['name']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['fecha_adopcion']) ?> </td>
-
-                                            <td>
-                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_adopcion'] ?>">
-                                                    <i class="fas fa-pen" aria-hidden="true"></i>
-                                                </button>
-                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_adopcion'] ?>">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-
+                        </form>
+                        <div>
+                            <br>
+                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Update</button>
+                            <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
                         </div>
-
-
-
-                        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
                     </div>
 
-                    <footer class="py-4 bg-light mt-auto">
-                        <div class="container-fluid px-4">
-                            <div class="d-flex align-items-center justify-content-between small">
-                                <div class="text-muted">Copyright &copy; AdoptionCenter 2022 </div>
-                                <div>
-                                    <a href="#">Privacy Policy</a>
-                                    &middot;
-                                    <a href="#">Terms &amp; Conditions</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
+                    <br><br>
 
+                    <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Adoption ID</th>
+                                <th>User</th>
+                                <th>Pet Name</th>
+                                <th>Adoption Date</th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <?php foreach ($listado as $fila) { ?>
+                                    <td><?php echo $fila['id_adopcion'] ?> </td>
+                                    <td><?php echo utf8_decode($fila['nombre']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['name']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['fecha_adopcion']) ?> </td>
+
+                                    <td>
+                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_adopcion'] ?>">
+                                            <i class="fas fa-pen" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_adopcion'] ?>">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
-                <!--INICIO-->
-
-
             </div>
-            <!--FIN-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-            <script src="../js/scripts.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-            <script src="../assets/demo/chart-area-demo.js"></script>
-            <script src="../assets/demo/chart-bar-demo.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-            <script src="../js/datatables-simple-demo.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script>
-                $(document).ready(function() {
-                    $("#tabla").DataTable();
-                });
-            </script>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; AdoptionCenter 2022 </div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
 
-            <script type="text/javascript" src="../js/funcionesAdopcion.js"></script>
-            <script type="text/javascript">
-                $(document).ready(operaciones)
-            </script>
+        </div>
+        <!--INICIO-->
 
-            <script type="text/javascript" src="../js/opps.js"></script>
-            <script type="text/javascript">
-                $(document).ready(Logged2)
-            </script>
+
+    </div>
+    <!--FIN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $("#tabla").DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" src="../js/funcionesAdopcion.js"></script>
+    <script type="text/javascript">
+        $(document).ready(operaciones)
+    </script>
+
+    <script type="text/javascript" src="../js/opps.js"></script>
+    <script type="text/javascript">
+        $(document).ready(Logged2)
+    </script>
 
 </body>
 
