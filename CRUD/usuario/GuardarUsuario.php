@@ -1,5 +1,5 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 $name = $_POST["name"];
 $fec_nac = $_POST["fec_nac"];
@@ -12,7 +12,8 @@ $dir = $_POST["dir"];
 $contra = $_POST['contra'];
 
 
-$sql = "INSERT INTO cliente values (NULL, '$name', '$date', '$cel', '$email', '$peso', '$est', '$dir', '$contra', '1');";
+$sql = "INSERT INTO usuario (`id_usuario`, `nombre`, `email`, `contraseña`, `fecha_nacimiento`, `id_rol`, `celular`, `estatura`, `peso`, `direccion`) 
+                        values (NULL, '$name', '$email', '$contra', '$date', '3', '$cel', '$est', '$peso', '$dir');";
 //      INSERT INTO cliente values (NULL, 'sdfghsd', '2001-02-21', '165153', 'sdghsd', '15', '156', 'sdfhdsf', 'sdfghdsf', '1');
 
 $resultado = $conexion->query($sql)

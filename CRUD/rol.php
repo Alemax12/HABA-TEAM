@@ -2,7 +2,7 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 2) {
+    if ($_SESSION['user_rol'] != 3) {
         header('Location: ../404.html');
     }
 } else {
@@ -370,7 +370,7 @@ $conexion->close();
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
+                        <div class="text-muted">Copyright &copy; AdoptionCenter 2022 </div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
@@ -406,7 +406,7 @@ $conexion->close();
 
     <script type="text/javascript" src="../js/opps.js"></script>
     <script type="text/javascript">
-        $(document).ready(Logged1)
+        $(document).ready(Logged)
     </script>
 
 </body>

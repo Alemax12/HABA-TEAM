@@ -2,7 +2,7 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] ==1) {
+    if ($_SESSION['user_rol'] == 1) {
         header('Location: ../404.html');
     }
 } else {
@@ -48,8 +48,12 @@ if (isset($_SESSION['user_rol'])) {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item" id="MyUserName"></p></li>
-                    <li><p class="dropdown-item" id="MyUserRol"></p></li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserName"></p>
+                    </li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserRol"></p>
+                    </li>
                     <li><a class="dropdown-item" href="./my_user.php" id="UpdateMyUser">My User</a></li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -92,156 +96,92 @@ if (isset($_SESSION['user_rol'])) {
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-                                <a class="nav-link" href="./cliente.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Client
-                                </a>
-                                ';
-                                } ?>
-
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
-                                    echo '
-                                <a class="nav-link" href="./cliente_d.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Client AC
-                                </a>';
-                                } ?>
-
-                                <!--Empleados-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-                                <a class="nav-link" href="./empleado.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Employee
-                                </a>
-                                ';
-                                } ?>
-
-                                <!--Empleados-->
+                                <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-                                <a class="nav-link" href="./empleado_d.php">
+                                <a class="nav-link" href="./usuario.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
                                         </i>
                                     </div>
-                                    Employee DS
+                                    Users
+                                </a>
+                                ';
+                                } ?>
+
+                                <!--pets-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+                                <a class="nav-link" href="./mascota.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Pets
+                                </a>
+                                ';
+                                } ?>
+
+                                <!--adoptions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+                                <a class="nav-link" href="./adopcion.php">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-bars">
+                                        </i>
+                                    </div>
+                                    Adoptions
                                 </a>';
                                 } ?>
 
-                                <!--Roles-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--roles-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
                                 <a class="nav-link" href="./rol.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
                                         </i>
                                     </div>
-                                    Role
+                                    Roles
                                 </a>
                                 ';
                                 } ?>
 
-                                <!--País-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--centers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-                                <a class="nav-link" href="./pais.php">
+                                <a class="nav-link" href="./centro.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
                                         </i>
                                     </div>
-                                    Country
+                                    Centers
                                 </a>
                                 ';
                                 } ?>
 
-                                <!--Ciudad-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--transfers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-                                <a class="nav-link" href="./ciudad.php">
+                                <a class="nav-link" href="./transferencia.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
                                         </i>
                                     </div>
-                                    City
+                                    Transfers
                                 </a>
                                 ';
                                 } ?>
 
-                                <!--Sede-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                <!--interactions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-                                <a class="nav-link" href="./sede.php">
+                                <a class="nav-link" href="./interaccion.php">
                                     <div class="sb-nav-link-icon">
                                         <i class="fas fa-bars">
                                         </i>
                                     </div>
-                                    Headquarters
-                                </a>
-                                ';
-                                } ?>
-
-                                <!--Inventario-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-                                <a class="nav-link" href="./inventario.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Products to buy
-                                </a>
-                                ';
-                                } ?>
-
-                                <!--Insumos-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-                                <a class="nav-link" href="./insumos.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Supplies
-                                </a>
-                                ';
-                                } ?>
-
-                                <!--Materia Prima-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-                                <a class="nav-link" href="./materia.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Raw Material
-                                </a>
-                                ';
-                                } ?>
-
-                                <!--Procedimiento-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-                                <a class="nav-link" href="./procedimiento.php">
-                                    <div class="sb-nav-link-icon">
-                                        <i class="fas fa-bars">
-                                        </i>
-                                    </div>
-                                    Procedures
+                                    Interactions
                                 </a>
                                 ';
                                 } ?>
@@ -265,38 +205,38 @@ if (isset($_SESSION['user_rol'])) {
 
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <!--***GRUPO #1***-->
-                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                 echo '
                             <a class="btn">
-                                <a href="./cliente.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                <a href="./usuario.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/paciente.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Client</p>
+                                        <p class="card-text">Users</p>
                                     </div>
                                 </a>
                             </a>';
                             } ?>
 
-                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                 echo
                                 '
                             <a class="btn">
-                                <a href="./cliente_d.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                <a href="./mascota.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/paciente.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Client AC</p>
+                                        <p class="card-text">Pets</p>
                                     </div>
                                 </a>
                             </a>';
                             } ?>
 
-                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                 echo '
                             <a class="btn">
-                                <a href="./empleado.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/medico.png" alt="Card image cap">
+                                <a href="./adopcion.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                    <img class="card-img-top" src="../imgC/contrato.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Employee</p>
+                                        <p class="card-text">Adoptions</p>
                                     </div>
                                 </a>
                             </a>
@@ -307,139 +247,78 @@ if (isset($_SESSION['user_rol'])) {
                                 echo
                                 '
                             <a class="btn">
-                                <a href="./empleado_d.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/medico.png" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">Employee DS</p>
-                                    </div>
-                                </a>
-                            </a>';
-                            } ?>
-
-                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                echo '
-                            <a class="btn">
                                 <a href="./rol.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/roles.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Role</p>
+                                        <p class="card-text">Roles</p>
                                     </div>
                                 </a>
                             </a>';
                             } ?>
-                        </div>
 
+                        </div>
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <!--***GRUPO #2***-->
-                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                 echo '
                             <a class="btn">
-                                <a href="./pais.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/pais.png" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">Country</p>
-                                    </div>
-                                </a>
-                            </a>';
-                            } ?>
-
-                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                echo '
-                            <a class="btn">
-                                <a href="./ciudad.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/ciudad.png" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">City</p>
-                                    </div>
-                                </a>
-                            </a>';
-                            } ?>
-
-                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
-                                echo '
-                            <a class="btn">
-                                <a href="./sede.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                <a href="./centro.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
                                     <img class="card-img-top" src="../imgC/sede.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Headquarters</p>
+                                        <p class="card-text">Centers</p>
                                     </div>
                                 </a>
                             </a>';
                             } ?>
 
-                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                 echo '
                             <a class="btn">
-                                <a href="./inventario.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/inventario.png" alt="Card image cap">
+                                <a href="./transferencia.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                    <img class="card-img-top" src="../imgC/pais.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Products to buy</p>
+                                        <p class="card-text">Transfers</p>
                                     </div>
                                 </a>
                             </a>';
                             } ?>
-                        </div>
 
-                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                            <!--***GRUPO #3***-->
-
-                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
+                            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                 echo '
                             <a class="btn">
-                                <a href="./insumos.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/insumo.png" alt="Card image cap">
+                                <a href="./interaccion.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
+                                    <img class="card-img-top" src="../imgC/ciudad.png" alt="Card image cap">
                                     <div class="card-body">
-                                        <p class="card-text">Supplies</p>
+                                        <p class="card-text">Interactions</p>
                                     </div>
                                 </a>
                             </a>';
                             } ?>
 
-                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                echo '
-                            <a class="btn">
-                                <a href="./materia.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/procedimiento.png" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">Raw Material</p>
-                                    </div>
-                                </a>
-                            </a>';
-                            } ?>
-
-                            <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                echo '
-                            <a class="btn">
-                                <a href="./procedimiento.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/procedimiento.png" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">Procedures</p>
-                                    </div>
-                                </a>
-                            </a>';
-                            } ?>
                         </div>
 
                     </div>
-                    <!--No tocar-->
-                </div>
 
-
-            </main>
-            <!--FOOTER-->
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Healthy Citizen 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
                 </div>
-            </footer>
+                <!--No tocar-->
         </div>
+
+
+        </main>
+        <!--FOOTER-->
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; AdoptionCenter 2022 </div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>

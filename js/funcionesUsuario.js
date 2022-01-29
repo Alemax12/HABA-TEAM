@@ -23,9 +23,9 @@ function operaciones() {
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
-            ruta = "../CRUD/cliente/GuardarCliente.php";
+            ruta = "../CRUD/usuario/GuardarUsuario.php";
         } else {
-            ruta = "../CRUD/cliente/EditarCliente.php";
+            ruta = "../CRUD/usuario/EditarUsuario.php";
         }
         console.log(datos);
         $.ajax({
@@ -57,7 +57,7 @@ function operaciones() {
 
         Swal.fire({
             title: 'Delete Client',
-            text: "Are you sure you want to delete this client?",
+            text: "Are you sure you want to delete this user?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -68,7 +68,7 @@ function operaciones() {
             if (result.isConfirmed) {
                 const id = $(this).data("id");
                 $.ajax({
-                    url: "../CRUD/cliente/EliminarCliente.php",
+                    url: "../CRUD/usuario/EliminarUsuario.php",
                     method: "POST",
                     data: { id: id }, 
                     dataType: "html"
@@ -96,7 +96,7 @@ function operaciones() {
 
         const id = $(this).data("id");
         $.ajax({
-            url: "../CRUD/cliente/ConsultarCliente.php",
+            url: "../CRUD/usuario/ConsultarUsuario.php",
             method: "POST",
             data: { id: id }, 
             dataType: "json"
@@ -105,9 +105,9 @@ function operaciones() {
             .done(function (data) {
                 $("#save").text("Update");
                 $("#inputID").prop("disabled", true);
-                $("#inputID").val(data.id_cliente);
-                $("#inputName").val(data.nom_cliente);
-                $("#inputFecNac").val(data.fecha_nac);
+                $("#inputID").val(data.id_usuario);
+                $("#inputName").val(data.nombre);
+                $("#inputFecNac").val(data.fecha_nacimiento);
                 $("#inputCel").val(data.celular);
                 $("#inputEmail").val(data.email);
                 $("#inputPeso").val(data.peso);

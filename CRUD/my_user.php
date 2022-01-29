@@ -5,48 +5,6 @@ if (isset($_SESSION['user_rol'])) {
 } else {
     header('Location: ../404.html');
 }
-
-$id = $_SESSION['user_id'];
-
-require './database.php';
-if ($_SESSION['user_rol'] == 1) {
-    $sql = "SELECT * FROM cliente WHERE id_cliente=$id";
-} else {
-    $sql = "SELECT * FROM empleado WHERE id_empleado=$id";
-}
-
-
-$resultado = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-
-$listado = array();
-while ($fila = $resultado->fetch_assoc()) {
-    $listado[] = $fila;
-}
-//roles
-$sql = "SELECT * FROM rol
-     ORDER BY id_rol";
-$result_rol = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$rol = array();
-while ($fila = $result_rol->fetch_assoc()) {
-    $rol[] = $fila;
-}
-
-//sedes
-$sql = "SELECT * FROM sede
-     ORDER BY nom_sede";
-$result_sede = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$sede = array();
-while ($fila = $result_sede->fetch_assoc()) {
-    $sede[] = $fila;
-}
-
-$conexion->close();
 ?>
 
 
@@ -155,7 +113,7 @@ $conexion->close();
                                 </a>
 
                                 <!--Registros-->
-                                <a class="nav-link" id="TablesLeft" href="./CRUD/registros.php">
+                                <a class="nav-link" id="TablesLeft" href="../CRUD/registros.php">
                                     <div class="sb-nav-link-icon">
                                     <i class="fas fa-bars">    
                                     </i>
@@ -354,7 +312,7 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Clients</h1>
+                                <h1>My User</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -371,122 +329,54 @@ $conexion->close();
                         </div>
 
                         <div class="card-body">
-                            <div id="div-cliente">
-                                <form class="row g-3" role="form" id="form-cliente">
+                            <div id="div-usuario">
+                                <form class="row g-3" role="form" id="form-usuario">
 
                                     <div class="form-group col-3 div_id">
-                                        <label>Client ID:</label>
+                                        <label>User ID:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" disabled placeholder="Enter Number" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Name:</label>
+                                        <label>User Name:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" disabled placeholder="Enter Name" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client's Date of Birth:</label>
+                                        <label>User Date of Birth:</label>
                                         <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" disabled placeholder="Enter Date of Birth" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Cell Phone:</label>
+                                        <label>User Cell Phone:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" disabled placeholder="Enter the Cell Phone Number" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Email:</label>
+                                        <label>User Email:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" disabled placeholder="Enter Email" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Weigth:</label>
+                                        <label>User Weigth:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" disabled placeholder="Enter Weight" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Height:</label>
+                                        <label>User Height:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" disabled placeholder="Enter Height" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Address:</label>
+                                        <label>User Address:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" disabled placeholder="Enter Address" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Password:</label>
+                                        <label>User Password:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" disabled placeholder="Enter Password" value="">
                                     </div>
 
                                 </form>
                                 <div>
                                     <br>
-                                    <button type="button" id="save-cliente" class="btn btn-secondary" data-tag="">Save</button>
-                                    <button type="button" id="cancel-cliente" class="btn btn-secondary">Cancel</button>
-                                </div>
-                            </div>
-                            <div id="div-emp">
-                                <form class="row g-3" role="form" id="form-emp">
-
-                                    <div class="form-group col-3 div_id">
-                                        <label>Employee ID:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="id" id="inputID_E" disabled placeholder="Enter Number" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Name:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="name" id="inputName_E" disabled placeholder="Enter Name" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee's Date of Birth:</label>
-                                        <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac_E" disabled placeholder="Enter Date of Birth" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Email:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail_E" disabled placeholder="Enter Email" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Cell Phone:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel_E" disabled placeholder="Enter the Cell Phone Number" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Weigth:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso_E" disabled placeholder="Enter Weight" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Height:</label>
-                                        <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst_E" disabled placeholder="Enter Height" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Address:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir_E" disabled placeholder="Enter Address" value="">
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Employee Password:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra_E" disabled placeholder="Enter Password" value="">
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>Roles:</label>
-                                        <select class="form-control" name="rol" id="inputRol_E" disabled>
-                                            <option value="0">Select:</option>
-                                            <?php foreach ($rol as $fila) { ?>
-                                                <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['nom_rol']) ?> </option>;
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>Headquarters:</label>
-                                        <select class="form-control" name="sede" id="inputSede_E" disabled>
-                                            <option value="0">Select:</option>
-                                            <?php foreach ($sede as $fila) { ?>
-                                                <option value="<?php echo $fila['id_sede'] ?>"> <?php echo utf8_decode($fila['nom_sede']) ?> </option>;
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-                                </form>
-                                <div>
-                                    <br>
-                                    <button type="button" id="save-emp" class="btn btn-secondary" data-tag="">Save</button>
-                                    <button type="button" id="cancel-emp" class="btn btn-secondary">Cancel</button>
+                                    <button type="button" id="save-usuario" class="btn btn-secondary" data-tag="">Save</button>
+                                    <button type="button" id="cancel-usuario" class="btn btn-secondary">Cancel</button>
                                 </div>
                             </div>
                             <br><br>
-
                         </div>
                     </div>
                 </div>

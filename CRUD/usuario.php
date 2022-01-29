@@ -2,17 +2,17 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 8) {
+    if ($_SESSION['user_rol'] != 3) {
         header('Location: ../404.html');
     }
 } else {
     header('Location: ../404.html');
 }
 
-require './database.php';
+require '../php_operations/databaseli.php';
 
-$sql = "SELECT * FROM cliente"
-    . " ORDER BY id_cliente";
+$sql = "SELECT * FROM usuario"
+    . " ORDER BY id_usuario";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -298,7 +298,7 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1 id="Diferenciador">Clients AC</h1>
+                                <h1>Users</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -312,6 +312,8 @@ $conexion->close();
                         </div>
                         <div class="card-body">
                             <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+                            <a href="../Reportes/cliente.php" class="btn btn-secondary">
+                            Customer Report</a>
                             <div id="formulario">
                                 <form class="row g-3" role="form" id="form1">
 
@@ -347,7 +349,7 @@ $conexion->close();
                                         <label>Client Address:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
                                     </div>
-                                    <div class="form-group col-3" id="oculto">
+                                    <div class="form-group col-3">
                                         <label>Client Password:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
                                     </div>
@@ -379,18 +381,18 @@ $conexion->close();
                                 <tbody>
                                     <tr>
                                         <?php foreach ($listado as $fila) { ?>
-                                            <td><?php echo $fila['id_cliente'] ?> </td>
-                                            <td><?php echo utf8_decode($fila['nom_cliente']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['fecha_nac']) ?> </td>
+                                            <td><?php echo $fila['id_usuario'] ?> </td>
+                                            <td><?php echo utf8_decode($fila['nombre']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['fecha_nacimiento']) ?> </td>
                                             <td><?php echo utf8_decode($fila['celular']) ?> </td>
                                             <td><?php echo utf8_decode($fila['email']) ?> </td>
                                             <td><?php echo utf8_decode($fila['direccion']) ?> </td>
 
                                             <td>
-                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_cliente'] ?>">
+                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_usuario'] ?>">
                                                     <i class="fas fa-pen" aria-hidden="true"></i>
                                                 </button>
-                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_cliente'] ?>">
+                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_usuario'] ?>">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </td>
@@ -427,14 +429,14 @@ $conexion->close();
             $("#tabla").DataTable();
         });
     </script>
-    <script type="text/javascript" src="../js/funcionesCliente.js"></script>
+    <script type="text/javascript" src="../js/funcionesUsuario.js"></script>
     <script type="text/javascript">
         $(document).ready(operaciones)
     </script>
 
     <script type="text/javascript" src="../js/opps.js"></script>
     <script type="text/javascript">
-        $(document).ready(Logged1)
+        $(document).ready(Logged2)
     </script>
 
 

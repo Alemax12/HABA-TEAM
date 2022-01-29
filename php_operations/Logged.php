@@ -1,5 +1,5 @@
 <?php
-$respuesta=false;
+$respuesta='no';
 session_start();
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_rol'])) {
   $respuesta="yes";

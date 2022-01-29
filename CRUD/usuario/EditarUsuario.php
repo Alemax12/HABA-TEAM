@@ -1,5 +1,5 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 $name = $_POST["name"];
 $fec_nac = $_POST["fec_nac"];
@@ -11,8 +11,8 @@ $est = $_POST["est"];
 $dir = $_POST["dir"];
 $contra = $_POST["contra"];
 
-$sql = "UPDATE cliente SET nom_cliente='$name', fecha_nac='$date', celular='$cel',
-email='$email', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra' WHERE id_cliente=$id";
+$sql = "UPDATE usuario SET nombre='$name', fecha_nacimiento='$date', celular='$cel',
+email='$email', peso='$peso', estatura='$est', direccion='$dir', contraseña='$contra' WHERE id_usuario=$id";
 echo $sql;
 
 $resultado = $conexion->query($sql)
