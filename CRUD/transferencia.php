@@ -2,29 +2,56 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 2) {
+    if ($_SESSION['user_rol'] != 3) {
         header('Location: ../404.html');
     }
 } else {
     header('Location: ../404.html');
 }
 
-require '../php_operations/databaseli.php';
+require '../php_operations/databaseli.php'; {
 
-$sql = "SELECT * FROM pais
-     ORDER BY id_pais";
+    $sql = "SELECT * FROM transferencia AS t
+            INNER JOIN centro AS c ON (t.id_centro = c.id_centro)
+            INNER JOIN mascota AS m ON (t.id_mascota = m.id_mascota)
+            ORDER BY id_transferencia";
 
-$resultado = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
+    $resultado = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
 
-$listado = array();
-while ($fila = $resultado->fetch_assoc()) {
-    $listado[] = $fila;
+    $listado = array();
+    while ($fila = $resultado->fetch_assoc()) {
+        $listado[] = $fila;
+    }
+
+    //centro
+    $sql = "SELECT * FROM centro
+        ORDER BY id_centro";
+    $result_centro = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+    $centro = array();
+    while ($fila = $result_centro->fetch_assoc()) {
+        $centro[] = $fila;
+    }
+
+    //mascota
+    $sql = "SELECT * FROM mascota
+        ORDER BY id_mascota";
+    $result_mascota = $conexion->query($sql)
+        or die(mysqli_errno($conexion) . " : "
+            . mysqli_error($conexion) . " | Query=" . $sql);
+    $mascota = array();
+    while ($fila = $result_mascota->fetch_assoc()) {
+        $mascota[] = $fila;
+    }
 }
-
 $conexion->close();
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,8 +92,12 @@ $conexion->close();
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item" id="MyUserName"></p></li>
-                    <li><p class="dropdown-item" id="MyUserRol"></p></li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserName"></p>
+                    </li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserRol"></p>
+                    </li>
                     <li><a class="dropdown-item" href="./my_user.php" id="UpdateMyUser">My User</a></li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -107,156 +138,92 @@ $conexion->close();
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./cliente.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client
-</a>
-';
-                                } ?>
-
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
-                                    echo '
-<a class="nav-link" href="./cliente_d.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client AC
-</a>';
-                                } ?>
-
-                                <!--Empleados-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./empleado.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Employee
-</a>
-';
-                                } ?>
-
-                                <!--Empleados-->
+                                <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./empleado_d.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Employee DS
+<a class="nav-link" href="./usuario.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Users
+</a>
+';
+                                } ?>
+
+                                <!--pets-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./mascota.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Pets
+</a>
+';
+                                } ?>
+
+                                <!--adoptions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./adopcion.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Adoptions
 </a>';
                                 } ?>
 
-                                <!--Roles-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--roles-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
 <a class="nav-link" href="./rol.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Role
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Roles
 </a>
 ';
                                 } ?>
 
-                                <!--País-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--centers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./pais.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Country
+<a class="nav-link" href="./centro.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Centers
 </a>
 ';
                                 } ?>
 
-                                <!--Ciudad-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--transfers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./ciudad.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    City
+<a class="nav-link" href="./transferencia.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Transfers
 </a>
 ';
                                 } ?>
 
-                                <!--Sede-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                <!--interactions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./sede.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Headquarters
-</a>
-';
-                                } ?>
-
-                                <!--Inventario-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./inventario.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Products to buy
-</a>
-';
-                                } ?>
-
-                                <!--Insumos-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./insumos.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Supplies
-</a>
-';
-                                } ?>
-
-                                <!--Materia Prima-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./materia.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Raw Material
-</a>
-';
-                                } ?>
-
-                                <!--Procedimiento-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./procedimiento.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Procedures
+<a class="nav-link" href="./interaccion.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Interactions
 </a>
 ';
                                 } ?>
@@ -298,7 +265,7 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Country</h1>
+                                <h1>Transfers</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -306,7 +273,7 @@ $conexion->close();
                 </div>
             </div>
 
-            <!--|TABLA|-->
+
             <br>
             <div class="card">
                 <div class="card-header text-white bg-dark">
@@ -314,46 +281,75 @@ $conexion->close();
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-secondary" id="nuevo">New</button>
+
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
                             <div class="form-group col-3 div_id">
-                                <label>Country ID:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
+                                <label>Adoption ID:</label>
+                                <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
                             </div>
-                            <div class="form-group col-5">
-                                <label>Country:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
+
+                            <div class="form-group col-3">
+                                <label>Center:</label>
+                                <select class="form-control" name="emp" id="inputEmp">
+                                    <option value="0">Select:</option>
+                                    <?php foreach ($centro as $fila) { ?>
+                                        <option value="<?php echo $fila['id_centro'] ?>"> <?php echo $fila['nombre_centro'] ?> </option>;
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-3">
+                                <label>Pet:</label>
+                                <select class="form-control" name="cli" id="inputCli">
+                                    <option value="0">Select:</option>
+                                    <?php foreach ($mascota as $fila) { ?>
+                                        <option value="<?php echo $fila['id_mascota'] ?>"> <?php echo $fila['name'] ?> </option>;
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-3">
+                                <label>Transfer Date:</label>
+                                <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
                             </div>
 
                         </form>
                         <div>
                             <br>
-                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
+                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Update</button>
                             <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>
+
                     <br><br>
+
                     <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Country ID</th>
-                                <th>Country</th>
+                                <th>Transfer ID</th>
+                                <th>Center</th>
+                                <th>Pet Name</th>
+                                <th>Transfer Date</th>
 
                                 <th></th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <tr>
                                 <?php foreach ($listado as $fila) { ?>
-                                    <td><?php echo $fila['id_pais'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_pais']) ?> </td>
+                                    <td><?php echo $fila['id_transferencia'] ?> </td>
+                                    <td><?php echo utf8_decode($fila['nombre_centro']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['name']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['fecha_transferencia']) ?> </td>
 
                                     <td>
-                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_pais'] ?>">
+                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_transferencia'] ?>">
                                             <i class="fas fa-pen" aria-hidden="true"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_pais'] ?>">
+                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_transferencia'] ?>">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -361,7 +357,6 @@ $conexion->close();
                         <?php } ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
 
@@ -373,13 +368,17 @@ $conexion->close();
                             <a href="#">Privacy Policy</a>
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
-                        </div></div>
+                        </div>
                     </div>
                 </div>
             </footer>
-        </div>
-    </div>
 
+        </div>
+        <!--INICIO-->
+
+
+    </div>
+    <!--FIN-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -397,14 +396,15 @@ $conexion->close();
             $("#tabla").DataTable();
         });
     </script>
-    <script type="text/javascript" src="../js/funcionesPais.js"></script>
+
+    <script type="text/javascript" src="../js/funcionesTransferencia.js"></script>
     <script type="text/javascript">
         $(document).ready(operaciones)
     </script>
 
     <script type="text/javascript" src="../js/opps.js"></script>
     <script type="text/javascript">
-        $(document).ready(Logged1)
+        $(document).ready(Logged2)
     </script>
 
 </body>

@@ -1,10 +1,13 @@
 <?php
 include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
-$name = $_POST["name"];
-$address = $_POST["address"];
+$centro=$_POST["emp"];
+$pet = $_POST["cli"];
+$date = $_POST["date"];
 
-$sql = "UPDATE centro SET nombre_centro='$name', address='$address' WHERE id_centro=$id";
+
+$sql = "UPDATE transferencia SET id_mascota='$pet', id_centro='$centro', fecha_transferencia='$date'
+        WHERE id_transferencia=$id";
 echo $sql;
 
 $resultado = $conexion->query($sql)

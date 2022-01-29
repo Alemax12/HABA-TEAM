@@ -1,8 +1,9 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM insumo WHERE id_insumo";
+$sql = "SELECT * FROM transferencia WHERE id_transferencia=$id";
+
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

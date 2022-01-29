@@ -1,14 +1,15 @@
 <?php
 include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
-$name = $_POST["name"];
-$address = $_POST["address"];
+$centro=$_POST["emp"];
+$pet = $_POST["cli"];
+$date = $_POST["date"];
 
-$sql = "UPDATE centro SET nombre_centro='$name', address='$address' WHERE id_centro=$id";
-echo $sql;
+
+$sql = "INSERT INTO transferencia values (NULL, '$pet', '$centro', '$date')";  
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
-        
+
 $conexion->close();

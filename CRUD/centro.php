@@ -294,7 +294,7 @@ Interactions
                             <tr>
                                 <?php foreach ($listado as $fila) { ?>
                                     <td><?php echo $fila['id_centro'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['name']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['nombre_centro']) ?> </td>
                                     <td><?php echo utf8_decode($fila['address']) ?> </td>
 
                                     <td>
