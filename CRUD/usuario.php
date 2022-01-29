@@ -11,8 +11,7 @@ if (isset($_SESSION['user_rol'])) {
 
 require '../php_operations/databaseli.php';
 
-$sql = "SELECT * FROM usuario"
-    . " ORDER BY id_usuario";
+$sql = "SELECT * FROM usuario AS u INNER JOIN rol AS r ON (u.id_rol = r.id_rol)ORDER BY id_usuario";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -21,6 +20,17 @@ $resultado = $conexion->query($sql)
 $listado = array();
 while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
+}
+
+//roles
+$sql = "SELECT * FROM rol
+     ORDER BY id_rol";
+$result_rol = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$rol = array();
+while ($fila = $result_rol->fetch_assoc()) {
+    $rol[] = $fila;
 }
 
 $conexion->close();
@@ -65,8 +75,12 @@ $conexion->close();
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item" id="MyUserName"></p></li>
-                    <li><p class="dropdown-item" id="MyUserRol"></p></li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserName"></p>
+                    </li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserRol"></p>
+                    </li>
                     <li><a class="dropdown-item" href="./my_user.php" id="UpdateMyUser">My User</a></li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -107,156 +121,92 @@ $conexion->close();
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./cliente.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client
-</a>
-';
-                                } ?>
-
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
-                                    echo '
-<a class="nav-link" href="./cliente_d.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client AC
-</a>';
-                                } ?>
-
-                                <!--Empleados-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./empleado.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Employee
-</a>
-';
-                                } ?>
-
-                                <!--Empleados-->
+                                <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./empleado_d.php">
+<a class="nav-link" href="./usuario.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Employee DS
+    Users
+</a>
+';
+                                } ?>
+
+                                <!--pets-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./mascota.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Pets
+</a>
+';
+                                } ?>
+
+                                <!--adoptions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./adopcion.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Adoptions
 </a>';
                                 } ?>
 
-                                <!--Roles-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--roles-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
 <a class="nav-link" href="./rol.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Role
+    Roles
 </a>
 ';
                                 } ?>
 
-                                <!--País-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--centers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./pais.php">
+<a class="nav-link" href="./centro.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Country
+    Centers
 </a>
 ';
                                 } ?>
 
-                                <!--Ciudad-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--transfers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./ciudad.php">
+<a class="nav-link" href="./transferencia.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    City
+    Transfers
 </a>
 ';
                                 } ?>
 
-                                <!--Sede-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                <!--interactions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./sede.php">
+<a class="nav-link" href="./interaccion.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Headquarters
-</a>
-';
-                                } ?>
-
-                                <!--Inventario-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./inventario.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Products to buy
-</a>
-';
-                                } ?>
-
-                                <!--Insumos-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./insumos.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Supplies
-</a>
-';
-                                } ?>
-
-                                <!--Materia Prima-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./materia.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Raw Material
-</a>
-';
-                                } ?>
-
-                                <!--Procedimiento-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./procedimiento.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Procedures
+    Interactions
 </a>
 ';
                                 } ?>
@@ -313,45 +263,54 @@ $conexion->close();
                         <div class="card-body">
                             <button type="button" class="btn btn-secondary" id="nuevo">New</button>
                             <a href="../Reportes/cliente.php" class="btn btn-secondary">
-                            Customer Report</a>
+                                Customer Report</a>
                             <div id="formulario">
                                 <form class="row g-3" role="form" id="form1">
 
                                     <div class="form-group col-3 div_id">
-                                        <label>Client ID:</label>
+                                        <label>User ID:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter Number" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Name:</label>
+                                        <label>User Name:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter Name" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client's Date of Birth:</label>
+                                        <label>User's Date of Birth:</label>
                                         <input autocomplete="off" type="date" class="form-control" name="fec_nac" id="inputFecNac" placeholder="Enter Date of Birth" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Cell Phone:</label>
+                                        <label>User Cell Phone:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="cel" id="inputCel" placeholder="Enter the Cell Phone Number" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Email:</label>
+                                        <label>User Email:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="email" id="inputEmail" placeholder="Enter Email" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Weigth:</label>
+                                        <label>User Weigth:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="peso" id="inputPeso" placeholder="Enter Weight" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Height:</label>
+                                        <label>User Height:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="est" id="inputEst" placeholder="Enter Height" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Address:</label>
+                                        <label>User Address:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="dir" id="inputDir" placeholder="Enter Address" value="">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label>Client Password:</label>
+                                        <label>User Password:</label>
                                         <input autocomplete="off" type="text" class="form-control" name="contra" id="inputContra" placeholder="Enter Password" value="">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Roles:</label>
+                                        <select class="form-control" name="rol" id="inputRol">
+                                            <option value="0">Select:</option>
+                                            <?php foreach ($rol as $fila) { ?>
+                                                <option value="<?php echo $fila['id_rol'] ?>"> <?php echo utf8_decode($fila['descripcion']) ?> </option>;
+                                            <?php } ?>
+                                        </select>
                                     </div>
 
                                 </form>
@@ -373,6 +332,7 @@ $conexion->close();
                                         <th>Cell Phone</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                        <th>Role</th>
 
                                         <th></th>
                                     </tr>
@@ -387,6 +347,7 @@ $conexion->close();
                                             <td><?php echo utf8_decode($fila['celular']) ?> </td>
                                             <td><?php echo utf8_decode($fila['email']) ?> </td>
                                             <td><?php echo utf8_decode($fila['direccion']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
 
                                             <td>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_usuario'] ?>">

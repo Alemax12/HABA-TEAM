@@ -7,17 +7,13 @@ function operaciones() {
         $("#formulario").show();
         $("#inputID").prop("disabled", false);
         $(this).hide();
-        $("#editar").hide();
         $("#save").text("Save");
         $(".div_id").hide();
         
     });
     $("#cancel").click(function () {
         $("#formulario").hide();
-        $("#formins").hide();
         $("#nuevo").show();
-        $("#editar").show();
-        $("#inputEP").show();
         $("#form1").trigger("reset");
     });
 
@@ -27,9 +23,9 @@ function operaciones() {
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
-            ruta = "../CRUD/procedimiento/GuardarProcedimiento.php";
+            ruta = "../CRUD/mascota/GuardarMascota.php";
         } else {
-            ruta = "../CRUD/procedimiento/EditarProcedimiento.php";
+            ruta = "../CRUD/mascota/EditarMascota.php";
         }
         console.log(datos);
         $.ajax({
@@ -60,8 +56,8 @@ function operaciones() {
     $(".delete").click(function () {
 
         Swal.fire({
-            title: 'Delete Procedur',
-            text: "Are you sure you want to delete this procedur?",
+            title: 'Delete Role',
+            text: "Are you sure you want to delete this pet?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -72,7 +68,7 @@ function operaciones() {
             if (result.isConfirmed) {
                 const id = $(this).data("id");
                 $.ajax({
-                    url: "../CRUD/procedimiento/EliminarProcedimiento.php",
+                    url: "../CRUD/mascota/EliminarMascota.php",
                     method: "POST",
                     data: { id: id }, 
                     dataType: "html"
@@ -100,7 +96,7 @@ function operaciones() {
 
         const id = $(this).data("id");
         $.ajax({
-            url: "../CRUD/procedimiento/ConsultarProcedimiento.php",
+            url: "../CRUD/mascota/ConsultarMascota.php",
             method: "POST",
             data: { id: id }, 
             dataType: "json"
@@ -109,11 +105,12 @@ function operaciones() {
             .done(function (data) {
                 $("#save").text("Update");
                 $("#inputID").prop("disabled", true);
-                $("#inputID").val(data.id_procedimiento);
-                $("#inputEmp").val(data.id_empleado);
-                $("#inputCli").val(data.id_cliente);
-                $("#inputTip").val(data.tipo);
-                $("#inputDes").val(data.descripcion);
+                $("#inputID").val(data.id_mascota);
+                $("#inputName").val(data.name);
+                $("#inputWeight").val(data.weight);
+                $("#inputStatus").val(data.status);
+                $("#inputSpecie").val(data.specie);
+                $("#inputRace").val(data.race);
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();
@@ -130,6 +127,4 @@ function operaciones() {
 
             });
     });
-  
-
 }

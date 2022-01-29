@@ -10,7 +10,7 @@ if (isset($_SESSION['user_rol'])) {
 }
 
 
-require './database.php';
+require '../php_operations/databaseli.php';
 
 $sql = "SELECT * FROM empleado AS e  
         INNER JOIN rol AS r ON (e.id_rol = r.id_rol)

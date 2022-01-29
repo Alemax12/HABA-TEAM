@@ -9,7 +9,7 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-require './database.php';
+require '../php_operations/databaseli.php';
 
 $sql = "SELECT * FROM inventario_sede AS i 
         INNER JOIN sede AS s ON (i.id_sede = s.id_sede)

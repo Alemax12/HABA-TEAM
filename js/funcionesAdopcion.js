@@ -5,24 +5,31 @@ function operaciones() {
 
     $("#nuevo").click(function () {
         $("#formulario").show();
+        $("#inputID").prop("disabled", false);
         $(this).hide();
+        $("#editar").hide();
         $("#save").text("Save");
+        $(".div_id").hide();
         
     });
     $("#cancel").click(function () {
         $("#formulario").hide();
+        $("#formins").hide();
         $("#nuevo").show();
+        $("#editar").show();
+        $("#inputEP").show();
         $("#form1").trigger("reset");
     });
 
     $("#save").click(function (e) {
         e.preventDefault();
+        $("#inputID").prop("disabled", false);
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
-            ruta = "../CRUD/pais/GuardarPais.php";
+            ruta = "../CRUD/adopcion/GuardarAdopcion.php";
         } else {
-            ruta = "../CRUD/pais/EditarPais.php";
+            ruta = "../CRUD/adopcion/EditarAdopcion.php";
         }
         console.log(datos);
         $.ajax({
@@ -53,8 +60,8 @@ function operaciones() {
     $(".delete").click(function () {
 
         Swal.fire({
-            title: 'Delete Country',
-            text: "Are you sure you want to delete this country?",
+            title: 'Delete Procedur',
+            text: "Are you sure you want to delete this adoption?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -65,7 +72,7 @@ function operaciones() {
             if (result.isConfirmed) {
                 const id = $(this).data("id");
                 $.ajax({
-                    url: "../CRUD/pais/EliminarPais.php",
+                    url: "../CRUD/adopcion/EliminarAdopcion.php",
                     method: "POST",
                     data: { id: id }, 
                     dataType: "html"
@@ -91,21 +98,24 @@ function operaciones() {
 
     $(".edit").click(function () {
 
-        const id = $(this).data('id');
-        const idd =JSON.stringify(id);
+        const id = $(this).data("id");
         $.ajax({
-            url: "../CRUD/pais/ConsultarPais.php",
+            url: "../CRUD/adopcion/ConsultarAdopcion.php",
             method: "POST",
-            data: { id: idd }, 
+            data: { id: id }, 
             dataType: "json"
         })
-        
+
             .done(function (data) {
                 $("#save").text("Update");
-                $("#inputID").val(data.id_pais);
-                $("#inputName").val(data.nom_pais);
+                $("#inputID").prop("disabled", true);
+                $("#inputID").val(data.id_adopcion);
+                $("#inputEmp").val(data.id_usuario);
+                $("#inputCli").val(data.id_mascota);
+                $("#inputDate").val(data.fecha_adopcion);
                 $("#formulario").show();
                 $("#nuevo").hide();
+                $(".div_id").show();
             })
 
             .fail(function (jqXHR, textStatus) {
@@ -119,4 +129,6 @@ function operaciones() {
 
             });
     });
+  
+
 }

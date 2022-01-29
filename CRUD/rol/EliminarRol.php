@@ -1,5 +1,5 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 
 $sql = "DELETE FROM rol WHERE id_rol=$id";

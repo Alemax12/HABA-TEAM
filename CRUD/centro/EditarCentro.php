@@ -1,9 +1,10 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
-$des = $_POST["des"];
+$name = $_POST["name"];
+$address = $_POST["address"];
 
-$sql = "UPDATE materiaprima SET descripcion='$des' WHERE id_materiaprima=$id";
+$sql = "UPDATE centro SET name='$name', address='$address' WHERE id_centro=$id";
 echo $sql;
 
 $resultado = $conexion->query($sql)

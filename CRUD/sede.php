@@ -11,7 +11,7 @@ if (isset($_SESSION['user_rol'])) {
 
 header('Content-Type: text/html; charset=ISO-8859-1');
 
-require './database.php';
+require '../php_operations/databaseli.php';
 
 $sql = "SELECT * FROM sede AS s  
         INNER JOIN ciudad AS c ON (s.id_ciudad = c.id_ciudad)

@@ -222,7 +222,7 @@ if (isset($_SESSION['user_rol'])) {
                                 '
                             <a class="btn">
                                 <a href="./mascota.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/paciente.png" alt="Card image cap">
+                                    <img class="card-img-top" src="../imgC/gatito.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Pets</p>
                                     </div>
@@ -287,7 +287,7 @@ if (isset($_SESSION['user_rol'])) {
                                 echo '
                             <a class="btn">
                                 <a href="./interaccion.php" class="btn btn-outline-secondary" role="button" style="width: 10rem;">
-                                    <img class="card-img-top" src="../imgC/ciudad.png" alt="Card image cap">
+                                    <img class="card-img-top" src="../imgC/mascota-virtual.png" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text">Interactions</p>
                                     </div>

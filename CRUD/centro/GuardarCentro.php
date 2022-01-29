@@ -1,10 +1,10 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
-$nom = $_POST["name"];
+$name = $_POST["name"];
+$address = $_POST["address"];
 
-
-$sql = "INSERT INTO pais values ('$id', '$nom');";
+$sql = "INSERT INTO centro values (NULL,'$name', '$address');";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

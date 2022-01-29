@@ -9,7 +9,7 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-require './database.php';
+require '../php_operations/databaseli.php';
 
 $sql = "SELECT * FROM pais
      ORDER BY id_pais";

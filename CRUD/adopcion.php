@@ -2,21 +2,19 @@
 
 session_start();
 if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 2 && $_SESSION['user_rol'] != 10) {
+    if ($_SESSION['user_rol'] != 3) {
         header('Location: ../404.html');
     }
 } else {
     header('Location: ../404.html');
 }
 
-require './database.php';
+require '../php_operations/databaseli.php'; {
 
-{   
-
-    $sql = "SELECT * FROM procedimiento AS p 
-            INNER JOIN empleado AS e ON (p.id_empleado = e.id_empleado)
-            INNER JOIN cliente AS c ON (p.id_cliente = c.id_cliente)
-            ORDER BY id_procedimiento";
+    $sql = "SELECT * FROM adopcion AS a
+            INNER JOIN usuario AS u ON (a.id_usuario = u.id_usuario)
+            INNER JOIN mascota AS m ON (a.id_mascota = m.id_mascota)
+            ORDER BY id_adopcion";
 
     $resultado = $conexion->query($sql)
         or die(mysqli_errno($conexion) . " : "
@@ -27,26 +25,26 @@ require './database.php';
         $listado[] = $fila;
     }
 
-    //empleado
-    $sql = "SELECT * FROM empleado
-        ORDER BY id_empleado";
-    $result_empleado = $conexion->query($sql)
+    //usuario
+    $sql = "SELECT * FROM usuario
+        ORDER BY id_usuario";
+    $result_usuario = $conexion->query($sql)
         or die(mysqli_errno($conexion) . " : "
             . mysqli_error($conexion) . " | Query=" . $sql);
-    $empleado = array();
-    while ($fila = $result_empleado->fetch_assoc()) {
-        $empleado[] = $fila;
+    $usuario = array();
+    while ($fila = $result_usuario->fetch_assoc()) {
+        $usuario[] = $fila;
     }
 
-    //cliente
-    $sql = "SELECT * FROM cliente
-        ORDER BY id_cliente";
-    $result_cliente = $conexion->query($sql)
+    //mascota
+    $sql = "SELECT * FROM mascota
+        ORDER BY id_mascota";
+    $result_mascota = $conexion->query($sql)
         or die(mysqli_errno($conexion) . " : "
             . mysqli_error($conexion) . " | Query=" . $sql);
-    $cliente = array();
-    while ($fila = $result_cliente->fetch_assoc()) {
-        $cliente[] = $fila;
+    $mascota = array();
+    while ($fila = $result_mascota->fetch_assoc()) {
+        $mascota[] = $fila;
     }
 }
 $conexion->close();
@@ -94,8 +92,12 @@ $conexion->close();
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item" id="MyUserName"></p></li>
-                    <li><p class="dropdown-item" id="MyUserRol"></p></li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserName"></p>
+                    </li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserRol"></p>
+                    </li>
                     <li><a class="dropdown-item" href="./my_user.php" id="UpdateMyUser">My User</a></li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -136,156 +138,92 @@ $conexion->close();
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./cliente.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client
-</a>
-';
-                                } ?>
-
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
-                                    echo '
-<a class="nav-link" href="./cliente_d.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client AC
-</a>';
-                                } ?>
-
-                                <!--Empleados-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./empleado.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Employee
-</a>
-';
-                                } ?>
-
-                                <!--Empleados-->
+                                <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./empleado_d.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Employee DS
+<a class="nav-link" href="./usuario.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Users
+</a>
+';
+                                } ?>
+
+                                <!--pets-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./mascota.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Pets
+</a>
+';
+                                } ?>
+
+                                <!--adoptions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./adopcion.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Adoptions
 </a>';
                                 } ?>
 
-                                <!--Roles-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--roles-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
 <a class="nav-link" href="./rol.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Role
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Roles
 </a>
 ';
                                 } ?>
 
-                                <!--País-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--centers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./pais.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Country
+<a class="nav-link" href="./centro.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Centers
 </a>
 ';
                                 } ?>
 
-                                <!--Ciudad-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--transfers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./ciudad.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    City
+<a class="nav-link" href="./transferencia.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Transfers
 </a>
 ';
                                 } ?>
 
-                                <!--Sede-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                <!--interactions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./sede.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Headquarters
-</a>
-';
-                                } ?>
-
-                                <!--Inventario-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./inventario.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Products to buy
-</a>
-';
-                                } ?>
-
-                                <!--Insumos-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./insumos.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Supplies
-</a>
-';
-                                } ?>
-
-                                <!--Materia Prima-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./materia.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Raw Material
-</a>
-';
-                                } ?>
-
-                                <!--Procedimiento-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./procedimiento.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Procedures
+<a class="nav-link" href="./interaccion.php">
+<div class="sb-nav-link-icon">
+<i class="fas fa-bars">
+</i>
+</div>
+Interactions
 </a>
 ';
                                 } ?>
@@ -327,7 +265,7 @@ $conexion->close();
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Procedures</h1>
+                                <h1>Adoptions</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -346,42 +284,33 @@ $conexion->close();
                                 <form class="row g-3" role="form" id="form1">
 
                                     <div class="form-group col-3 div_id">
-                                        <label>Procedure ID:</label>
+                                        <label>Adoption ID:</label>
                                         <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
                                     </div>
 
                                     <div class="form-group col-3">
-                                        <label>Employee:</label>
+                                        <label>User:</label>
                                         <select class="form-control" name="emp" id="inputEmp">
                                             <option value="0">Select:</option>
-                                            <?php foreach ($empleado as $fila) { ?>
-                                                <option value="<?php echo $fila['id_empleado'] ?>"> <?php echo $fila['nom_empleado'] ?> </option>;
+                                            <?php foreach ($usuario as $fila) { ?>
+                                                <option value="<?php echo $fila['id_usuario'] ?>"> <?php echo $fila['nombre'] ?> </option>;
                                             <?php } ?>
                                         </select>
                                     </div>
 
                                     <div class="form-group col-3">
-                                        <label>Client:</label>
+                                        <label>Pet:</label>
                                         <select class="form-control" name="cli" id="inputCli">
                                             <option value="0">Select:</option>
-                                            <?php foreach ($cliente as $fila) { ?>
-                                                <option value="<?php echo $fila['id_cliente'] ?>"> <?php echo $fila['nom_cliente'] ?> </option>;
+                                            <?php foreach ($mascota as $fila) { ?>
+                                                <option value="<?php echo $fila['id_mascota'] ?>"> <?php echo $fila['name'] ?> </option>;
                                             <?php } ?>
                                         </select>
                                     </div>
 
                                     <div class="form-group col-3">
-                                        <label>Type of Procedure:</label>
-                                        <select class="form-control" name="tip" id="inputTip">
-                                            <option value="0">Select:</option>
-                                            <option value="Surgery">Surgery</option>
-                                            <option value="Medical Appointment">Medical Appointment</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>Description:</label>
-                                        <input autocomplete="off" type="text" class="form-control" name="des" id="inputDes" placeholder="Enter the description" value="">
+                                        <label>Adoption Date:</label>
+                                        <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
                                     </div>
 
                                 </form>
@@ -397,11 +326,10 @@ $conexion->close();
                             <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Procedure ID</th>
+                                        <th>Adoption ID</th>
                                         <th>nombre del empleado</th>
                                         <th>nombre del cliente</th>
-                                        <th>Tipo</th>
-                                        <th>Descripción</th>
+                                        <th>Adoption Date</th>
 
                                         <th></th>
                                     </tr>
@@ -410,17 +338,16 @@ $conexion->close();
                                 <tbody>
                                     <tr>
                                         <?php foreach ($listado as $fila) { ?>
-                                            <td><?php echo $fila['id_procedimiento'] ?> </td>
-                                            <td><?php echo utf8_decode($fila['nom_empleado']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['nom_cliente']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['tipo']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
+                                            <td><?php echo $fila['id_adopcion'] ?> </td>
+                                            <td><?php echo utf8_decode($fila['nombre']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['name']) ?> </td>
+                                            <td><?php echo utf8_decode($fila['fecha_adopcion']) ?> </td>
 
                                             <td>
-                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_procedimiento'] ?>">
+                                                <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_adopcion'] ?>">
                                                     <i class="fas fa-pen" aria-hidden="true"></i>
                                                 </button>
-                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_procedimiento'] ?>">
+                                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_adopcion'] ?>">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </td>
@@ -431,9 +358,9 @@ $conexion->close();
 
                         </div>
 
-                        
 
-<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
                     </div>
 
@@ -474,14 +401,14 @@ $conexion->close();
                 });
             </script>
 
-            <script type="text/javascript" src="../js/funcionesProcedimiento.js"></script>
+            <script type="text/javascript" src="../js/funcionesAdopcion.js"></script>
             <script type="text/javascript">
                 $(document).ready(operaciones)
             </script>
 
             <script type="text/javascript" src="../js/opps.js"></script>
             <script type="text/javascript">
-                $(document).ready(Logged1)
+                $(document).ready(Logged2)
             </script>
 
 </body>

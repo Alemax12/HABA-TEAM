@@ -1,14 +1,10 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
-$pai = $_POST["pai"];
-$nom = $_POST["nom"];
 
-
-$sql = "INSERT INTO ciudad values ('$id', '$pai', '$nom');";
+$sql = "DELETE FROM adopcion WHERE id_adopcion=$id";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);
-
 $conexion->close();

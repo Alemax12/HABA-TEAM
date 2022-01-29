@@ -5,7 +5,7 @@ function operaciones() {
 
     $("#nuevo").click(function () {
         $("#formulario").show();
-        $("#inputID").prop("disabled", true);
+        $("#inputID").prop("disabled", false);
         $(this).hide();
         $("#save").text("Save");
         $(".div_id").hide();
@@ -23,9 +23,9 @@ function operaciones() {
         var datos = $("#form1").serialize();
         var ruta = "";
         if ($(this).text() == "Save") {
-            ruta = "../CRUD/ciudad/GuardarCiudad.php";
+            ruta = "../CRUD/centro/GuardarCentro.php";
         } else {
-            ruta = "../CRUD/ciudad/EditarCiudad.php";
+            ruta = "../CRUD/centro/EditarCentro.php";
         }
         console.log(datos);
         $.ajax({
@@ -56,8 +56,8 @@ function operaciones() {
     $(".delete").click(function () {
 
         Swal.fire({
-            title: 'Delete City',
-            text: "Are you sure you want to delete this city?",
+            title: 'Delete Role',
+            text: "Are you sure you want to delete this center?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -68,7 +68,7 @@ function operaciones() {
             if (result.isConfirmed) {
                 const id = $(this).data("id");
                 $.ajax({
-                    url: "../CRUD/ciudad/EliminarCiudad.php",
+                    url: "../CRUD/centro/EliminarCentro.php",
                     method: "POST",
                     data: { id: id }, 
                     dataType: "html"
@@ -95,9 +95,8 @@ function operaciones() {
     $(".edit").click(function () {
 
         const id = $(this).data("id");
-        console.log(id);
         $.ajax({
-            url: "../CRUD/ciudad/ConsultarCiudad.php",
+            url: "../CRUD/centro/ConsultarCentro.php",
             method: "POST",
             data: { id: id }, 
             dataType: "json"
@@ -106,10 +105,9 @@ function operaciones() {
             .done(function (data) {
                 $("#save").text("Update");
                 $("#inputID").prop("disabled", true);
-                $("#inputID").val(data.id_ciudad);
-                $("#inputPai").val(data.id_pais);
-                $("#inputNom").val(data.nom_ciudad);
-
+                $("#inputID").val(data.id_centro);
+                $("#inputName").val(data.name);
+                $("#inputAddress").val(data.address);
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();

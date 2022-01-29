@@ -113,6 +113,7 @@ function operaciones() {
                 $("#inputPeso").val(data.peso);
                 $("#inputEst").val(data.estatura);
                 $("#inputDir").val(data.direccion);
+                $("#inputRol").val(data.id_rol);
                 if($("#diferenciador").text=="Employees"){
                     $("#inputContra").val(data.contraseña);
                 }else{

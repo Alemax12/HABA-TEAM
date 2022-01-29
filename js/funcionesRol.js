@@ -106,7 +106,7 @@ function operaciones() {
                 $("#save").text("Update");
                 $("#inputID").prop("disabled", true);
                 $("#inputID").val(data.id_rol);
-                $("#inputName").val(data.nom_rol);
+                $("#inputName").val(data.descripcion);
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();

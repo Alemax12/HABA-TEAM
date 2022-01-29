@@ -9,7 +9,7 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-require './database.php';
+require '../php_operations/databaseli.php';
 
 $sql = "SELECT * FROM rol
      ORDER BY id_rol";
@@ -65,8 +65,12 @@ $conexion->close();
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item" id="MyUserName"></p></li>
-                    <li><p class="dropdown-item" id="MyUserRol"></p></li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserName"></p>
+                    </li>
+                    <li>
+                        <p class="dropdown-item" id="MyUserRol"></p>
+                    </li>
                     <li><a class="dropdown-item" href="./my_user.php" id="UpdateMyUser">My User</a></li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -107,156 +111,92 @@ $conexion->close();
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./cliente.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client
-</a>
-';
-                                } ?>
-
-                                <!--Clientes-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 8) {
-                                    echo '
-<a class="nav-link" href="./cliente_d.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Client AC
-</a>';
-                                } ?>
-
-                                <!--Empleados-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
-                                    echo '
-<a class="nav-link" href="./empleado.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Employee
-</a>
-';
-                                } ?>
-
-                                <!--Empleados-->
+                                <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./empleado_d.php">
+<a class="nav-link" href="./usuario.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Employee DS
+    Users
+</a>
+';
+                                } ?>
+
+                                <!--pets-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./mascota.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Pets
+</a>
+';
+                                } ?>
+
+                                <!--adoptions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
+                                    echo '
+<a class="nav-link" href="./adopcion.php">
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Adoptions
 </a>';
                                 } ?>
 
-                                <!--Roles-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--roles-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
 <a class="nav-link" href="./rol.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Role
+    Roles
 </a>
 ';
                                 } ?>
 
-                                <!--País-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--centers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./pais.php">
+<a class="nav-link" href="./centro.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Country
+    Centers
 </a>
 ';
                                 } ?>
 
-                                <!--Ciudad-->
-                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 2) {
+                                <!--transfers-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./ciudad.php">
+<a class="nav-link" href="./transferencia.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    City
+    Transfers
 </a>
 ';
                                 } ?>
 
-                                <!--Sede-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 3)) {
+                                <!--interactions-->
+                                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
-<a class="nav-link" href="./sede.php">
+<a class="nav-link" href="./interaccion.php">
     <div class="sb-nav-link-icon">
         <i class="fas fa-bars">
         </i>
     </div>
-    Headquarters
-</a>
-';
-                                } ?>
-
-                                <!--Inventario-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./inventario.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Products to buy
-</a>
-';
-                                } ?>
-
-                                <!--Insumos-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./insumos.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Supplies
-</a>
-';
-                                } ?>
-
-                                <!--Materia Prima-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 9)) {
-                                    echo '
-<a class="nav-link" href="./materia.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Raw Material
-</a>
-';
-                                } ?>
-
-                                <!--Procedimiento-->
-                                <?php if (isset($_SESSION['user_rol']) && ($_SESSION['user_rol'] == 2 || $_SESSION['user_rol'] == 10)) {
-                                    echo '
-<a class="nav-link" href="./procedimiento.php">
-    <div class="sb-nav-link-icon">
-        <i class="fas fa-bars">
-        </i>
-    </div>
-    Procedures
+    Interactions
 </a>
 ';
                                 } ?>
@@ -315,7 +255,7 @@ $conexion->close();
                 <div class="card-body">
                     <button type="button" class="btn btn-secondary" id="nuevo">New</button>
                     <a href="../Reportes/roles.php" class="btn btn-secondary">
-                            Roles Report</a>
+                        Roles Report</a>
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
@@ -349,7 +289,7 @@ $conexion->close();
                             <tr>
                                 <?php foreach ($listado as $fila) { ?>
                                     <td><?php echo $fila['id_rol'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['nom_rol']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
 
                                     <td>
                                         <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_rol'] ?>">
@@ -406,7 +346,7 @@ $conexion->close();
 
     <script type="text/javascript" src="../js/opps.js"></script>
     <script type="text/javascript">
-        $(document).ready(Logged)
+        $(document).ready(Logged2)
     </script>
 
 </body>

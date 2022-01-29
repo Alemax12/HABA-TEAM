@@ -1,8 +1,8 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 
-$sql = "DELETE FROM sede WHERE id_sede=$id";
+$sql = "DELETE FROM centro WHERE id_centro=$id";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

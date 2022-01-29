@@ -1,8 +1,8 @@
 <?php
-include_once('../database.php');
+include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM procedimiento WHERE id_procedimiento=$id";
+$sql = "SELECT * FROM adopcion WHERE id_adopcion=$id";
 
 
 $resultado = $conexion->query($sql)
