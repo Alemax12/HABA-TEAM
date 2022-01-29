@@ -11,7 +11,7 @@ if (isset($_SESSION['user_rol'])) {
 
 require '../php_operations/databaseli.php';
 
-$sql = "SELECT * FROM usuario AS u INNER JOIN rol AS r ON (u.id_rol = r.id_rol)ORDER BY id_usuario";
+$sql = "SELECT * FROM usuario AS u LEFT JOIN rol AS r ON (u.id_rol = r.id_rol) ORDER BY id_usuario";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -347,7 +347,12 @@ $conexion->close();
                                             <td><?php echo utf8_decode($fila['celular']) ?> </td>
                                             <td><?php echo utf8_decode($fila['email']) ?> </td>
                                             <td><?php echo utf8_decode($fila['direccion']) ?> </td>
-                                            <td><?php echo utf8_decode($fila['descripcion']) ?> </td>
+                                            <td><?php 
+                                            if(utf8_decode($fila['id_rol'])==NULL)
+                                            {echo"No Role";}
+                                            else
+                                            {echo utf8_decode($fila['descripcion']);} 
+                                            ?> </td>
 
                                             <td>
                                                 <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_usuario'] ?>">
