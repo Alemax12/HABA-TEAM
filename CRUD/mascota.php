@@ -12,7 +12,7 @@ if (isset($_SESSION['user_rol'])) {
 require '../php_operations/databaseli.php';
 
 $sql = "SELECT * FROM mascota
-     ORDER BY id_mascota";
+    ORDER BY id_mascota";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
@@ -21,6 +21,17 @@ $resultado = $conexion->query($sql)
 $listado = array();
 while ($fila = $resultado->fetch_assoc()) {
     $listado[] = $fila;
+}
+
+//centro
+$sql = "SELECT * FROM centro
+ORDER BY id_centro";
+$result_centro = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+$centro = array();
+while ($fila = $result_centro->fetch_assoc()) {
+    $centro[] = $fila;
 }
 
 $conexion->close();
@@ -291,6 +302,16 @@ Interactions
                                 <label>Race:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="raza" id="inputRace" placeholder="Enter address" value="">
                             </div>
+                            <div class="form-group col-5">
+                                <label>Center:</label>
+                                <select class="form-control" name="centro" id="inputCentro">
+                                    <option value="0">Select:</option>
+                                    <?php foreach ($centro as $fila) { ?>
+                                        <option value="<?php echo $fila['id_centro'] ?>"> <?php echo $fila['nombre_centro'] ?> </option>;
+                                    <?php } ?>
+                                </select>
+                            </div>
+
 
                         </form>
                         <div>
@@ -309,6 +330,7 @@ Interactions
                                 <th>Status</th>
                                 <th>Specie</th>
                                 <th>Race</th>
+                                <th>Center</th>
 
                                 <th></th>
                             </tr>
@@ -322,6 +344,22 @@ Interactions
                                     <td><?php echo utf8_decode($fila['status']) ?> </td>
                                     <td><?php echo utf8_decode($fila['specie']) ?> </td>
                                     <td><?php echo utf8_decode($fila['race']) ?> </td>
+                                    <td><?php
+                                        require '../php_operations/databaseli.php';
+                                        $sql2 = "SELECT * FROM transferencia AS t INNER JOIN centro AS c ON (t.id_centro = c.id_centro) WHERE id_mascota=" . $fila['id_mascota'] . " ORDER BY fecha_transferencia DESC";
+                                        $resultado2 = $conexion->query($sql2)
+                                            or die(mysqli_errno($conexion) . " : "
+                                                . mysqli_error($conexion) . " | Query=" . $sql2);
+
+                                        $listado2 = array();
+                                        while ($fila2 = $resultado2->fetch_assoc()) {
+                                            $listado2[] = $fila2;
+                                        }
+                                        $conexion->close();
+                                        $data = $listado2[0];
+                                        echo $data['nombre_centro'];
+                                        ?>
+                                    </td>
 
                                     <td>
                                         <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_mascota'] ?>">
@@ -347,11 +385,12 @@ Interactions
                             <a href="#">Privacy Policy</a>
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
-                        </div></div>
+                        </div>
                     </div>
                 </div>
-            </footer>
         </div>
+        </footer>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

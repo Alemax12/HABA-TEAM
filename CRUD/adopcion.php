@@ -37,7 +37,7 @@ require '../php_operations/databaseli.php'; {
     }
 
     //mascota
-    $sql = "SELECT * FROM mascota
+    $sql = "SELECT * FROM mascota WHERE status='Avaiable'
         ORDER BY id_mascota";
     $result_mascota = $conexion->query($sql)
         or die(mysqli_errno($conexion) . " : "
