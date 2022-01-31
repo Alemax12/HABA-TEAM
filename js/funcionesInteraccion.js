@@ -1,16 +1,24 @@
 
 function operaciones() {
 
+    $(".ocultar").hide();
     $("#formulario").hide();
-
+    $("#inputLike").change(function() {
+        if($("#inputLike").val()==1){
+            $("#inputCommentDiv").hide();
+            $("#inputComment").val(null);
+        }else{
+            $("#inputCommentDiv").show();
+        }
+    })
     $("#nuevo").click(function () {
+        $(".ocultar").hide();
         $("#formulario").show();
         $("#inputID").prop("disabled", false);
         $(this).hide();
         $("#editar").hide();
         $("#save").text("Save");
         $(".div_id").hide();
-        
     });
     $("#cancel").click(function () {
         $("#formulario").hide();
@@ -97,7 +105,6 @@ function operaciones() {
     });
 
     $(".edit").click(function () {
-
         const id = $(this).data("id");
         $.ajax({
             url: "../CRUD/interaccion/ConsultarInteraccion.php",
@@ -117,10 +124,8 @@ function operaciones() {
                 $("#inputComment").val(data.comentarios);
                 if(data.megusta==1){
                     $("#inputCommentDiv").hide();
-                    $("#inputLikeDiv").show();
                 }else{
                     $("#inputCommentDiv").show();
-                    $("#inputLikeDiv").hide();
                 }
                 $("#inputLike").val(data.megusta);
                 $("#formulario").show();

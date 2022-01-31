@@ -131,22 +131,42 @@ $conexion->close();
                         <!--Pages btn 2 en la lista-->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
-                            Developement
+                            Menu
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!--Herramientas-->
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
+                                    Consult
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="./UserPet.php">Pets</a>
+                                        <a class="nav-link" href="./UserCenter.php">Centers</a>
+                                    </nav>
+                                </div>
+
+                                <!--Integrantes-->
+                                <a class="nav-link" href="../members.html">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-user-friends">
+                                        </i>
+                                    </div>
+                                    Members
+                                </a>
                                 <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
 <a class="nav-link" href="./usuario.php">
-<div class="sb-nav-link-icon">
-<i class="fas fa-bars">
-</i>
-</div>
-Users
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Users
 </a>
 ';
                                 } ?>
@@ -314,10 +334,6 @@ Interactions
                                 <label>Interaction Date:</label>
                                 <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
                             </div>
-                            <div class="form-group col-5" id="inputCommentDiv">
-                                <label>Comments:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="comment" id="inputComment" placeholder="Enter comment" value="">
-                            </div>
                             <div class="form-group col-5" id="inputLikeDiv">
                                 <label>Like:</label>
                                 <select class="form-control" name="like" id="inputLike">
@@ -325,6 +341,11 @@ Interactions
                                     <option value="1">Like</option>
                                 </select>
                             </div>
+                            <div class="form-group col-5" id="inputCommentDiv">
+                                <label>Comments:</label>
+                                <input autocomplete="off" type="text" class="form-control" name="comment" id="inputComment" placeholder="Enter comment" value="">
+                            </div>
+
 
                         </form>
                         <div>
@@ -339,7 +360,7 @@ Interactions
                     <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Adoption ID</th>
+                                <th>Interaction ID</th>
                                 <th>User</th>
                                 <th>Pet Name</th>
                                 <th>Interaction Date</th>

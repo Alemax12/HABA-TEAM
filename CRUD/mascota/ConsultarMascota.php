@@ -2,7 +2,7 @@
 include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 
-$sql = "SELECT * FROM mascota WHERE id_mascota=$id";
+$sql = "SELECT id_mascota,name,weight,status,specie,race FROM mascota WHERE id_mascota=$id";
 
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "

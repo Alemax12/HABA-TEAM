@@ -9,7 +9,7 @@ function operaciones() {
         $(this).hide();
         $("#save").text("Save");
         $(".div_id").hide();
-        
+
     });
     $("#cancel").click(function () {
         $("#formulario").hide();
@@ -19,8 +19,11 @@ function operaciones() {
 
     $("#save").click(function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         $("#inputID").prop("disabled", false);
-        var datos = $("#form1").serialize();
+        //var datos = $("#form1").serialize();
+        var form = $("#form1").closest("form");
+        var datos = new FormData(form[0]);
         var ruta = "";
         if ($(this).text() == "Save") {
             ruta = "../CRUD/mascota/GuardarMascota.php";
@@ -30,24 +33,20 @@ function operaciones() {
         console.log(datos);
         $.ajax({
             url: ruta,
-            method: "POST",
-            data: datos, 
-            dataType: "html"
+            type: "POST",
+            data: datos,
+            dataType: "json",
+            processData: false,
+            contentType: false
         })
 
             .done(function (data) {
                 location.reload();
-                
+
             })
 
             .fail(function (jqXHR, textStatus) {
-                Swal.fire({
-                    position: 'top-end',
-                    type: 'Error',
-                    title: 'An error has occurred : ' + textStatus,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                location.reload();
 
             });
 
@@ -70,7 +69,7 @@ function operaciones() {
                 $.ajax({
                     url: "../CRUD/mascota/EliminarMascota.php",
                     method: "POST",
-                    data: { id: id }, 
+                    data: { id: id },
                     dataType: "html"
                 })
 
@@ -93,12 +92,13 @@ function operaciones() {
     });
 
     $(".edit").click(function () {
-
+        $("#div-image").hide();
+        $("#div-center").hide();
         const id = $(this).data("id");
         $.ajax({
             url: "../CRUD/mascota/ConsultarMascota.php",
             method: "POST",
-            data: { id: id }, 
+            data: { id: id },
             dataType: "json"
         })
 
@@ -114,6 +114,52 @@ function operaciones() {
                 $("#formulario").show();
                 $("#nuevo").hide();
                 $(".div_id").show();
+                $(".div_image").show();
+                $(".div_center").show();
+            })
+
+            .fail(function (jqXHR, textStatus) {
+                Swal.fire({
+                    position: 'top-end',
+                    type: 'Error',
+                    title: 'An error has occurred : ' + textStatus,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+            });
+    });
+    $(".like").click(function () {
+
+        const pet = $(this).data("pet");
+        const user = $(this).data("user");
+        $.ajax({
+            url: "../CRUD/interaccion/DarLike.php",
+            method: "POST",
+            data: { pet: pet, user: user },
+            dataType: "json"
+        })
+            .done(function (data) {
+                location.reload();
+            })
+
+            .fail(function (jqXHR, textStatus) {
+                location.reload();
+            });
+    });
+
+    $(".del-like").click(function () {
+
+        const pet = $(this).data("pet");
+        const user = $(this).data("user");
+        $.ajax({
+            url: "../CRUD/interaccion/EliminarLike.php",
+            method: "POST",
+            data: { pet: pet, user: user },
+            dataType: "html"
+        })
+            .done(function (data) {
+                location.reload();
             })
 
             .fail(function (jqXHR, textStatus) {

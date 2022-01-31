@@ -9,44 +9,47 @@ if (isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-require '../php_operations/databaseli.php'; {
+$id = $_GET['id'];
 
-    $sql = "SELECT * FROM adopcion AS a
-            INNER JOIN usuario AS u ON (a.id_usuario = u.id_usuario)
-            INNER JOIN mascota AS m ON (a.id_mascota = m.id_mascota)
-            ORDER BY id_adopcion";
+require '../php_operations/databaseli.php';
 
-    $resultado = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-
-    $listado = array();
-    while ($fila = $resultado->fetch_assoc()) {
-        $listado[] = $fila;
-    }
-
-    //usuario
-    $sql = "SELECT * FROM usuario
-        ORDER BY id_usuario";
-    $result_usuario = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-    $usuario = array();
-    while ($fila = $result_usuario->fetch_assoc()) {
-        $usuario[] = $fila;
-    }
-
-    //mascota
-    $sql = "SELECT * FROM mascota WHERE status='Avaiable'
-        ORDER BY id_mascota";
-    $result_mascota = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-    $mascota = array();
-    while ($fila = $result_mascota->fetch_assoc()) {
-        $mascota[] = $fila;
-    }
+$sql2 = "SELECT * FROM transferencia AS t INNER JOIN centro AS c ON (t.id_centro = c.id_centro) WHERE id_mascota=" . $id . " ORDER BY fecha_transferencia DESC";
+$resultado2 = $conexion->query($sql2)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql2);
+$listado2 = array();
+while ($fila2 = $resultado2->fetch_assoc()) {
+    $listado2[] = $fila2;
 }
+$data = $listado2[0];
+
+
+$sql3 = "SELECT * FROM mascota WHERE id_mascota=" . $id;
+$resultado3 = $conexion->query($sql3)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql3);
+$listado3 = array();
+while ($fila3 = $resultado3->fetch_assoc()) {
+    $listado3[] = $fila3;
+}
+$datapet = $listado3[0];
+
+
+$sql = "SELECT * FROM interaccion AS i
+            INNER JOIN usuario AS u ON (i.id_usuario = u.id_usuario)
+            INNER JOIN mascota AS m ON (i.id_mascota = m.id_mascota)
+            WHERE i.megusta=0 AND i.id_mascota=$id
+            ORDER BY id_interaccion";
+
+$resultado = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
+
+$listado = array();
+while ($fila = $resultado->fetch_assoc()) {
+    $listado[] = $fila;
+}
+
 $conexion->close();
 ?>
 
@@ -285,7 +288,7 @@ Interactions
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Adoptions</h1>
+                                <h1>Interactions</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -300,39 +303,53 @@ Interactions
                     Information
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-secondary" id="nuevo">New</button>
 
+                    <div>
+                        <form class="row g-3" role="form">
+
+                            <div class="form-group col-2" >
+                                <img width="100%" src="data:image;base64,<?php echo base64_encode($datapet['picture_pet']); ?>" />
+                            </div>
+                            <div class="form-group col-5 ocultar">
+                                <label> Pet ID:</label>
+                                <input type="number" class="form-control" name="id" id="inputID" value="<?php echo $id ?>">
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Name:</label>
+                                <input type="text" class="form-control" name="name" id="inputName" value="<?php echo utf8_decode($datapet['name']) ?>" disabled>
+                                <label>Weight:</label>
+                                <input type="text" class="form-control" name="peso" id="inputWeight" value="<?php echo utf8_decode($datapet['weight']) ?>" disabled>
+                                <label>Specie:</label>
+                                <input type="text" class="form-control" name="especie" id="inputSpecie" value="<?php echo utf8_decode($datapet['specie']) ?>" disabled>
+                                <label>Race:</label>
+                                <input type="text" class="form-control" name="raza" id="inputRace" value="<?php echo $datapet['race']; ?>" disabled>
+                                <label>Center:</label>
+                                <input type="text" class="form-control" name="peso" value="<?php echo $data['nombre_centro']; ?>" disabled>
+                            </div>
+                        </form>
+                    </div>
+                    <br><br><br>
+                    <button type="button" class="btn btn-secondary" id="nuevo">New comment</button>
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
-                            <div class="form-group col-3 div_id">
-                                <label>Adoption ID:</label>
-                                <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
-                            </div>
-
-                            <div class="form-group col-3">
+                            <div class="form-group col-3 ocultar">
                                 <label>User:</label>
                                 <select class="form-control" name="emp" id="inputEmp">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($usuario as $fila) { ?>
-                                        <option value="<?php echo $fila['id_usuario'] ?>"> <?php echo $fila['nombre'] ?> </option>;
-                                    <?php } ?>
+                                    <option value="<?php echo $_SESSION['user_id'] ?>"><?php echo $_SESSION['user_name'] ?></option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-3">
+                            <div class="form-group col-3 ocultar">
                                 <label>Pet:</label>
                                 <select class="form-control" name="cli" id="inputCli">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($mascota as $fila) { ?>
-                                        <option value="<?php echo $fila['id_mascota'] ?>"> <?php echo $fila['name'] ?> </option>;
-                                    <?php } ?>
+                                    <option value="<?php echo $id ?>"><?php echo $id ?></option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-3">
-                                <label>Adoption Date:</label>
-                                <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
+                            <div class="form-group col-10" id="inputCommentDiv">
+                                <label>Comment:</label>
+                                <input autocomplete="off" type="text" class="form-control" name="comment" id="inputComment" placeholder="Enter comment" value="">
                             </div>
 
                         </form>
@@ -348,36 +365,29 @@ Interactions
                     <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Adoption ID</th>
                                 <th>User</th>
-                                <th>Pet Name</th>
-                                <th>Adoption Date</th>
-
-                                <th></th>
+                                <th>Comments</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr>
                                 <?php foreach ($listado as $fila) { ?>
-                                    <td><?php echo $fila['id_adopcion'] ?> </td>
                                     <td><?php echo utf8_decode($fila['nombre']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['name']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['fecha_adopcion']) ?> </td>
-
-                                    <td>
-                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_adopcion'] ?>">
-                                            <i class="fas fa-pen" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_adopcion'] ?>">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
+                                    <td style="width:60%;"><?php echo utf8_decode($fila['comentarios']) ?> </td>
+                                    <td><?php echo utf8_decode($fila['fecha_interaccion']) ?> </td>
                             </tr>
                         <?php } ?>
                         </tbody>
                     </table>
+
                 </div>
+
+
+
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
             </div>
 
             <footer class="py-4 bg-light mt-auto">
@@ -417,7 +427,7 @@ Interactions
         });
     </script>
 
-    <script type="text/javascript" src="../js/funcionesAdopcion.js"></script>
+    <script type="text/javascript" src="../js/funcionesInteraccion.js"></script>
     <script type="text/javascript">
         $(document).ready(operaciones)
     </script>

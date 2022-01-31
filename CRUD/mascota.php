@@ -115,22 +115,42 @@ $conexion->close();
                         <!--Pages btn 2 en la lista-->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
-                            Developement
+                            Menu
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!--Herramientas-->
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
+                                    Consult
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="./UserPet.php">Pets</a>
+                                        <a class="nav-link" href="./UserCenter.php">Centers</a>
+                                    </nav>
+                                </div>
+
+                                <!--Integrantes-->
+                                <a class="nav-link" href="../members.html">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-user-friends">
+                                        </i>
+                                    </div>
+                                    Members
+                                </a>
                                 <!--users-->
                                 <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 3) {
                                     echo '
 <a class="nav-link" href="./usuario.php">
-<div class="sb-nav-link-icon">
-<i class="fas fa-bars">
-</i>
-</div>
-Users
+    <div class="sb-nav-link-icon">
+        <i class="fas fa-bars">
+        </i>
+    </div>
+    Users
 </a>
 ';
                                 } ?>
@@ -265,8 +285,7 @@ Interactions
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-secondary" id="nuevo">New</button>
-                    <a href="../Reportes/materia_prima.php" class="btn btn-secondary">
-                        Customer Report</a>
+                    
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
@@ -280,7 +299,7 @@ Interactions
                             </div>
                             <div class="form-group col-5">
                                 <label>Weight:</label>
-                                <input autocomplete="off" type="text" class="form-control" name="peso" id="inputWeight" placeholder="Enter address" value="">
+                                <input autocomplete="off" type="number" class="form-control" name="peso" id="inputWeight" placeholder="Enter address" value="">
                             </div>
                             <div class="form-group col-5">
                                 <label>Status:</label>
@@ -302,7 +321,7 @@ Interactions
                                 <label>Race:</label>
                                 <input autocomplete="off" type="text" class="form-control" name="raza" id="inputRace" placeholder="Enter address" value="">
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-5" id="div-center">
                                 <label>Center:</label>
                                 <select class="form-control" name="centro" id="inputCentro">
                                     <option value="0">Select:</option>
@@ -311,7 +330,10 @@ Interactions
                                     <?php } ?>
                                 </select>
                             </div>
-
+                            <div class="form-group col-5" id="div-image">
+                                <label>Image:</label>
+                                <input class="form-control" type="file" name="txtImg"/>
+                            </div>
 
                         </form>
                         <div>
@@ -324,13 +346,8 @@ Interactions
                     <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Weight</th>
-                                <th>Status</th>
-                                <th>Specie</th>
-                                <th>Race</th>
-                                <th>Center</th>
+                                <th>Image</th>
+                                <th>Information</th>
 
                                 <th></th>
                             </tr>
@@ -338,13 +355,20 @@ Interactions
                         <tbody>
                             <tr>
                                 <?php foreach ($listado as $fila) { ?>
-                                    <td><?php echo $fila['id_mascota'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['name']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['weight']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['status']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['specie']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['race']) ?> </td>
-                                    <td><?php
+                                    <td style="width:10%;vertical-align: middle;"><img width="100%" src="data:image;base64,<?php echo base64_encode($fila['picture_pet']); ?>" /></td>
+                                    <td>
+                                        <strong>Name</strong>:
+                                        <?php echo utf8_decode($fila['name']) ?><br>
+                                        <strong>Weight</strong>:
+                                        <?php echo utf8_decode($fila['weight']) ?><br>
+                                        <strong>Status</strong>:
+                                        <?php echo utf8_decode($fila['status']) ?><br>
+                                        <strong>Specie</strong>:
+                                        <?php echo utf8_decode($fila['specie']) ?><br>
+                                        <strong>Race</strong>:
+                                        <?php echo utf8_decode($fila['race']) ?><br>
+                                        <strong>Center</strong>:
+                                        <?php
                                         require '../php_operations/databaseli.php';
                                         $sql2 = "SELECT * FROM transferencia AS t INNER JOIN centro AS c ON (t.id_centro = c.id_centro) WHERE id_mascota=" . $fila['id_mascota'] . " ORDER BY fecha_transferencia DESC";
                                         $resultado2 = $conexion->query($sql2)
@@ -361,7 +385,7 @@ Interactions
                                         ?>
                                     </td>
 
-                                    <td>
+                                    <td style="vertical-align: middle;width:10%;">
                                         <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_mascota'] ?>">
                                             <i class="fas fa-pen" aria-hidden="true"></i>
                                         </button>

@@ -1,4 +1,5 @@
 <?php
+
 include_once '../../php_operations/databaseli.php';
 $id = $_POST["id"];
 $name = $_POST["name"];
@@ -11,10 +12,6 @@ $date=date('Y-m-d');
 
 $sql = "UPDATE mascota SET name='$name', weight='$peso', status='$estado', specie='$especie', race='$raza' WHERE id_mascota=$id";
 
-$resultado = $conexion->query($sql)
-    or die(mysqli_errno($conexion) . " : "
-        . mysqli_error($conexion) . " | Query=" . $sql);
-$sql = "INSERT INTO transferencia values (NULL,'$id', '$centro', '$date')";
 $resultado = $conexion->query($sql)
     or die(mysqli_errno($conexion) . " : "
         . mysqli_error($conexion) . " | Query=" . $sql);

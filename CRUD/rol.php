@@ -104,7 +104,7 @@ $conexion->close();
                         <!--Pages btn 2 en la lista-->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
-                            Developement
+                            Menu
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!--Herramientas-->

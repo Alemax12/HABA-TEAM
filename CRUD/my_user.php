@@ -85,21 +85,24 @@ if (isset($_SESSION['user_rol'])) {
                         <!--Pages btn 2 en la lista-->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-code"></i></div>
-                            Developement
+                            Menu
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!--Herramientas-->
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                    aria-controls="pagesCollapseAuth">
                                     <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
-                                    Used Tools
+                                    Consult
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="https://trello.com/b/7dudAdSS/team-haba">Trello</a>
-                                        <a class="nav-link" href="https://github.com/Alemax12/HABBA-TEAM">GitHub</a>
+                                        <a class="nav-link" href="./CRUD/UserPet.php">Pets</a>
+                                        <a class="nav-link" href="./CRUD/UserCenter.php">Centers</a>
                                     </nav>
                                 </div>
 
@@ -118,7 +121,7 @@ if (isset($_SESSION['user_rol'])) {
                                     <i class="fas fa-bars">    
                                     </i>
                                     </div>
-                                    Tables
+                                    Admin
                                 </a>
 
                                 <!--Clientes-->

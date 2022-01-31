@@ -1,57 +1,27 @@
 <?php
 
 session_start();
-if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 3) {
-        header('Location: ../404.html');
-    }
-} else {
+if (!isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
-require '../php_operations/databaseli.php'; {
+require '../php_operations/databaseli.php';
 
-    $sql = "SELECT * FROM adopcion AS a
-            INNER JOIN usuario AS u ON (a.id_usuario = u.id_usuario)
-            INNER JOIN mascota AS m ON (a.id_mascota = m.id_mascota)
-            ORDER BY id_adopcion";
+$sql = "SELECT * FROM mascota
+    ORDER BY id_mascota";
 
-    $resultado = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
+$resultado = $conexion->query($sql)
+    or die(mysqli_errno($conexion) . " : "
+        . mysqli_error($conexion) . " | Query=" . $sql);
 
-    $listado = array();
-    while ($fila = $resultado->fetch_assoc()) {
-        $listado[] = $fila;
-    }
-
-    //usuario
-    $sql = "SELECT * FROM usuario
-        ORDER BY id_usuario";
-    $result_usuario = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-    $usuario = array();
-    while ($fila = $result_usuario->fetch_assoc()) {
-        $usuario[] = $fila;
-    }
-
-    //mascota
-    $sql = "SELECT * FROM mascota WHERE status='Avaiable'
-        ORDER BY id_mascota";
-    $result_mascota = $conexion->query($sql)
-        or die(mysqli_errno($conexion) . " : "
-            . mysqli_error($conexion) . " | Query=" . $sql);
-    $mascota = array();
-    while ($fila = $result_mascota->fetch_assoc()) {
-        $mascota[] = $fila;
-    }
+$listado = array();
+while ($fila = $resultado->fetch_assoc()) {
+    $listado[] = $fila;
 }
+
+
 $conexion->close();
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -285,7 +255,7 @@ Interactions
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h1>Adoptions</h1>
+                                <h1>Pets</h1>
                             </div>
                             <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
                         </div>
@@ -293,90 +263,179 @@ Interactions
                 </div>
             </div>
 
-
+            <!--|TABLA|-->
             <br>
             <div class="card">
                 <div class="card-header text-white bg-dark">
                     Information
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-secondary" id="nuevo">New</button>
-
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
-                            <div class="form-group col-3 div_id">
-                                <label>Adoption ID:</label>
+                            <div class="form-group col-5 div_id">
+                                <label> Pet ID:</label>
                                 <input autocomplete="off" type="number" class="form-control" name="id" id="inputID" placeholder="Enter ID" value="">
                             </div>
-
-                            <div class="form-group col-3">
-                                <label>User:</label>
-                                <select class="form-control" name="emp" id="inputEmp">
+                            <div class="form-group col-5">
+                                <label>Name:</label>
+                                <input autocomplete="off" type="text" class="form-control" name="name" id="inputName" placeholder="Enter name" value="">
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Weight:</label>
+                                <input autocomplete="off" type="text" class="form-control" name="peso" id="inputWeight" placeholder="Enter address" value="">
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Status:</label>
+                                <select class="form-control" name="estado" id="inputStatus">
+                                    <option value="Avaiable">Avaiable</option>
+                                    <option value="Adopted">Adopted</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Specie:</label>
+                                <select class="form-control" name="especie" id="inputSpecie">
+                                    <option value="Dog">Dog</option>
+                                    <option value="Cat">Cat</option>
+                                    <option value="Bird">Bird</option>
+                                    <option value="Reptile">Reptile</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Race:</label>
+                                <input autocomplete="off" type="text" class="form-control" name="raza" id="inputRace" placeholder="Enter address" value="">
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Center:</label>
+                                <select class="form-control" name="centro" id="inputCentro">
                                     <option value="0">Select:</option>
-                                    <?php foreach ($usuario as $fila) { ?>
-                                        <option value="<?php echo $fila['id_usuario'] ?>"> <?php echo $fila['nombre'] ?> </option>;
+                                    <?php foreach ($centro as $fila) { ?>
+                                        <option value="<?php echo $fila['id_centro'] ?>"> <?php echo $fila['nombre_centro'] ?> </option>;
                                     <?php } ?>
                                 </select>
                             </div>
 
-                            <div class="form-group col-3">
-                                <label>Pet:</label>
-                                <select class="form-control" name="cli" id="inputCli">
-                                    <option value="0">Select:</option>
-                                    <?php foreach ($mascota as $fila) { ?>
-                                        <option value="<?php echo $fila['id_mascota'] ?>"> <?php echo $fila['name'] ?> </option>;
-                                    <?php } ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-3">
-                                <label>Adoption Date:</label>
-                                <input autocomplete="off" type="date" class="form-control" name="date" id="inputDate" placeholder="Enter date" value="">
-                            </div>
 
                         </form>
                         <div>
                             <br>
-                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Update</button>
+                            <button type="button" id="save" class="btn btn-secondary" data-tag="">Save</button>
                             <button type="button" id="cancel" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>
-
                     <br><br>
-
                     <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Adoption ID</th>
-                                <th>User</th>
-                                <th>Pet Name</th>
-                                <th>Adoption Date</th>
-
+                                <th>Image</th>
+                                <th>Information</th>
                                 <th></th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr>
                                 <?php foreach ($listado as $fila) { ?>
-                                    <td><?php echo $fila['id_adopcion'] ?> </td>
-                                    <td><?php echo utf8_decode($fila['nombre']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['name']) ?> </td>
-                                    <td><?php echo utf8_decode($fila['fecha_adopcion']) ?> </td>
-
+                                    <td style="width:10%;vertical-align: middle;"><img width="100%" src="data:image;base64,<?php echo base64_encode($fila['picture_pet']); ?>" /></td>
                                     <td>
-                                        <button class="btn btn-success btn-sm edit" data-id="<?php echo $fila['id_adopcion'] ?>">
-                                            <i class="fas fa-pen" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm delete" data-id="<?php echo $fila['id_adopcion'] ?>">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
+                                        <strong>Name</strong>:
+                                        <?php echo utf8_decode($fila['name']) ?><br>
+                                        <strong>Weight</strong>:
+                                        <?php echo utf8_decode($fila['weight']) ?><br>
+                                        <strong>Status</strong>:
+                                        <?php echo utf8_decode($fila['status']) ?><br>
+                                        <strong>Specie</strong>:
+                                        <?php echo utf8_decode($fila['specie']) ?><br>
+                                        <strong>Race</strong>:
+                                        <?php echo utf8_decode($fila['race']) ?><br>
+                                        <strong>Center</strong>:
+                                        <?php
+                                        require '../php_operations/databaseli.php';
+                                        $sql2 = "SELECT * FROM transferencia AS t INNER JOIN centro AS c ON (t.id_centro = c.id_centro) WHERE id_mascota=" . $fila['id_mascota'] . " ORDER BY fecha_transferencia DESC";
+                                        $resultado2 = $conexion->query($sql2)
+                                            or die(mysqli_errno($conexion) . " : "
+                                                . mysqli_error($conexion) . " | Query=" . $sql2);
+
+                                        $listado2 = array();
+                                        while ($fila2 = $resultado2->fetch_assoc()) {
+                                            $listado2[] = $fila2;
+                                        }
+                                        $conexion->close();
+                                        $data = $listado2[0];
+                                        echo $data['nombre_centro'];
+                                        ?>
+                                    </td>
+
+                                    <td style="vertical-align: middle;width:10%;">
+                                        <div>
+                                            <strong>Comments</strong>:
+                                            <?php
+                                            require '../php_operations/databaseli.php';
+                                            $sql3 = "SELECT * FROM interaccion WHERE id_mascota=" . $fila['id_mascota'] . " AND megusta=0";
+                                            $resultado3 = $conexion->query($sql3)
+                                                or die(mysqli_errno($conexion) . " : "
+                                                    . mysqli_error($conexion) . " | Query=" . $sql3);
+                                            $count3 = 0;
+                                            while ($fila3 = $resultado3->fetch_assoc()) {
+                                                $count3++;
+                                            }
+                                            echo $count3;
+                                            $conexion->close();
+                                            ?>
+                                            <a href="./Comments.php?id=<?php echo $fila['id_mascota'] ?>" style="width:100%;" class="btn btn-success btn-sm comment" data-id="<?php echo $fila['id_mascota'] ?>">
+                                                <i class="fas fa-comment-dots" aria-hidden="true"></i> Comments
+                                            </a>
+                                        </div>
+                                        <div style="margin-top:5px;">
+                                            <strong>Likes</strong>:
+                                            <?php
+                                            require '../php_operations/databaseli.php';
+                                            $sql4 = "SELECT * FROM interaccion WHERE id_mascota=" . $fila['id_mascota'] . " AND megusta=1";
+                                            $resultado4 = $conexion->query($sql4)
+                                                or die(mysqli_errno($conexion) . " : "
+                                                    . mysqli_error($conexion) . " | Query=" . $sql4);
+                                            $count4 = 0;
+                                            while ($fila4 = $resultado4->fetch_assoc()) {
+                                                $count4++;
+                                            }
+                                            echo $count4;
+                                            $conexion->close();
+                                            require '../php_operations/databaseli.php';
+                                            $sql_liked = "SELECT * FROM interaccion WHERE id_mascota=" . $fila['id_mascota'] . " AND id_usuario= " . $_SESSION['user_id'];
+                                            $resultado_liked = $conexion->query($sql_liked)
+                                                or die(mysqli_errno($conexion) . " : "
+                                                    . mysqli_error($conexion) . " | Query=" . $sql);
+
+                                            $count_like = 0;
+                                            while ($fila_liked = $resultado_liked->fetch_assoc()) {
+                                                $count_like++;
+                                            }
+                                            $liked = false;
+                                            if ($count_like > 0) {
+                                                $liked = true;
+                                            }
+                                            ?>
+                                            <button style="width:100%;" class="btn btn-primary btn-sm <?php if ($liked) {
+                                                                                                            echo 'del-like';
+                                                                                                        } else {
+                                                                                                            echo 'like';
+                                                                                                        } ?>" data-pet="<?php echo $fila['id_mascota'] ?>" data-user="<?php echo $_SESSION['user_id'] ?>">
+                                                <i class="fas fa-<?php if ($liked) {
+                                                                        echo 'times';
+                                                                    } else {
+                                                                        echo 'check';
+                                                                    } ?>" aria-hidden="true"></i> <?php if ($liked) {
+                                                                                                        echo 'Remove like';
+                                                                                                    } else {
+                                                                                                        echo 'Like';
+                                                                                                    } ?>
+                                            </button>
+                                        </div>
                                     </td>
                             </tr>
                         <?php } ?>
                         </tbody>
                     </table>
+
                 </div>
             </div>
 
@@ -391,14 +450,11 @@ Interactions
                         </div>
                     </div>
                 </div>
-            </footer>
-
         </div>
-        <!--INICIO-->
-
-
+        </footer>
     </div>
-    <!--FIN-->
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -416,8 +472,7 @@ Interactions
             $("#tabla").DataTable();
         });
     </script>
-
-    <script type="text/javascript" src="../js/funcionesAdopcion.js"></script>
+    <script type="text/javascript" src="../js/funcionesMascota.js"></script>
     <script type="text/javascript">
         $(document).ready(operaciones)
     </script>
