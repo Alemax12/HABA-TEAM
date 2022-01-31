@@ -11,6 +11,7 @@ function Logged() {
             if (data.respuesta == "no") {
                 $("#LoggedIcon").hide();
                 $("#TablesLeft").hide();
+                $("#ConsultGroup").hide();
             } else {
                 $("#MyUserRol").text(data.rol_t);
                 $("#MyUserName").text(data.name);
@@ -47,6 +48,7 @@ function Logged1() {
             if (data.respuesta == "no") {
                 $("#LoggedIcon").hide();
                 $("#TablesLeft").hide();
+                $("#ConsultGroup").hide();
             } else {
                 $("#MyUserRol").text(data.rol_t);
                 $("#MyUserName").text(data.name);
@@ -169,6 +171,7 @@ function Logged2() {
             if (data.respuesta == "no") {
                 $("#LoggedIcon").hide();
                 $("#TablesLeft").hide();
+                $("#ConsultGroup").hide();
             } else {
                 $("#MyUserRol").text(data.rol_t);
                 $("#MyUserName").text(data.name);
