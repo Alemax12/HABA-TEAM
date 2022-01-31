@@ -108,7 +108,7 @@ $conexion->close();
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                <a id="ConsultGroup" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                     <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
                                     Consult
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
