@@ -290,7 +290,7 @@ Interactions
                             <div class="col-md-8">
                                 <h1>Interactions</h1>
                             </div>
-                            <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="200"></div>
+                            <div class="col-6 col-md-4"><img src="../imgC/logo.png" class="rounded" width="150"></div>
                         </div>
                     </div>
                 </div>
