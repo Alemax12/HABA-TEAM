@@ -400,7 +400,7 @@ Interactions
                                             echo $count4;
                                             $conexion->close();
                                             require '../php_operations/databaseli.php';
-                                            $sql_liked = "SELECT * FROM interaccion WHERE id_mascota=" . $fila['id_mascota'] . " AND id_usuario= " . $_SESSION['user_id'];
+                                            $sql_liked = "SELECT * FROM interaccion WHERE megusta=1 AND id_mascota=" . $fila['id_mascota'] . " AND id_usuario= " . $_SESSION['user_id'];
                                             $resultado_liked = $conexion->query($sql_liked)
                                                 or die(mysqli_errno($conexion) . " : "
                                                     . mysqli_error($conexion) . " | Query=" . $sql);
