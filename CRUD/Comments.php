@@ -1,11 +1,7 @@
 <?php
 
 session_start();
-if (isset($_SESSION['user_rol'])) {
-    if ($_SESSION['user_rol'] != 3) {
-        header('Location: ../404.html');
-    }
-} else {
+if (!isset($_SESSION['user_rol'])) {
     header('Location: ../404.html');
 }
 
