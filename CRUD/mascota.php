@@ -285,7 +285,7 @@ Interactions
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-secondary" id="nuevo">New</button>
-                    
+
                     <div id="formulario">
                         <form class="row g-3" role="form" id="form1">
 
@@ -332,7 +332,7 @@ Interactions
                             </div>
                             <div class="form-group col-5" id="div-image">
                                 <label>Image:</label>
-                                <input class="form-control" type="file" name="txtImg"/>
+                                <input class="form-control" type="file" name="txtImg" />
                             </div>
 
                         </form>
